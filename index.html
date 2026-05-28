@@ -1,74 +1,221 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EAGLE DS | Combat Sports Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Ensuring premium fonts and rendering across all devices */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #000000; }
+        :root {
+            --bg: #08080a; --surf: #0f0f12; --surf2: #16161a; --border: #222228; --dim: #3a3a42;
+            --text: #f0f0f4; --muted: #64646e; --gold: #f0b429; --gold-dk: #c89010;
+            --red: #e03030; --blue: #2a7fd4; --green: #20b040;
+            --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+        }
+        body { font-family: var(--sans); background-color: var(--bg); color: var(--text); }
+        .font-mono-cgs { font-family: var(--mono); }
+        .font-bebas-cgs { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+        .tab-content-cgs { display: none; }
+        .tab-content-cgs.active { display: block; }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between selection:bg-zinc-800 selection:text-white">
 
-    <header class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-widest text-white">EAGLE DS</div>
-        <div class="h-px bg-zinc-800 flex-grow mx-6 hidden md:block"></div>
-        <span class="text-xs tracking-widest text-zinc-400 uppercase hidden sm:block">National Ecosystem Operator</span>
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-zinc-900/80">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl font-black tracking-widest text-white font-bebas-cgs text-[22px]">EAGLE DS</span>
+            <span class="h-4 w-px bg-zinc-800"></span>
+            <span class="text-[10px] tracking-widest text-zinc-500 uppercase font-mono-cgs">National Ecosystem Operator</span>
+        </div>
+        <div class="flex items-center gap-6 text-[11px] font-mono-cgs tracking-wider text-zinc-400">
+            <a href="https://eagleds.gymdesk.com" target="_blank" class="hover:text-white transition-colors">← GYMDESK PORTAL</a>
+            <span class="h-3 w-px bg-zinc-800"></span>
+            <span class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#20b040]"></span>
+                PLATFORM LIVE
+            </span>
+        </div>
     </header>
 
-    <main class="w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-6">
+    <main class="w-full max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10 my-auto items-stretch">
         
-        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                Driving the Future of <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-500">
-                    NZ Combat Sports.
-                </span>
-            </h1>
-            
-            <p class="text-zinc-400 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-                Developing elite national infrastructure through core academy architecture, independent tournament software platforms, and formal educational pathways.
-            </p>
+        <div class="lg:col-span-4 flex flex-col justify-between p-6 rounded-xl border border-zinc-900 bg-[#0a0a0d] relative overflow-hidden">
+            <div class="space-y-6">
+                <div class="space-y-2">
+                    <span class="text-[9px] font-bold tracking-widest text-zinc-500 uppercase font-mono-cgs block">DIVISION 01 // STRUCTURAL ACCREDITATION</span>
+                    <h2 class="text-3xl font-black tracking-tight text-white font-bebas-cgs text-[28px] text(var(--gold))">ACADEMY & EDUCATION</h2>
+                    <p class="text-zinc-400 text-xs font-light leading-relaxed">
+                        Governing regional physical combat sports architecture alongside formalized official qualification tracks across New Zealand.
+                    </p>
+                </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <a href="https://eagleds.gymdesk.com" target="_blank" class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold tracking-wide text-black bg-white rounded-full overflow-hidden transition-all duration-300 hover:bg-zinc-200 transform hover:-translate-y-0.5 shadow-lg">
-                    Enter Academy Portal & Schedules
-                </a>
-                
-                <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold tracking-wide text-white bg-zinc-950 border border-zinc-800 rounded-full transition-all duration-300 hover:bg-zinc-900 hover:border-zinc-700 transform hover:-translate-y-0.5">
-                    Combat Games Registration
-                </a>
+                <div class="space-y-3 pt-2">
+                    <a href="https://eagleds.gymdesk.com" target="_blank" class="group flex items-center justify-between p-4 bg-zinc-900 border border-zinc-800 rounded-lg transition-all duration-200 hover:border-zinc-700">
+                        <div>
+                            <span class="block text-[9px] font-bold uppercase font-mono-cgs text-zinc-500">Physical Location Hub</span>
+                            <span class="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors">East Tamaki Schedules & Portals</span>
+                        </div>
+                        <span class="text-sm font-mono-cgs text-zinc-500 group-hover:text-[var(--gold)] transition-colors">▸</span>
+                    </a>
+
+                    <div class="bg-zinc-950 p-2 rounded-lg border border-zinc-900 space-y-1 font-mono-cgs text-[11px]">
+                        <span class="block text-[8px] font-bold text-zinc-600 uppercase px-2 pb-1">Select Event Feed</span>
+                        
+                        <button onclick="switchCgsTab('register')" id="tab-btn-register" class="cgs-control-btn w-full text-left px-3 py-2 rounded font-semibold bg-zinc-900 text-white border border-zinc-800 flex justify-between items-center">
+                            <span>1. REGISTRATION GATEWAY</span>
+                            <span class="text-[9px] px-1.5 py-0.2 bg-emerald-950/80 border border-emerald-800 text-emerald-400 font-bold rounded">OPEN</span>
+                        </button>
+
+                        <button onclick="switchCgsTab('live')" id="tab-btn-live" class="cgs-control-btn w-full text-left px-3 py-2 rounded text-zinc-500 hover:text-zinc-300 transition-colors flex justify-between items-center">
+                            <span>2. LIVE ARENA SCOREBOARD</span>
+                            <span class="text-[9px] font-bold text-zinc-700">TBC</span>
+                        </button>
+
+                        <button onclick="switchCgsTab('draw')" id="tab-btn-draw" class="cgs-control-btn w-full text-left px-3 py-2 rounded text-zinc-500 hover:text-zinc-300 transition-colors flex justify-between items-center">
+                            <span>3. TOURNAMENT BRACKETS</span>
+                            <span class="text-[9px] font-bold text-zinc-700">TBC</span>
+                        </button>
+
+                        <button onclick="switchCgsTab('referee')" id="tab-btn-referee" class="cgs-control-btn w-full text-left px-3 py-2 rounded text-zinc-500 hover:text-zinc-300 transition-colors flex justify-between items-center">
+                            <span>4. OFFICIALS ACCREDITATION</span>
+                            <span class="text-[9px] text-amber-500/80 font-bold">CORE</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-zinc-900/60 flex items-center gap-3">
+                <img src="logo.PNG" alt="Eagle DS Token" class="h-6 w-6 object-contain opacity-20 grayscale">
+                <span class="text-[9px] font-mono-cgs text-zinc-600 uppercase tracking-widest">EAGLE DS SYSTEM MATRIX // 2026</span>
             </div>
         </div>
 
-        <div class="lg:col-span-5 flex justify-center items-center">
-            <div class="relative w-full max-w-md aspect-square bg-zinc-950 border border-zinc-900 rounded-2xl overflow-hidden p-2 shadow-2xl">
-                <img src="logo.PNG" 
-                     alt="Eagle DS Bronze Asset" 
-                     class="w-full h-full object-cover rounded-xl opacity-80 filter grayscale contrast-125 transition-opacity duration-500 group-hover:opacity-100">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+        <div class="lg:col-span-8 bg-[#0a0a0d] border border-zinc-900 rounded-xl min-h-[500px] overflow-hidden flex flex-col justify-between p-6 shadow-2xl relative">
+            
+            <div id="cgs-view-register" class="tab-content-cgs active space-y-6">
+                <div class="border-b border-zinc-900 pb-4 flex justify-between items-baseline">
+                    <div>
+                        <span class="text-[9px] font-mono-cgs text-zinc-500 block uppercase">Division 02 // Combat Games Series</span>
+                        <h3 class="text-xl font-bold font-bebas-cgs text-[20px] text-white">Fighter Registration Portal</h3>
+                    </div>
+                    <span class="text-[10px] font-mono-cgs text-emerald-400">STATUS: ACCEPTING ENTRIES</span>
+                </div>
+                
+                <div class="w-full bg-zinc-900/20 border border-zinc-900/60 rounded-lg p-10 text-center flex flex-col justify-center items-center min-h-[300px] space-y-4">
+                    <div class="space-y-2 max-w-sm">
+                        <h4 class="text-sm font-bold tracking-wide font-mono-cgs text-zinc-200">Unified Matchmaking Registry</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                            Initialize secure external form parameters to lock down division mapping, confirm exact weight configurations, and sign digital liability waivers.
+                        </p>
+                    </div>
+                    <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" class="inline-flex items-center justify-center px-6 py-2.5 text-xs font-bold font-mono-cgs tracking-wider text-black bg-[#f0b429] rounded hover:bg-[#c89010] transition-colors uppercase">
+                        Launch Entry Form Portal ⚔
+                    </a>
+                </div>
+            </div>
+
+            <div id="cgs-view-live" class="tab-content-cgs space-y-6">
+                <div class="border-b border-zinc-900 pb-4">
+                    <span class="text-[9px] font-mono-cgs text-zinc-500 block uppercase">Division 02 // Combat Games Series</span>
+                    <h3 class="text-xl font-bold font-bebas-cgs text-[20px] text-white">Ringside Score Matrix</h3>
+                </div>
+                
+                <div class="w-full border border-dashed border-zinc-800 rounded-lg p-12 text-center flex flex-col justify-center items-center min-h-[300px] space-y-2 bg-[#08080a]">
+                    <span class="font-mono-cgs text-[9px] text-zinc-600 tracking-widest uppercase animate-pulse">[ DATA PIPES STREAM PENDING ]</span>
+                    <h4 class="text-xs font-bold font-mono-cgs text-zinc-400">Live Scoreboard Integration Ready</h4>
+                    <p class="text-[11px] text-zinc-500 max-w-xs leading-relaxed font-light mx-auto">
+                        Your direct Firebase stream endpoint is prepared. When matches are initialized live by ringside marshals via the manager application, real-time metrics will render here instantly.
+                    </p>
+                </div>
+            </div>
+
+            <div id="cgs-view-draw" class="tab-content-cgs space-y-6">
+                <div class="border-b border-zinc-900 pb-4">
+                    <span class="text-[9px] font-mono-cgs text-zinc-500 block uppercase">Division 02 // Combat Games Series</span>
+                    <h3 class="text-xl font-bold font-bebas-cgs text-[20px] text-white">Brackets & Dynamic Pools</h3>
+                </div>
+                
+                <div class="w-full border border-dashed border-zinc-800 rounded-lg p-12 text-center flex flex-col justify-center items-center min-h-[300px] space-y-2 bg-[#08080a]">
+                    <span class="font-mono-cgs text-[9px] text-zinc-600 tracking-widest uppercase animate-pulse">[ REPOSITORY ORDER MAP INITIALIZING ]</span>
+                    <h4 class="text-xs font-bold font-mono-cgs text-zinc-400">Match Schedules Under Compilation</h4>
+                    <p class="text-[11px] text-zinc-500 max-w-xs leading-relaxed font-light mx-auto">
+                        The structural data layer is prepared to feed touch reordered brackets, pool assignments, and division statuses directly from your database layout.
+                    </p>
+                </div>
+            </div>
+
+            <div id="cgs-view-referee" class="tab-content-cgs space-y-6">
+                <div class="border-b border-zinc-900 pb-4">
+                    <span class="text-[9px] font-mono-cgs text-zinc-500 block uppercase">Division 01 // Curriculum Architecture</span>
+                    <h3 class="text-xl font-bold font-bebas-cgs text-[20px] text-white">Officials Pathway & Education IP</h3>
+                </div>
+                
+                <div class="bg-zinc-900/20 border border-zinc-900/80 rounded-lg p-5 space-y-4">
+                    <div class="flex items-center gap-2 text-xs font-mono-cgs font-bold uppercase tracking-wider text-zinc-400">
+                        <span class="px-1.5 py-0.5 bg-zinc-950 border border-zinc-800 text-[9px] rounded text-amber-500">STRUCTURE LOCKED</span>
+                        <span>Official Certification Architecture</span>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed font-light">
+                        Our internal regional referee pathway is completely structured. We are currently preparing and formatting video assets for the digital interactive database layout.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono-cgs text-[10px]">
+                        <div class="p-3 bg-zinc-950 border border-zinc-900 rounded">
+                            <span class="block font-bold text-amber-500 mb-1">MODULE ALPHA // MECHANICS</span>
+                            Technique Legality & Fouls Classification
+                        </div>
+                        <div class="p-3 bg-zinc-950 border border-zinc-900 rounded">
+                            <span class="block font-bold text-amber-500 mb-1">MODULE BETA // COMMANDS</span>
+                            Mat Management & Verbal Call Consistency
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-zinc-900/60 flex justify-between items-center text-[9px] tracking-widest font-mono-cgs text-zinc-600 uppercase">
+                <span>SYSTEM TARGET: EDGE_NODE_NODE</span>
+                <span>SECURE HOST COMPILATION SUCCESSFUL</span>
             </div>
         </div>
 
     </main>
 
-    <footer class="w-full max-w-7xl mx-auto px-6 py-8 border-t border-zinc-900 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left text-xs tracking-wider text-zinc-500 uppercase">
+    <footer class="w-full max-w-7xl mx-auto px-6 py-8 border-t border-zinc-900/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left text-xs tracking-wider font-mono-cgs text-zinc-500 uppercase">
         <div>
-            <span class="block text-zinc-400 font-semibold mb-1">01 / Infrastructure</span>
-            East Tamaki Academy Hub
+            <span class="block text-zinc-400 font-bold mb-1 text-[10px]">01 / PHYSICAL HUB</span>
+            EAST TAMAKI ACADEMY CENTER
         </div>
         <div>
-            <span class="block text-zinc-400 font-semibold mb-1">02 / Software Automation</span>
-            Proprietary 0% Skim Tournament Engine
+            <span class="block text-zinc-400 font-bold mb-1 text-[10px]">02 / TOURNAMENT MANAGEMENT</span>
+            REAL-TIME FIREBASE DATABASE LAYER
         </div>
         <div>
-            <span class="block text-zinc-400 font-semibold mb-1">03 / Education IP</span>
-            Official Referee & Coach Pathways
+            <span class="block text-zinc-400 font-bold mb-1 text-[10px]">03 / ECOSYSTEM RULES</span>
+            OFFICIAL ACCREDITATION TRAINING
         </div>
     </footer>
+
+    <script>
+        function switchCgsTab(tabId) {
+            // Hide all active content panes
+            const views = document.querySelectorAll('.tab-content-cgs');
+            views.forEach(v => v.classList.remove('active'));
+            
+            // Revert tab controller styles to clean dark state
+            const buttons = document.querySelectorAll('.cgs-control-btn');
+            buttons.forEach(btn => {
+                btn.className = "cgs-control-btn w-full text-left px-3 py-2 rounded text-zinc-500 hover:text-zinc-300 transition-colors flex justify-between items-center";
+            });
+            
+            // Open the target content viewport
+            document.getElementById('cgs-view-' + tabId).classList.add('active');
+            
+            // Style selected button to indicate clean dark focus state
+            const targetBtn = document.getElementById('tab-btn-' + tabId);
+            targetBtn.className = "cgs-control-btn w-full text-left px-3 py-2 rounded font-semibold bg-zinc-900 text-white border border-zinc-800 flex justify-between items-center";
+        }
+    </script>
 
 </body>
 </html>
