@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Hub — Eagle DS | Clinical Health, Auckland</title>
+<meta name="description" content="The Eagle DS Wellness Hub — clinical nutrition, mindfulness, breathwork, mobility and recovery led by Carrie Sanders RN. The clinical foundation behind our zero-concussion record. East Tāmaki, Auckland.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT OVERRIDE — Wellness Hub — Jade (shared bones stay identical) === */
+  :root { --gold: #2E9E6B; --gold-light: #46C088; --accent-rgb: 46,158,107; }
+  .hero { min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { background: var(--black); display: flex; flex-direction: column; justify-content: center; padding: 130px 60px 80px 80px; position: relative; z-index: 2; }
+  .hero-right { background: var(--grey); position: relative; overflow: hidden; }
+  .hero-right::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 40% 40%, rgba(var(--accent-rgb),0.10), transparent 60%), linear-gradient(135deg, #1a1a1a, #0a0a0a); }
+  .hero-right::after { content: ''; position: absolute; width: 380px; height: 380px; border: 1px solid rgba(var(--accent-rgb),0.18); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: breathe 7s ease-in-out infinite; }
+  .ring2 { position: absolute; width: 240px; height: 240px; border: 1px solid rgba(var(--accent-rgb),0.12); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; animation: breathe 7s ease-in-out infinite reverse; }
+  .hero-logo-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 3; }
+  .hero-logo-display { max-width: 42%; max-height: 42%; object-fit: contain; filter: drop-shadow(0 16px 40px rgba(0,0,0,0.6)); }
+  .eagle-mark { display: none; font-family: 'Bebas Neue'; font-size: 14vw; color: transparent; -webkit-text-stroke: 1px rgba(var(--accent-rgb),0.2); }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 4.8vw, 74px); font-weight: 300; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 15px; color: #aaa; max-width: 470px; margin-bottom: 38px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-body strong { color: var(--white); font-weight: 500; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+
+  .services { background: var(--grey); }
+  .svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; }
+  .svc { background: var(--black); padding: 44px 36px; transition: background 0.3s ease; position: relative; overflow: hidden; }
+  .svc:hover { background: #111; }
+  .svc::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
+  .svc:hover::before { width: 100%; }
+  .svc-icon { font-size: 30px; margin-bottom: 22px; display: block; }
+  .svc-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+  .svc-desc { font-size: 13px; color: #777; line-height: 1.75; }
+
+  .clinical { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; align-items: stretch; }
+  .clinical-left { padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .clinical-right { background: var(--grey); padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .clinical-right::before { content: ''; position: absolute; top: -120px; right: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--accent-rgb),0.07), transparent 70%); }
+  .clinical-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; }
+  .clinical-body strong { color: var(--white); font-weight: 500; }
+  .zero { position: relative; z-index: 2; }
+  .zero .zn { font-family: 'Bebas Neue'; font-size: 120px; color: var(--gold); line-height: 0.9; }
+  .zero .zl { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--white); margin-bottom: 18px; }
+  .zero .zd { font-size: 14px; color: #888; line-height: 1.8; max-width: 360px; }
+
+  .who { background: var(--grey); }
+  .who-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 50px; }
+  .who-cell { background: var(--black); padding: 36px 28px; transition: background 0.3s ease; }
+  .who-cell:hover { background: #111; }
+  .who-cell .wi { font-size: 26px; margin-bottom: 16px; display: block; }
+  .who-cell .wt { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+  .who-cell .wd { font-size: 12px; color: #777; line-height: 1.65; }
+
+  .cta-band { background: var(--black); text-align: center; }
+  .cta-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; } .hero-right { display: none; } .hero-left { padding: 110px 40px 70px; }
+    .svc-grid { grid-template-columns: 1fr; } .clinical { grid-template-columns: 1fr; }
+    .clinical-left, .clinical-right { padding: 60px 40px; } .who-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) { .hero-left { padding: 100px 24px 60px; } .who-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Wellness Hub</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="gym.html">Academy</a>
+    <a href="#services">Services</a>
+    <a href="#who">Who It's For</a>
+    <a href="community.html">Community</a>
+    <a href="mailto:info@eagleds.co.nz?subject=Wellness%20Enquiry" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-left">
+    <div class="gold-line"></div>
+    <p class="eyebrow">Led by Carrie Sanders · Registered Nurse</p>
+    <h1 class="hero-headline">Health Is Not<br>an Add-On.<br><em>It's the Foundation.</em></h1>
+    <p class="hero-body">The Eagle DS Wellness Hub brings <strong>clinical rigour</strong> to combat sport and everyday health alike — nutrition, mindfulness, breathwork, mobility and recovery, designed and led by a Registered Nurse and Clinical Nutritionist.<br><br>It's the reason every athlete we develop is built up, not broken down.</p>
+    <div class="cta-group">
+      <a href="mailto:info@eagleds.co.nz?subject=Wellness%20Enquiry" class="btn-primary"><span>Book a Consultation</span></a>
+      <a href="#services" class="btn-secondary">What We Offer</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="ring2"></div>
+    <div class="hero-logo-wrap">
+      <img src="logo.PNG" alt="Eagle DS" class="hero-logo-display" id="heroLogo" onerror="this.style.display='none'; document.querySelector('.eagle-mark').style.display='block';">
+      <div class="eagle-mark">DS</div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-item"><span class="n">RN</span><span class="l">Registered Nurse Led</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">0</span><span class="l">Concussions on Record</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">450+</span><span class="l">Matches Kept Safe</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">4</span><span class="l">Pillars · Te Whare Tapa Whā</span></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services reveal" id="services">
+  <p class="section-label">What We Offer</p>
+  <h2 class="section-title">Clinical Care,<br><em>Holistic Practice.</em></h2>
+  <p class="section-intro">Every programme is built on the same principle: real, health-informed support for the whole person — whether you're a competing athlete, a busy family, or a team carrying sustained pressure.</p>
+  <div class="svc-grid">
+    <div class="svc"><span class="svc-icon">🥗</span><div class="svc-title">Clinical Nutrition</div><p class="svc-desc">Nutrition for athletes, families and individuals — designed by a Clinical Nutritionist and Registered Nurse, grounded in evidence, not fads.</p></div>
+    <div class="svc"><span class="svc-icon">🧘</span><div class="svc-title">Mindfulness &amp; Breathwork</div><p class="svc-desc">Practical tools for stress regulation, focus, and recovery — the same mental skills that hold up under competitive pressure.</p></div>
+    <div class="svc"><span class="svc-icon">🤸</span><div class="svc-title">Mobility &amp; Recovery</div><p class="svc-desc">Movement, mobility and physical recovery work that keeps bodies durable across training, competition and everyday life.</p></div>
+    <div class="svc"><span class="svc-icon">🩺</span><div class="svc-title">Holistic Health</div><p class="svc-desc">Whole-person wellbeing for individuals, families and youth — informed by frontline clinical experience.</p></div>
+    <div class="svc"><span class="svc-icon">💼</span><div class="svc-title">Corporate Wellness</div><p class="svc-desc">The mental and physical tools of elite athletes, applied to professional teams — resilience, recovery and performance under pressure. Flexible delivery.</p></div>
+    <div class="svc"><span class="svc-icon">🛡️</span><div class="svc-title">Event Health &amp; Safety</div><p class="svc-desc">The clinical health-and-safety architecture behind every Combat Games Series event — the backbone of our zero-concussion record.</p></div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- CLINICAL / ZERO -->
+<section class="clinical reveal">
+  <div class="clinical-left">
+    <p class="section-label">Why It Matters</p>
+    <h2 class="section-title">Rare Rigour<br>in <em>Combat Sport.</em></h2>
+    <p class="clinical-body">Most combat sports organisations treat health as an afterthought. Eagle DS was built the other way around. <strong>Carrie Sanders</strong> — a Registered Nurse with frontline clinical experience and a qualified Clinical Nutritionist — designs and oversees the wellness architecture behind everything we do.</p>
+    <p class="clinical-body">For at-risk and vulnerable young people especially, having a nurse in the room — even informally — changes the nature of the environment entirely. It is safer, calmer, and held to a clinical standard.</p>
+  </div>
+  <div class="clinical-right">
+    <div class="zero">
+      <div class="zn">0</div>
+      <div class="zl">concussions on record.</div>
+      <p class="zd">Across five national tournaments and more than 450 matches. Not luck — the product of clinical oversight, controlled-contact standards, and a culture that develops people rather than damaging them.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- WHO -->
+<section class="who reveal" id="who">
+  <p class="section-label">Who It's For</p>
+  <h2 class="section-title">Whole Health,<br><em>Every Stage.</em></h2>
+  <div class="who-grid">
+    <div class="who-cell"><span class="wi">🥇</span><div class="wt">Athletes</div><div class="wd">Fuelling, recovery and durability for training and competition.</div></div>
+    <div class="who-cell"><span class="wi">👨‍👩‍👧</span><div class="wt">Families</div><div class="wd">Holistic health support for whānau across every generation.</div></div>
+    <div class="who-cell"><span class="wi">🧠</span><div class="wt">Professionals</div><div class="wd">Stress mastery, focus and recovery for high-pressure work.</div></div>
+    <div class="who-cell"><span class="wi">🌱</span><div class="wt">Youth</div><div class="wd">Health-informed, safe environments for rangatahi and at-risk young people.</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <p class="section-label">Take the First Step</p>
+  <h2 class="section-title">Build From<br>the <em>Ground Up.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">Whether you want nutrition support, a wellness programme for your team, or simply to train somewhere that takes your health seriously — get in touch and we'll find the right starting point.</p>
+  <div class="cta-group">
+    <a href="mailto:info@eagleds.co.nz?subject=Wellness%20Enquiry" class="btn-primary"><span>Book a Consultation</span></a>
+    <a href="gym.html" class="btn-secondary">Train at the Academy</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>The Wellness Hub — clinical nutrition, mindfulness, breathwork and recovery, led by Carrie Sanders RN. Health as the foundation of everything we build.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Wellness</h4>
+      <a href="#services">Services</a>
+      <a href="#who">Who It's For</a>
+      <a href="mailto:info@eagleds.co.nz?subject=Corporate%20Wellness">Corporate Wellness</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="community.html">Community Programmes</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat &amp; Wellness · Wellness Hub</span>
+    <span class="live"><span class="live-dot"></span> Clinically Led</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

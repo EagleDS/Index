@@ -7,7 +7,8 @@
 <meta name="description" content="Eagle DS — Auckland's full-pathway combat sports academy. Boxing, kickboxing, MMA, Taekwondo. Led by international medalist Dafydd Sanders. East Tāmaki.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
 <style>
   :root {
     --black: #0a0a0a;
@@ -15,6 +16,7 @@
     --gold: #C8960C;
     --gold-light: #E8B84B;
     --gold-pale: #f5e6b8;
+    --accent-rgb: 200,150,12;
     --white: #f8f4ee;
     --grey: #1a1a1a;
     --mid: #2e2e2e;
@@ -374,17 +376,18 @@
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
-  <a href="#top" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo"
          onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
     <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
-    <span class="nav-wordmark">EAGLE DS<small>Combat &amp; Human Performance</small></span>
+    <span class="nav-wordmark">EAGLE DS<small>Training Academy</small></span>
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
     <a href="#pathway">Pathway</a>
     <a href="#schedule">Schedule</a>
-    <a href="#programmes">Programmes</a>
+    <a href="coach.html">Coaching Course</a>
     <a href="#founder">Coach</a>
     <a href="https://eagleds.gymdesk.com/pricing" target="_blank" rel="noopener">Memberships</a>
     <a href="https://eagleds.gymdesk.com/shop" target="_blank" rel="noopener">Shop</a>
@@ -400,7 +403,7 @@
     <p class="eyebrow">Auckland · Est. Eagle DS · Combat &amp; Human Performance</p>
     <h1 class="hero-headline">We Don't<br>Teach <em>Sport.</em><br>We Build<br><em>People.</em></h1>
     <p class="hero-sub">Elite pathways from first pad to national competition — and beyond.</p>
-    <p class="hero-body">Eagle DS is Auckland's only <strong>full-pathway combat sports academy</strong> built around measurable outcomes: technical mastery, leadership, mental resilience, and the high-performance habits that define successful people across every field.<br><br>Led by <strong>Dafydd Sanders</strong> — 31 years' experience, international medalist across IMMAF, WAKO, WTF, and Karate. This is not a gym. This is a development system.</p>
+    <p class="hero-body">Eagle DS is Auckland's only <strong>full-pathway combat sports academy</strong> built around measurable outcomes: technical mastery, leadership, mental resilience, and the high-performance habits that define successful people across every field.<br><br>Led by <strong>Dafydd Sanders</strong> — 27 years teaching and coaching, a former international taekwondo athlete across two Olympic campaigns. This is not a gym. This is a development system.</p>
     <div class="cta-group">
       <a href="https://eagleds.gymdesk.com/signup" target="_blank" rel="noopener" class="btn-primary"><span>Sign Up Now</span></a>
       <a href="#pathway" class="btn-secondary">View Full Pathway</a>
@@ -561,8 +564,8 @@
     </div>
     <div class="programme-card">
       <span class="prog-tag">Leadership · Advanced</span>
-      <h3 class="prog-title">Young Adult Coach Leadership Academy</h3>
-      <p class="prog-body">Young adults are trained to coach junior students. This isn't a reward — it's a demanding leadership curriculum that produces genuinely capable people ready for life, work, and responsibility.</p>
+      <h3 class="prog-title"><a href="coach.html" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(200,150,12,0.4);">Young Adult Coach Leadership Academy →</a></h3>
+      <p class="prog-body">Young adults are trained to coach junior students. This isn't a reward — it's a demanding leadership curriculum that produces genuinely capable people ready for life, work, and responsibility. Built on the Eagle DS Coaching Course.</p>
       <ul class="prog-list"><li>Coaching methodology and communication</li><li>Mindset mastery and self-regulation</li><li>Entrepreneurial and organisational thinking</li><li>Formal certification upon completion</li></ul>
     </div>
     <div class="programme-card">
@@ -585,8 +588,8 @@
     </div>
     <div class="programme-card">
       <span class="prog-tag">Competitive · Open Entry</span>
-      <h3 class="prog-title">Combat Games Series</h3>
-      <p class="prog-body">Controlled competitive application of technical skills. Real pressure. Real evaluation. For students who want to know exactly where they stand.</p>
+      <h3 class="prog-title"><a href="cgs.html" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(200,150,12,0.4);">Combat Games Series →</a></h3>
+      <p class="prog-body">Controlled competitive application of technical skills. Real pressure. Real evaluation. Our national light-contact circuit, uniting 50+ clubs across New Zealand.</p>
       <ul class="prog-list"><li>Safe, structured competitive experience</li><li>Skill demonstration and performance evaluation</li><li>Resilience under real competitive pressure</li><li>Pathway to external competition and national events</li></ul>
     </div>
   </div>
@@ -599,15 +602,16 @@
   <div class="founder-left">
     <p class="section-label">Your Coach</p>
     <h2 class="founder-name">Dafydd Sanders<br><em style="color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond', serif; font-weight:300;">"David Eagle"</em></h2>
-    <p class="founder-title">Founder · Lead Coach · International Medalist</p>
-    <p class="founder-body">There are coaches with experience. There are coaches who have competed. <strong>Very few have both at this level for this long.</strong></p>
-    <p class="founder-body">Dafydd has spent <strong>31 years inside the martial arts</strong> — not on the periphery, not as a weekend hobbyist. He has competed and medaled across four international disciplines: IMMAF, WAKO, WTF, and international Karate. He has spent <strong>24 years teaching</strong> — understanding not just how to perform at elite level, but how to <strong>transfer that capability to others.</strong></p>
-    <p class="founder-body">Every class at Eagle DS is taught by Dafydd. Not a junior instructor. Not a programme manager. <strong>The founder, in the room, every session.</strong></p>
+    <p class="founder-title">Founder · Lead Coach · Former International Taekwondo Athlete</p>
+    <p class="founder-title-tag" style="display:none;"></p>
+    <p class="founder-body">There are coaches with experience. There are coaches who have competed at the highest level. <strong>Very few have both, for this long.</strong></p>
+    <p class="founder-body">Dafydd has spent <strong>27 years teaching and coaching</strong> across the martial arts — not on the periphery, not as a weekend hobbyist. A former international taekwondo athlete who represented New Zealand across two Olympic campaigns and was named Māori Sports Person of the Year at the University of Auckland in 2005. He understands not just how to perform at elite level, but how to <strong>transfer that capability to others.</strong></p>
+    <p class="founder-body">Dafydd's system shapes every class at Eagle DS — taught by a hand-picked coaching team that trains and grades to one consistent standard. Whoever is in the room with you, <strong>you're learning the same method, held to the same standard.</strong></p>
     <div class="medal-grid">
-      <div class="medal-item"><div class="medal-org">IMMAF</div><div class="medal-desc">International MMA Federation — Medalist</div></div>
-      <div class="medal-item"><div class="medal-org">WAKO</div><div class="medal-desc">World Association of Kickboxing — Medalist</div></div>
-      <div class="medal-item"><div class="medal-org">WTF</div><div class="medal-desc">World Taekwondo Federation — Medalist</div></div>
-      <div class="medal-item"><div class="medal-org">KARATE</div><div class="medal-desc">International Karate — Medalist</div></div>
+      <div class="medal-item"><div class="medal-org">WORLD #10</div><div class="medal-desc">Peak World Taekwondo Ranking</div></div>
+      <div class="medal-item"><div class="medal-org">OCEANIA</div><div class="medal-desc">WTF Oceania Championships — Gold, 2006</div></div>
+      <div class="medal-item"><div class="medal-org">G2 OPEN</div><div class="medal-desc">Australian Taekwondo Open — Bronze, 2015</div></div>
+      <div class="medal-item"><div class="medal-org">OLYMPIC</div><div class="medal-desc">Two Olympic Campaigns · 2016 Rio Qualifier</div></div>
     </div>
   </div>
   <div class="founder-right">
@@ -627,7 +631,7 @@
   <div class="cta-footer-content">
     <p class="section-label">Take the Next Step</p>
     <h2 class="section-title">Your Development<br><em>Starts Now.</em></h2>
-    <p class="cta-tagline">Places are limited. Every class is led by <strong>Dafydd Sanders</strong> — and that means we control quality by controlling numbers. If you're serious, sign up or get in touch.</p>
+    <p class="cta-tagline">Places are limited. Every class runs on <strong>Dafydd Sanders'</strong> system, delivered by a coaching team held to one standard — and that means we control quality by controlling numbers. If you're serious, sign up or get in touch.</p>
     <div class="cta-buttons">
       <a href="https://eagleds.gymdesk.com/signup" target="_blank" rel="noopener" class="btn-primary"><span>Sign Up Now</span></a>
       <a href="https://eagleds.gymdesk.com/pricing" target="_blank" rel="noopener" class="btn-secondary">View Memberships</a>
@@ -644,16 +648,18 @@
 <footer class="footer-base">
   <span class="fb-brand">EAGLE DS</span>
   <div class="fb-links">
+    <a href="index.html">Ecosystem</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="wellness.html">Wellness</a>
+    <a href="coach.html">Coaching Course</a>
     <a href="#schedule">Schedule</a>
     <a href="https://eagleds.gymdesk.com/pricing" target="_blank" rel="noopener">Memberships</a>
     <a href="https://eagleds.gymdesk.com/login" target="_blank" rel="noopener">Member Login</a>
     <a href="https://eagleds.gymdesk.com/shop" target="_blank" rel="noopener">Shop</a>
-    <a href="https://eagleds.gymdesk.com/instructors" target="_blank" rel="noopener">Instructors</a>
-    <a href="https://eagleds.gymdesk.com/gallery" target="_blank" rel="noopener">Gallery</a>
-    <a href="https://eagleds.gymdesk.com/contact" target="_blank" rel="noopener">Contact</a>
     <a href="https://www.facebook.com/profile.php?id=100090018062998" target="_blank" rel="noopener">Facebook</a>
   </div>
   <span style="font-size:11px;color:#444;letter-spacing:0.1em;">© Eagle DS · East Tāmaki · 021&nbsp;902&nbsp;471</span>
+  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;">Ngāi Tahu · Te Whare Tapa Whā</span>
 </footer>
 
 <!-- Gymdesk widgets loader -->

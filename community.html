@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Programmes — Eagle DS | Eagle Tū Māia, Auckland</title>
+<meta name="description" content="Eagle DS community programmes — Eagle Tū Māia and funded rangatahi blocks delivered with youth services, schools and social organisations in South Auckland. Combat sport as the vehicle; identity and belonging as the destination.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT OVERRIDE — Community — Pounamu Teal (shared bones stay identical) === */
+  :root { --gold: #1F8A8A; --gold-light: #3FB0AC; --accent-rgb: 31,138,138; }
+  .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 90px; position: relative; overflow: hidden; background: var(--black); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 75% 35%, rgba(var(--accent-rgb),0.10), transparent 55%); }
+  .hero-inner { max-width: 880px; position: relative; z-index: 2; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5.4vw, 82px); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 16px; color: #aaa; max-width: 580px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-body strong { color: var(--white); font-weight: 500; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+
+  .toc { background: var(--grey); }
+  .toc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 50px; }
+  .toc-cell { background: var(--black); padding: 44px 36px; }
+  .toc-cell .tk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .toc-cell .tt { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.25; }
+  .toc-cell .tb { font-size: 13px; color: #888; line-height: 1.8; }
+
+  .feature { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+  .feature-left { padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .feature-right { background: var(--grey); padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .feature-right::before { content: ''; position: absolute; top: -100px; right: -100px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--accent-rgb),0.07), transparent 70%); }
+  .feature-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; }
+  .feature-body strong { color: var(--white); font-weight: 500; }
+  .session-flow { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
+  .sf { display: flex; gap: 18px; align-items: flex-start; }
+  .sf .sfk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); width: 90px; flex-shrink: 0; padding-top: 3px; }
+  .sf .sfv { font-size: 14px; color: #aaa; line-height: 1.6; }
+  .sf .sfv b { color: var(--white); font-weight: 500; }
+
+  .pathway { background: var(--grey); position: relative; overflow: hidden; }
+  .pathway::before { content: 'PATHWAY'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: 'Bebas Neue'; font-size: 180px; color: rgba(255,255,255,0.02); pointer-events: none; }
+  .stage-track { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 56px; position: relative; z-index: 2; }
+  .stage { background: var(--black); padding: 40px 28px; position: relative; }
+  .stage .sn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .stage .st { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.15; }
+  .stage .ss { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; margin-bottom: 14px; }
+  .stage .sd { font-size: 12px; color: #777; line-height: 1.65; }
+  .stage::after { content: '→'; position: absolute; right: -16px; top: 56px; color: var(--gold); font-size: 16px; z-index: 3; }
+  .stage:last-child::after { display: none; }
+
+  .quote-band { background: var(--black); }
+  .quote-card { margin-top: 10px; border-left: 3px solid var(--gold); padding: 10px 0 10px 40px; max-width: 860px; }
+  .quote-card p { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px,2.6vw,34px); font-style: italic; font-weight: 300; line-height: 1.5; color: var(--white); }
+  .quote-card .src { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-top: 20px; }
+
+  .partners-row { background: var(--grey); }
+  .pr-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+  .pr-chip { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: #aaa; border: 1px solid rgba(var(--accent-rgb),0.25); padding: 12px 22px; border-radius: 2px; background: var(--black); }
+
+  .cta-band { background: var(--black); text-align: center; }
+  .cta-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero { padding: 120px 40px 70px; } .toc-grid { grid-template-columns: 1fr; }
+    .feature { grid-template-columns: 1fr; } .feature-left, .feature-right { padding: 60px 40px; }
+    .stage-track { grid-template-columns: 1fr 1fr; } .stage:nth-child(2)::after { display: none; }
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 110px 24px 60px; } .stage-track { grid-template-columns: 1fr; }
+    .stage::after { content: '↓'; right: 50%; top: auto; bottom: -16px; transform: translateX(50%); }
+    .quote-card { padding-left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Community Programmes</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="#programmes">Programmes</a>
+    <a href="#pathway">Pathway</a>
+    <a href="gym.html">Academy</a>
+    <a href="wellness.html">Wellness</a>
+    <a href="mailto:info@eagleds.co.nz?subject=Community%20Programme%20Enquiry" class="nav-cta">Start a Kōrero</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="gold-line"></div>
+    <p class="eyebrow">Eagle Tū Māia · Rangatahi Development</p>
+    <h1 class="hero-headline">The Mat Is the Vehicle.<br><em>Identity Is the Destination.</em></h1>
+    <p class="hero-body">The rangatahi in our communities carry extraordinary talent — they just can't see it yet. Our community programmes use <strong>elite combat sport</strong> as the framework for deeper work on mindset, self-perception and belonging.<br><br>Delivered from our East Tāmaki facility, in partnership with the youth services, schools and organisations who know these young people best.</p>
+    <div class="cta-group">
+      <a href="mailto:info@eagleds.co.nz?subject=Community%20Programme%20Enquiry" class="btn-primary"><span>Start a Kōrero</span></a>
+      <a href="#programmes" class="btn-secondary">See the Programmes</a>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-item"><span class="n">10</span><span class="l">Max Per Session</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">400</span><span class="l">sqm East Tāmaki Facility</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">0</span><span class="l">Concussions on Record</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">4</span><span class="l">Pillars · Te Whare Tapa Whā</span></div>
+</div>
+
+<!-- PROGRAMMES -->
+<section class="toc reveal" id="programmes">
+  <p class="section-label">The Programmes</p>
+  <h2 class="section-title">Built Around<br>Where They <em>Are.</em></h2>
+  <p class="section-intro">Each programme runs as a consistent weekly session — the content builds progressively, but the door stays open. Those with more experience naturally support those who are newer. It's how a real training environment works, and for the rangatahi we serve, leading rather than just being led is part of the development.</p>
+  <div class="toc-grid">
+    <div class="toc-cell">
+      <div class="tk">Flagship · Weekly</div>
+      <div class="tt">Eagle Tū Māia</div>
+      <div class="tb">One hour, once a week, on the mat. Light-contact martial arts as the physical framework for mindset, self-perception, emotional regulation and identity. Sessions kept to a maximum of 10 so every young person is seen.</div>
+    </div>
+    <div class="toc-cell">
+      <div class="tk">Funded Block · 10 Weeks</div>
+      <div class="tt">Combat &amp; Mindset Programme</div>
+      <div class="tb">Two cohorts, two sessions a week — for rangatahi in and out of school. Progressive combat skills with high-performance mindset principles embedded throughout, from goal-setting to graduation. Dedicated wāhine sessions available.</div>
+    </div>
+    <div class="toc-cell">
+      <div class="tk">Reserved Cohort · 12 Weeks</div>
+      <div class="tt">Weekly Block Programme</div>
+      <div class="tb">A reserved block of up to 10 places held across twelve weeks. A consistent, welcoming space — theirs to engage with at their own pace, with no fixed performance expectations, building trust and depth over time.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- FEATURE: WHAT HAPPENS IN A SESSION -->
+<section class="feature reveal">
+  <div class="feature-left">
+    <p class="section-label">Theory of Change</p>
+    <h2 class="section-title">Discover It —<br>Don't <em>Be Told.</em></h2>
+    <p class="feature-body">For many young people, potential is hidden beneath layers of inherited story — built by circumstance and environments that have, often by design, kept them from seeing who they truly are.</p>
+    <p class="feature-body">We don't work on that ceiling by telling rangatahi they are capable. We put them in a room where they <strong>discover it for themselves.</strong> The mat is uniquely honest — progress can't be faked, and every small win is earned, visible, and undeniable.</p>
+  </div>
+  <div class="feature-right">
+    <p class="section-label">Inside a Session</p>
+    <div class="session-flow">
+      <div class="sf"><span class="sfk">Opening</span><span class="sfv"><b>Arrival &amp; grounding.</b> Connecting with the space, the group, and themselves.</span></div>
+      <div class="sf"><span class="sfk">Movement</span><span class="sfv"><b>Warm-up.</b> Movement that builds body awareness and presence.</span></div>
+      <div class="sf"><span class="sfk">Skill</span><span class="sfv"><b>Technical work.</b> Light-contact martial arts matched to each participant's level.</span></div>
+      <div class="sf"><span class="sfk">Connection</span><span class="sfv"><b>Reflection.</b> A facilitated moment linking the physical work to a personal insight.</span></div>
+      <div class="sf"><span class="sfk">Close</span><span class="sfv"><b>Acknowledgement.</b> Recognising effort and progress — building earned pride.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PATHWAY -->
+<section class="pathway reveal" id="pathway">
+  <p class="section-label">The Development Pathway</p>
+  <h2 class="section-title">The Beginning,<br>Not the <em>Destination.</em></h2>
+  <p class="section-intro">A community programme is stage one of a complete ecosystem. Rangatahi enter as themselves and grow into something larger — at their own pace, one stage at a time.</p>
+  <div class="stage-track">
+    <div class="stage"><div class="sn">Stage 1</div><div class="st">Foundation</div><div class="ss">Community Programme</div><div class="sd">Identity and mindset work. First contact with high-performance combat sport. A space that meets rangatahi where they are.</div></div>
+    <div class="stage"><div class="sn">Stage 2</div><div class="st">Membership</div><div class="ss">Structured Classes</div><div class="sd">Kickboxing, MMA, Taekwondo, Women's Boxing, pads. Real skills, real discipline, real community. A rangatahi who belongs somewhere.</div></div>
+    <div class="stage"><div class="sn">Stage 3</div><div class="st">Youth Academy</div><div class="ss">Coach &amp; Leader</div><div class="sd">Advanced students train to coach junior students. Leadership, communication, certified responsibility. A rangatahi who now develops others.</div></div>
+    <div class="stage"><div class="sn">Stage 4</div><div class="st">Elite Pathway</div><div class="ss">Compete &amp; Perform</div><div class="sd">National competition via the Combat Games Series. A rangatahi representing themselves and their community at the highest level.</div></div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- QUOTE -->
+<section class="quote-band reveal">
+  <p class="section-label">The Most Powerful Outcome</p>
+  <div class="quote-card">
+    <p>"A rangatahi who enters as someone the system struggled to reach — and leaves as a certified coach developing the next generation. A complete transformation of identity. It is exactly what this pathway is designed to produce."</p>
+    <div class="src">Eagle DS · The Development Pathway</div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- PARTNERS -->
+<section class="partners-row reveal">
+  <p class="section-label">Who We Work With</p>
+  <h2 class="section-title">Delivered in<br><em>Partnership.</em></h2>
+  <p class="section-intro">We work alongside the organisations who already hold relationships with these young people — delivering combat sport as a tool for youth development, emotional regulation, confidence, and whānau reconnection.</p>
+  <div class="pr-grid">
+    <span class="pr-chip">Oranga Tamariki</span>
+    <span class="pr-chip">Barnardos</span>
+    <span class="pr-chip">Local Schools</span>
+    <span class="pr-chip">Youth Services</span>
+    <span class="pr-chip">Social Organisations</span>
+    <span class="pr-chip">Local Boards</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <p class="section-label">We're Not Here to Pitch a Service</p>
+  <h2 class="section-title">We're Here to<br>Start a <em>Kōrero.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">If your organisation works with rangatahi who would benefit from this — and you may have the funding pathways to make it accessible — we'd love to explore what a first block could look like, together.</p>
+  <div class="cta-group">
+    <a href="mailto:info@eagleds.co.nz?subject=Community%20Programme%20Enquiry" class="btn-primary"><span>Start a Kōrero</span></a>
+    <a href="tel:+64210902471" class="btn-secondary">Call 021 902 471</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>Community programmes for rangatahi — combat sport as the vehicle, identity and belonging as the destination. Delivered with the organisations who know these young people best.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Programmes</h4>
+      <a href="#programmes">Eagle Tū Māia</a>
+      <a href="#pathway">Development Pathway</a>
+      <a href="coach.html">Youth Academy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="wellness.html">Wellness Hub</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat &amp; Wellness · Community Programmes</span>
+    <span class="live"><span class="live-dot"></span> Ngā mihi nui</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

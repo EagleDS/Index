@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnership & Sponsors — Eagle DS Combat & Wellness</title>
+<meta name="description" content="Partner with Eagle DS — our national Combat Games Series events circuit, our Auckland training and wellness facility, or both. Genuine, measurable brand association with a movement that develops people through combat sport.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT OVERRIDE — Partnership — Bronze (shared bones stay identical) === */
+  :root { --gold: #A87D3B; --gold-light: #CCA45E; --accent-rgb: 168,125,59; }
+  .hero { min-height: 84vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 80px; position: relative; overflow: hidden; background: var(--black); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 40%, rgba(var(--accent-rgb),0.10), transparent 55%); }
+  .hero-inner { max-width: 860px; position: relative; z-index: 2; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5.4vw, 80px); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 16px; color: #aaa; max-width: 560px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-body strong { color: var(--white); font-weight: 500; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+
+  .impact { background: var(--grey); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+  .impact-left { padding: 90px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .impact-right { background: var(--black); padding: 90px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .impact-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; }
+  .impact-body strong { color: var(--white); font-weight: 500; }
+  .impact-quote { border-left: 3px solid var(--gold); padding-left: 28px; }
+  .impact-quote p { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px,2.2vw,28px); font-style: italic; line-height: 1.5; color: var(--white); }
+  .impact-quote .src { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: 18px; }
+
+  .arms { background: var(--black); }
+  .arm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+  .arm { background: var(--grey); padding: 50px 42px; position: relative; overflow: hidden; }
+  .arm::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .arm:hover::before { transform: scaleX(1); }
+  .arm .ak { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .arm .at { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.1; }
+  .arm .asub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: #777; text-transform: uppercase; margin-bottom: 22px; }
+  .arm .ad { font-size: 14px; color: #999; line-height: 1.8; margin-bottom: 24px; }
+  .arm .arow { font-size: 13px; color: #888; line-height: 1.6; display: flex; gap: 12px; margin-bottom: 10px; }
+  .arm .arow .rk { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; width: 84px; padding-top: 3px; }
+
+  /* season */
+  .season { background: var(--grey); }
+  .season-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 44px; }
+  .event-card { background: var(--black); padding: 38px 30px; text-align: center; }
+  .event-card .em { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+  .event-card .ed { font-family: 'Bebas Neue'; font-size: 42px; color: var(--white); line-height: 1; }
+  .event-card .ey { font-family: var(--mono); font-size: 11px; color: #666; margin-top: 8px; }
+
+  /* tiers with toggle */
+  .tiers { background: var(--black); }
+  .toggle-row { display: flex; gap: 2px; margin-top: 48px; margin-bottom: 4px; max-width: 560px; }
+  .toggle-btn { flex: 1; background: var(--grey); border: 1px solid rgba(var(--accent-rgb),0.15); color: #888; padding: 18px 20px; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.25s ease; text-align: left; }
+  .toggle-btn .tg-sub { display: block; font-size: 9px; color: #666; margin-top: 4px; letter-spacing: 0.08em; }
+  .toggle-btn.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .toggle-btn.active .tg-sub { color: rgba(10,10,10,0.7); }
+  .tier-set { display: none; }
+  .tier-set.active { display: block; animation: panelIn 0.4s ease; }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+  .tier { display: grid; grid-template-columns: 280px 1fr; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.25s ease; }
+  .tier:hover { background: var(--grey); }
+  .tier.feature { background: linear-gradient(90deg, rgba(var(--accent-rgb),0.06), transparent); }
+  .tier-head { padding: 30px 32px; border-right: 1px solid rgba(255,255,255,0.05); }
+  .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 8px; }
+  .tier-price { font-family: 'Bebas Neue'; font-size: 32px; color: var(--gold); letter-spacing: 1px; }
+  .tier-body { padding: 30px 32px; display: flex; flex-direction: column; justify-content: center; }
+  .tier-body ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .tier-body li { font-size: 13px; color: #999; line-height: 1.55; display: flex; gap: 10px; }
+  .tier-body li::before { content: '+'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .tier-body .dur { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #666; margin-top: 14px; }
+
+  .cta-band { background: var(--grey); text-align: center; }
+  .cta-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero { padding: 120px 40px 70px; } .impact { grid-template-columns: 1fr; } .impact-left, .impact-right { padding: 56px 40px; }
+    .arm-grid { grid-template-columns: 1fr; } .season-grid { grid-template-columns: 1fr 1fr; }
+    .tier { grid-template-columns: 1fr; } .tier-head { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 110px 24px 60px; } .season-grid { grid-template-columns: 1fr; } .toggle-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Partnership &amp; Sponsors</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="#arms">Two Arms</a>
+    <a href="#tiers">Tiers</a>
+    <a href="community.html">Community</a>
+    <a href="mailto:info@eagleds.co.nz?subject=Partnership%20Enquiry" class="nav-cta">Partner</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="gold-line"></div>
+    <p class="eyebrow">Partnership Proposal · 2026 Season</p>
+    <h1 class="hero-headline">Back a Movement,<br>Not Just a <em>Logo.</em></h1>
+    <p class="hero-body">Eagle DS is a Ngāi Tahu family business building a safer, more unified future for combat sport in New Zealand. Partner with our <strong>national events circuit</strong>, our <strong>Auckland training and wellness facility</strong>, or both — and join a story that's only getting bigger.<br><br>Every tier delivers genuine, measurable value. Choose where your brand fits.</p>
+    <div class="cta-group">
+      <a href="#tiers" class="btn-primary"><span>View Partnership Tiers</span></a>
+      <a href="mailto:info@eagleds.co.nz?subject=Partnership%20Enquiry" class="btn-secondary">Start a Kōrero</a>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="stat-item"><span class="n">5</span><span class="l">Tournaments Delivered</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">450+</span><span class="l">Matches Facilitated</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">50+</span><span class="l">Partner Clubs Nationwide</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">0</span><span class="l">Concussions on Record</span></div>
+</div>
+
+<!-- IMPACT -->
+<section class="impact reveal">
+  <div class="impact-left">
+    <p class="section-label">Real Impact, Real Communities</p>
+    <h2 class="section-title">We Work Where<br>It <em>Matters Most.</em></h2>
+    <p class="impact-body">Eagle DS works actively with <strong>Oranga Tamariki, Barnardos and local schools</strong>, delivering combat sport as a tool for youth development, anger management, confidence and whānau reconnection.</p>
+    <p class="impact-body">A partnership here isn't just brand exposure — it's a stake in genuine community outcomes across South Auckland and a national network of clubs.</p>
+  </div>
+  <div class="impact-right">
+    <div class="impact-quote">
+      <p>"One of our most meaningful cases involved a 13-year-old who had become a gang leader. Through Eagle DS he was able to manage his anger, rebuild his family relationships, and refocus on being a father. This is what combat sport, done right, can do."</p>
+      <div class="src">Eagle DS · Community Impact</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TWO ARMS -->
+<section class="arms reveal" id="arms">
+  <p class="section-label">Two Arms. One Mission.</p>
+  <h2 class="section-title">Choose Where<br>Your Brand <em>Fits.</em></h2>
+  <p class="section-intro">Eagle DS operates two distinct partnership opportunities. Each delivers different value to different partners — but both are part of the same mission. Read both, and choose where you fit best. Or support both.</p>
+  <div class="arm-grid">
+    <div class="arm">
+      <div class="ak">Arm One</div>
+      <div class="at">Combat Games Series</div>
+      <div class="asub">National Events Circuit</div>
+      <div class="ad">New Zealand's leading light-contact competition circuit — bringing together 50+ clubs across multiple disciplines for structured, development-first events with national reach and livestream coverage.</div>
+      <div class="arow"><span class="rk">Reaches</span><span>Martial artists nationwide, sports parents &amp; coaches, combat-sports fans via livestream, 50+ affiliated clubs and their communities.</span></div>
+      <div class="arow"><span class="rk">Best fit</span><span>Sports &amp; active-lifestyle brands, energy drinks, nutrition &amp; supplements, sporting goods &amp; apparel, brands wanting national event exposure.</span></div>
+    </div>
+    <div class="arm">
+      <div class="ak">Arm Two</div>
+      <div class="at">Combat &amp; Wellness Facility</div>
+      <div class="asub">Auckland Training &amp; Health Hub</div>
+      <div class="ad">A permanent Auckland training facility and wellness centre offering martial arts coaching, clinical nutrition, mindfulness and holistic health programmes for individuals, families and youth.</div>
+      <div class="arow"><span class="rk">Reaches</span><span>Auckland families and active individuals, youth and at-risk young people, health-conscious professionals, corporate wellness clients.</span></div>
+      <div class="arow"><span class="rk">Best fit</span><span>Health, wellness &amp; nutrition brands, health insurance &amp; medical providers, corporates with a community/CSR focus, local Auckland businesses.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SEASON -->
+<section class="season reveal">
+  <p class="section-label">The 2026 Season</p>
+  <h2 class="section-title">Four Events.<br>Your Brand on <em>Every Mat.</em></h2>
+  <p class="section-intro">The 2026 Combat Games Series runs across four remaining events — two already delivered. Partners joining now receive full activation across the entire remaining season.</p>
+  <div class="season-grid">
+    <div class="event-card"><div class="em">Event 02</div><div class="ed">11 JUL</div><div class="ey">2026</div></div>
+    <div class="event-card"><div class="em">Event 03</div><div class="ed">22 AUG</div><div class="ey">2026</div></div>
+    <div class="event-card"><div class="em">Event 04</div><div class="ed">24 OCT</div><div class="ey">2026</div></div>
+    <div class="event-card"><div class="em">Event 05</div><div class="ed">05 DEC</div><div class="ey">2026</div></div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TIERS -->
+<section class="tiers reveal" id="tiers">
+  <p class="section-label">Partnership Tiers</p>
+  <h2 class="section-title">Choose the Arm.<br>Choose the <em>Level.</em></h2>
+  <p class="section-intro">Every tier is designed to deliver real audience access, meaningful brand association, and measurable exposure. Select an arm to see its tiers.</p>
+
+  <div class="toggle-row">
+    <button class="toggle-btn active" data-set="cgs">Arm One — Combat Games Series<span class="tg-sub">National events · per-event or season</span></button>
+    <button class="toggle-btn" data-set="facility">Arm Two — Combat &amp; Wellness Facility<span class="tg-sub">Auckland hub · monthly or 12-month</span></button>
+  </div>
+
+  <!-- ARM ONE -->
+  <div class="tier-set active" data-set="cgs">
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Community Partner</div><div class="tier-price">$200+</div></div>
+      <div class="tier-body"><ul><li>Named acknowledgment across Eagle DS social media</li><li>Listed as a community supporter on website and event communications</li></ul><div class="dur">Per event — renewable each event</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Event Partner</div><div class="tier-price">$500+</div></div>
+      <div class="tier-body"><ul><li>All Community Partner inclusions</li><li>Brand mention across event communications and campaigns</li><li>Activation or sampling opportunity at a single event</li></ul><div class="dur">Per event — renewable each event</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Official Event Sponsor</div><div class="tier-price">$1,000+</div></div>
+      <div class="tier-body"><ul><li>Logo placement at your selected event(s)</li><li>Brand inclusion in livestream and event media coverage</li><li>Full social media exposure across the event campaign</li></ul><div class="dur">Per event, or remaining 2026 season from signing</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Circuit Partner</div><div class="tier-price">$1,500+</div></div>
+      <div class="tier-body"><ul><li>Branding across all four remaining 2026 events</li><li>Regular recognition in social content and livestream</li><li>Integration into event marketing materials all season</li></ul><div class="dur">Full remaining 2026 season (4 events)</div></div>
+    </div>
+    <div class="tier feature">
+      <div class="tier-head"><div class="tier-name">Founding Partner</div><div class="tier-price">$2,000+</div></div>
+      <div class="tier-body"><ul><li>Premium brand placement across all four remaining events</li><li>Referee uniform or official gear branding — on camera every match</li><li>Sponsored athlete or youth scholarship in your brand's name</li><li>Featured partner spotlight across all Eagle DS platforms</li></ul><div class="dur">Full remaining 2026 season (4 events)</div></div>
+    </div>
+    <div class="tier feature">
+      <div class="tier-head"><div class="tier-name">Mat Branding</div><div class="tier-price">$7,000</div></div>
+      <div class="tier-body"><ul><li>Exclusive logo on competition mats — visible in every match</li><li>Maximum exposure in all livestream footage, photography and media</li></ul><div class="dur">Full remaining 2026 season (4 events)</div></div>
+    </div>
+  </div>
+
+  <!-- ARM TWO -->
+  <div class="tier-set" data-set="facility">
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Community Partner</div><div class="tier-price">$200+</div></div>
+      <div class="tier-body"><ul><li>Named acknowledgment across Eagle DS social media</li><li>Listed as a supporter on website and facility communications</li></ul><div class="dur">Month-to-month rolling — cancel anytime</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Wellness Partner</div><div class="tier-price">$500+</div></div>
+      <div class="tier-body"><ul><li>All Community Partner inclusions</li><li>Brand mention in wellness programme communications and newsletters</li><li>Product sampling or activation opportunity at the facility</li></ul><div class="dur">Month-to-month rolling — cancel anytime</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Facility Sponsor</div><div class="tier-price">$1,000+</div></div>
+      <div class="tier-body"><ul><li>Logo placement within the Eagle DS facility</li><li>Brand inclusion in class materials, newsletters and digital comms</li><li>Monthly social media recognition to our Auckland community</li></ul><div class="dur">12-month commitment from signing</div></div>
+    </div>
+    <div class="tier">
+      <div class="tier-head"><div class="tier-name">Program Partner</div><div class="tier-price">$1,500+</div></div>
+      <div class="tier-body"><ul><li>Named partnership with a specific wellness or youth programme</li><li>Regular brand recognition across facility and programme comms</li><li>Opportunity to co-brand programme content and resources</li></ul><div class="dur">12-month commitment from signing</div></div>
+    </div>
+    <div class="tier feature">
+      <div class="tier-head"><div class="tier-name">Founding Wellness Partner</div><div class="tier-price">$2,000+</div></div>
+      <div class="tier-body"><ul><li>Premium brand presence across the full Eagle DS facility</li><li>Named partnership with youth or community outreach programmes</li><li>Sponsored scholarship for a youth or community participant</li><li>Featured partner spotlight across all Eagle DS platforms</li></ul><div class="dur">12-month commitment from signing</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <p class="section-label">Let's Build Something Together</p>
+  <h2 class="section-title">Join a Story That's<br>Only <em>Getting Bigger.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">Whether you partner with our national circuit, our Auckland facility, or both — we'd love to connect and explore where your brand fits. No hard sell. Just a kōrero between people who care about the same community.</p>
+  <div class="cta-group">
+    <a href="mailto:info@eagleds.co.nz?subject=Partnership%20Enquiry" class="btn-primary"><span>Become a Partner</span></a>
+    <a href="tel:+64210902471" class="btn-secondary">Call 021 902 471</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>Partnership &amp; Sponsorship — back a movement building a safer, more unified future for combat sport and wellbeing in New Zealand.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Partnership</h4>
+      <a href="#arms">The Two Arms</a>
+      <a href="#tiers">Partnership Tiers</a>
+      <a href="cgs.html">Combat Games Series</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="wellness.html">Wellness Hub</a>
+      <a href="community.html">Community Programmes</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat &amp; Wellness · Partnership &amp; Sponsors</span>
+    <span class="live"><span class="live-dot"></span> 2026 Season · Open</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  document.querySelectorAll('.toggle-btn').forEach(btn => btn.addEventListener('click', () => {
+    const s = btn.dataset.set;
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tier-set').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('.tier-set[data-set="'+s+'"]').classList.add('active');
+  }));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
