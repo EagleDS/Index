@@ -3,514 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eagle DS — Combat Sports Infrastructure & Tournament Platform</title>
-<meta name="description" content="Eagle DS develops national combat sports infrastructure — academy architecture, the Combat Games Series tournament platform, live scoring, brackets, and officials education. East Tāmaki, Auckland.">
+<title>Eagle DS — Combat & Wellness Ecosystem | East Tāmaki, Auckland</title>
+<meta name="description" content="Eagle DS Combat and Wellness — a Ngāi Tahu family business in East Tāmaki, Auckland. A training academy, a national Combat Games Series circuit uniting 50+ clubs, clinical wellness, community programmes and partnerships. Grounded in Te Whare Tapa Whā.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
 <style>
-  :root {
-    --black: #0a0a0a;
-    --black-2: #0f0f0f;
-    --gold: #C8960C;
-    --gold-light: #E8B84B;
-    --white: #f8f4ee;
-    --grey: #1a1a1a;
-    --mid: #2e2e2e;
-    --text-muted: #888;
-    --green: #22b04a;
-    --mono: 'IBM Plex Mono', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1000; opacity: 0.4;
-  }
-
-  a { color: inherit; }
-  .mono { font-family: var(--mono); }
-
-  /* ============ NAV ============ */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(10,10,10,0.5);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(200,150,12,0.12);
-    transition: padding 0.3s ease, background 0.3s ease;
-  }
-  .nav.scrolled { padding: 12px 48px; background: rgba(10,10,10,0.85); }
-  .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-  .nav-logo-img { height: 40px; width: 40px; object-fit: contain; border-radius: 6px; display: block; }
-  .nav-logo-fallback {
-    height: 40px; width: 40px; display: none; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px;
-    color: var(--black); background: var(--gold); border-radius: 6px;
-  }
-  .nav-logo-fallback.show { display: flex; }
-  .nav-wordmark { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--white); line-height: 1; }
-  .nav-wordmark small { display: block; font-family: var(--mono); font-size: 8px; letter-spacing: 0.24em; color: var(--gold); font-weight: 500; }
-  .nav-links { display: flex; align-items: center; gap: 28px; }
-  .nav-links a {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-    text-decoration: none; color: #bbb; transition: color 0.25s ease; position: relative;
-    font-family: var(--mono);
-  }
-  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 1px; background: var(--gold); transition: width 0.25s ease; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-cta { background: var(--gold); color: var(--black) !important; padding: 10px 20px; border-radius: 2px; font-weight: 600 !important; }
-  .nav-cta::after { display: none; }
-  .nav-cta:hover { background: var(--gold-light); }
-  .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
-
-  /* ============ HERO ============ */
-  .hero {
-    min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr;
-    position: relative; overflow: hidden;
-  }
-  .hero-left {
-    background: var(--black); display: flex; flex-direction: column; justify-content: center;
-    padding: 130px 60px 80px 80px; position: relative; z-index: 2;
-  }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 0.95fr; position: relative; overflow: hidden; }
+  .hero-left { background: var(--black); display: flex; flex-direction: column; justify-content: center; padding: 130px 60px 80px 80px; position: relative; z-index: 2; }
   .hero-right { background: var(--grey); position: relative; overflow: hidden; }
   .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 55%, #C8960C18 100%); }
-
-  /* animated tournament-grid backdrop */
-  .grid-backdrop {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(200,150,12,0.07) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(200,150,12,0.07) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(circle at 60% 50%, #000 0%, transparent 72%);
-    -webkit-mask-image: radial-gradient(circle at 60% 50%, #000 0%, transparent 72%);
-    animation: gridpan 24s linear infinite;
-  }
-  @keyframes gridpan { from { background-position: 0 0;} to { background-position: 44px 44px;} }
-
   .hero-logo-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 70px; z-index: 2; }
-  .hero-logo-display { max-width: 62%; max-height: 62%; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.7)); animation: breathe 6s ease-in-out infinite; }
-  .eagle-mark { display: none; font-family: 'Bebas Neue', sans-serif; font-size: 20vw; color: transparent; -webkit-text-stroke: 1px rgba(200,150,12,0.18); letter-spacing: -0.02em; line-height: 1; user-select: none; animation: breathe 6s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { opacity: 0.85; transform: scale(1);} 50% { opacity: 1; transform: scale(1.02);} }
-
-  .gold-line { width: 60px; height: 2px; background: var(--gold); margin-bottom: 28px; animation: expand 1.2s ease forwards; }
-  @keyframes expand { from { width: 0; opacity: 0;} to { width: 60px; opacity: 1;} }
-
-  .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards; display: flex; align-items: center; gap: 12px; }
-  .live-dot { height: 7px; width: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1;} 50% { opacity: 0.4;} }
-
-  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(46px, 5vw, 76px); font-weight: 300; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s 0.5s ease forwards; }
+  .hero-logo-display { max-width: 72%; max-height: 72%; object-fit: contain; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.7)); animation: breathe 6s ease-in-out infinite; }
+  .eagle-mark { display: none; font-family: 'Bebas Neue', sans-serif; font-size: 22vw; color: transparent; -webkit-text-stroke: 1px rgba(200,150,12,0.18); line-height: 1; user-select: none; animation: breathe 6s ease-in-out infinite; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 4.8vw, 74px); font-weight: 300; line-height: 1.07; letter-spacing: -0.02em; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
   .hero-headline em { font-style: italic; color: var(--gold-light); }
-  .hero-body { font-size: 15px; font-weight: 300; color: #aaa; max-width: 480px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.7s ease forwards; }
+  .hero-body { font-size: 15px; color: #aaa; max-width: 480px; margin-bottom: 38px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
   .hero-body strong { color: var(--white); font-weight: 500; }
-
-  .cta-group { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.9s ease forwards; }
-  .btn-primary { background: var(--gold); color: var(--black); padding: 16px 34px; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.3s ease; position: relative; overflow: hidden; }
-  .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--gold-light); transform: translateX(-100%); transition: transform 0.3s ease; }
-  .btn-primary:hover::before { transform: translateX(0); }
-  .btn-primary span { position: relative; z-index: 1; }
-  .btn-secondary { border: 1px solid rgba(200,150,12,0.4); color: var(--gold-light); padding: 16px 34px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.3s ease; background: transparent; }
-  .btn-secondary:hover { background: rgba(200,150,12,0.08); border-color: var(--gold); }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
-
-  /* ============ STATUS STRIP ============ */
-  .status-strip {
-    background: var(--black-2); border-top: 1px solid rgba(200,150,12,0.18); border-bottom: 1px solid rgba(200,150,12,0.18);
-    padding: 18px 80px; display: flex; align-items: center; gap: 40px; overflow-x: auto;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: #777; text-transform: uppercase;
-  }
-  .status-strip .si { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-  .status-strip .si b { color: var(--gold); font-weight: 600; }
-  .status-strip .sep { width: 1px; height: 22px; background: rgba(255,255,255,0.08); flex-shrink: 0; }
-
-  /* ============ SECTIONS ============ */
-  section { padding: 100px 80px; }
-  .section-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 58px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
-  .section-title em { font-style: italic; color: var(--gold-light); }
-  .section-intro { max-width: 640px; font-size: 15px; color: #999; line-height: 1.9; }
-  .section-intro strong { color: var(--white); font-weight: 500; }
-  .gold-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,150,12,0.3), transparent); }
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  /* ============ PLATFORM MODULES (interactive tabs) ============ */
-  .platform-section { background: var(--grey); position: relative; overflow: hidden; }
-  .platform-section::before { content: 'CGS'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: 'Bebas Neue'; font-size: 220px; color: rgba(255,255,255,0.02); pointer-events: none; letter-spacing: 0.1em; }
-  .platform-layout { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 2px; margin-top: 60px; position: relative; z-index: 2; }
-
-  .module-tabs { display: flex; flex-direction: column; gap: 2px; }
-  .module-tab {
-    background: var(--black); border: none; text-align: left; cursor: pointer;
-    padding: 24px 28px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    transition: background 0.25s ease; position: relative; overflow: hidden;
-  }
-  .module-tab::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold); transition: width 0.25s ease; }
-  .module-tab:hover { background: #111; }
-  .module-tab.active { background: #111; }
-  .module-tab.active::before { width: 3px; }
-  .module-tab .mt-text { display: flex; flex-direction: column; gap: 4px; }
-  .module-tab .mt-num { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: #555; text-transform: uppercase; }
-  .module-tab.active .mt-num { color: var(--gold); }
-  .module-tab .mt-name { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: #999; line-height: 1.1; }
-  .module-tab.active .mt-name { color: var(--white); }
-  .badge { font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: 0.1em; padding: 4px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
-  .badge-live { background: rgba(34,176,74,0.12); color: var(--green); border: 1px solid rgba(34,176,74,0.4); }
-  .badge-soon { background: rgba(255,255,255,0.05); color: #666; border: 1px solid rgba(255,255,255,0.1); }
-  .badge-core { background: rgba(200,150,12,0.12); color: var(--gold); border: 1px solid rgba(200,150,12,0.4); }
-
-  .module-panel-wrap { background: var(--black); padding: 44px 44px; position: relative; min-height: 360px; }
-  .module-panel { display: none; animation: panelIn 0.4s ease; }
-  .module-panel.active { display: block; }
-  @keyframes panelIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
-  .mp-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(200,150,12,0.15); padding-bottom: 18px; margin-bottom: 22px; }
-  .mp-division { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: #555; text-transform: uppercase; display: block; margin-bottom: 6px; }
-  .mp-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--white); line-height: 1.1; }
-  .mp-body { font-size: 14px; color: #888; line-height: 1.85; margin-bottom: 26px; }
-  .mp-body strong { color: #bbb; font-weight: 500; }
-  .mp-pending { border: 1px dashed rgba(200,150,12,0.25); border-radius: 4px; padding: 28px; text-align: center; background: rgba(200,150,12,0.02); }
-  .mp-pending .pulse-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; color: #666; text-transform: uppercase; animation: pulse 2.4s ease-in-out infinite; display: block; margin-bottom: 10px; }
-  .mp-pending p { font-size: 12px; color: #666; line-height: 1.7; }
-  .mp-modlist { background: var(--grey); border-radius: 4px; padding: 18px 20px; font-family: var(--mono); font-size: 11px; color: #999; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
-  .mp-modlist .m b { color: var(--gold); font-weight: 600; }
-  .mp-foot { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: #555; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; margin-top: 8px; }
-
-  /* ============ PIPELINE / WHAT WE BUILD ============ */
-  .build-section { background: var(--black); }
-  .build-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
-  .build-card { background: var(--grey); padding: 44px 36px; position: relative; overflow: hidden; transition: background 0.3s ease; }
-  .build-card:hover { background: var(--mid); }
-  .build-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
-  .build-card:hover::before { width: 100%; }
-  .build-num { font-family: 'Bebas Neue'; font-size: 46px; color: rgba(200,150,12,0.16); line-height: 1; margin-bottom: 12px; }
-  .build-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
-  .build-desc { font-size: 13px; color: #777; line-height: 1.8; }
-
-  /* ============ ACADEMY CROSS-LINK (the gym.html bridge) ============ */
-  .academy-section { background: var(--grey); position: relative; overflow: hidden; }
-  .academy-card {
-    margin-top: 50px; background: linear-gradient(135deg, #141414 0%, #0a0a0a 70%, rgba(200,150,12,0.08) 100%);
-    border: 1px solid rgba(200,150,12,0.22); border-radius: 6px;
-    display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 0; overflow: hidden; position: relative;
-  }
-  .academy-card-left { padding: 56px 52px; }
-  .academy-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
-  .academy-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3.2vw, 46px); font-weight: 300; line-height: 1.1; margin-bottom: 18px; }
-  .academy-title em { font-style: italic; color: var(--gold-light); }
-  .academy-desc { font-size: 14px; color: #999; line-height: 1.85; margin-bottom: 32px; max-width: 460px; }
-  .academy-desc strong { color: var(--white); font-weight: 500; }
-  .academy-card-right { background: rgba(0,0,0,0.35); border-left: 1px solid rgba(200,150,12,0.15); display: flex; flex-direction: column; justify-content: center; padding: 40px 36px; gap: 18px; }
-  .academy-stat .n { font-family: 'Bebas Neue'; font-size: 40px; color: var(--gold); line-height: 1; }
-  .academy-stat .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: #777; text-transform: uppercase; }
-
-  /* ============ FOOTER ============ */
-  .footer { background: var(--black); padding: 90px 80px 0; position: relative; overflow: hidden; }
-  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 60px; }
-  .footer-brand .fb-word { font-family: 'Bebas Neue'; font-size: 30px; letter-spacing: 3px; color: var(--white); margin-bottom: 10px; }
-  .footer-brand p { font-size: 13px; color: #777; line-height: 1.8; max-width: 280px; }
-  .footer-col h4 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
-  .footer-col a, .footer-col span { display: block; font-size: 13px; color: #888; text-decoration: none; margin-bottom: 10px; transition: color 0.25s ease; }
-  .footer-col a:hover { color: var(--gold-light); }
-  .footer-base { border-top: 1px solid rgba(255,255,255,0.06); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: #555; text-transform: uppercase; }
-  .footer-base .live { display: flex; align-items: center; gap: 8px; }
-
-  /* ============ RESPONSIVE ============ */
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+  .branches { background: var(--grey); }
+  .branch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .branch { background: var(--black); padding: 46px 38px; position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; min-height: 320px; transition: background 0.3s ease; }
+  .branch:hover { background: #111; }
+  .branch::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
+  .branch:hover::before { width: 100%; }
+  .branch-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 22px; display: flex; align-items: center; gap: 8px; }
+  .branch-num { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: #555; }
+  .branch-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: var(--white); margin-bottom: 14px; line-height: 1.1; }
+  .branch-desc { font-size: 13px; color: #777; line-height: 1.8; margin-bottom: auto; }
+  .branch-go { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-top: 26px; display: flex; align-items: center; gap: 8px; transition: gap 0.25s ease; }
+  .branch:hover .branch-go { gap: 14px; }
+  .whare { background: var(--black); }
+  .whare-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px; }
+  .whare-cell { background: var(--grey); padding: 38px 30px; transition: background 0.3s ease; }
+  .whare-cell:hover { background: var(--mid); }
+  .whare-cell .wt { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold-light); margin-bottom: 4px; }
+  .whare-cell .we { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #666; margin-bottom: 14px; }
+  .whare-cell .wd { font-size: 13px; color: #888; line-height: 1.7; }
+  .founders { background: var(--grey); display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 0; }
+  .founder { background: var(--black); padding: 80px 60px; }
+  .founder:nth-child(2) { background: #111; }
+  .founder-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,3vw,40px); font-weight: 300; line-height: 1.1; margin-bottom: 6px; }
+  .founder-name em { font-style: italic; color: var(--gold-light); }
+  .founder-role { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 26px; }
+  .founder-body { font-size: 14px; color: #888; line-height: 1.85; margin-bottom: 16px; }
+  .founder-body strong { color: var(--white); font-weight: 500; }
   @media (max-width: 1024px) {
-    .nav { padding: 14px 24px; }
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(10,10,10,0.97); padding: 20px 24px; gap: 18px; border-bottom: 1px solid rgba(200,150,12,0.2); }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: block; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 110px 40px 70px; }
-    .status-strip { padding: 16px 40px; }
-    .platform-layout { grid-template-columns: 1fr; }
-    .build-grid { grid-template-columns: 1fr 1fr; }
-    .academy-card { grid-template-columns: 1fr; }
-    .academy-card-right { flex-direction: row; flex-wrap: wrap; border-left: none; border-top: 1px solid rgba(200,150,12,0.15); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    section { padding: 70px 40px; }
-    .footer { padding: 70px 40px 0; }
+    .hero { grid-template-columns: 1fr; } .hero-right { display: none; } .hero-left { padding: 110px 40px 70px; }
+    .branch-grid { grid-template-columns: 1fr 1fr; } .whare-grid { grid-template-columns: 1fr 1fr; }
+    .founders { grid-template-columns: 1fr; } .founder { padding: 56px 40px; }
   }
   @media (max-width: 768px) {
-    .build-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .academy-card-left { padding: 40px 28px; }
-    section { padding: 60px 24px; }
-    .hero-left { padding: 100px 24px 60px; }
-    .status-strip { padding: 14px 24px; gap: 26px; }
+    .hero-left { padding: 100px 24px 60px; } .branch-grid { grid-template-columns: 1fr; }
+    .whare-grid { grid-template-columns: 1fr; } .founder { padding: 48px 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
-  <a href="#top" class="nav-brand">
-    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo"
-         onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
     <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
-    <span class="nav-wordmark">EAGLE DS<small>National Ecosystem Operator</small></span>
+    <span class="nav-wordmark">EAGLE DS<small>Combat &amp; Wellness</small></span>
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   <div class="nav-links" id="navLinks">
-    <a href="#platform">Platform</a>
-    <a href="#build">Infrastructure</a>
-    <a href="#academy">Academy</a>
-    <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" rel="noopener">Register</a>
-    <a href="gym.html" class="nav-cta">Visit Academy →</a>
+    <a href="gym.html">Academy</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="wellness.html">Wellness</a>
+    <a href="community.html">Community</a>
+    <a href="sponsors.html">Partners</a>
+    <a href="mailto:info@eagleds.co.nz" class="nav-cta">Contact</a>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-left">
     <div class="gold-line"></div>
-    <p class="eyebrow"><span class="live-dot"></span> Platform Live · Combat Games Series</p>
-    <h1 class="hero-headline">Driving the Future of <em>NZ Combat Sports.</em></h1>
-    <p class="hero-body">Eagle DS develops <strong>elite national infrastructure</strong> for combat sport — purpose-built academy architecture, an independent tournament software platform, live scoring and brackets, and formal officials education.<br><br>This is the operating backbone behind the <strong>Combat Games Series</strong>: registration, ringside scoring, real-time draws, and referee accreditation — engineered to a single standard.</p>
+    <p class="eyebrow">Ngāi Tahu Family Business · East Tāmaki, Auckland</p>
+    <h1 class="hero-headline">We Develop People<br>Through Combat Sport —<br><em>Not Damage Them.</em></h1>
+    <p class="hero-body">Eagle DS Combat and Wellness is one connected ecosystem: a <strong>training academy</strong>, a national <strong>Combat Games Series</strong> uniting clubs across New Zealand, a <strong>clinical wellness</strong> practice, and <strong>community programmes</strong> for rangatahi who need them most.<br><br>Founded and run by Dafydd and Carrie Sanders. Grounded in Te Whare Tapa Whā.</p>
     <div class="cta-group">
-      <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" rel="noopener" class="btn-primary"><span>Open Registration ⚔</span></a>
-      <a href="#platform" class="btn-secondary">Explore the Platform</a>
+      <a href="gym.html" class="btn-primary"><span>Visit the Academy</span></a>
+      <a href="#ecosystem" class="btn-secondary">Explore the Ecosystem</a>
     </div>
   </div>
   <div class="hero-right">
-    <div class="grid-backdrop"></div>
     <div class="hero-logo-wrap">
-      <img src="logo.PNG" alt="Eagle DS" class="hero-logo-display" id="heroLogo"
-           onerror="this.style.display='none'; document.querySelector('.eagle-mark').style.display='block';">
+      <img src="logo.PNG" alt="Eagle DS" class="hero-logo-display" id="heroLogo" onerror="this.style.display='none'; document.querySelector('.eagle-mark').style.display='block';">
       <div class="eagle-mark">DS</div>
     </div>
   </div>
 </section>
 
-<!-- ============ STATUS STRIP ============ -->
-<div class="status-strip">
-  <span class="si"><b>NODE</b> CGS_NET</span>
-  <span class="sep"></span>
-  <span class="si"><b>STATUS</b> Operational</span>
-  <span class="sep"></span>
-  <span class="si"><b>REGION</b> Auckland · NZ</span>
-  <span class="sep"></span>
-  <span class="si"><b>FACILITY</b> East Tāmaki HQ</span>
-  <span class="sep"></span>
-  <span class="si"><b>SECURITY</b> SSL Encrypted</span>
+<div class="stat-strip">
+  <div class="stat-item"><span class="n">5</span><span class="l">Tournaments Delivered</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">450+</span><span class="l">Matches Facilitated</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">50+</span><span class="l">Partner Clubs Nationwide</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">0</span><span class="l">Concussions on Record</span></div>
 </div>
 
-<!-- ============ PLATFORM MODULES ============ -->
-<section class="platform-section reveal" id="platform">
-  <p class="section-label">Event Grid Matrix</p>
-  <h2 class="section-title">The Tournament<br><em>Platform.</em></h2>
-  <p class="section-intro">A purpose-built software stack for running combat sport events end to end. <strong>Select a module</strong> to see what each system handles on event day.</p>
-
-  <div class="platform-layout">
-    <div class="module-tabs" role="tablist">
-      <button class="module-tab active" data-mod="register" role="tab">
-        <span class="mt-text"><span class="mt-num">01 / Entry</span><span class="mt-name">Open Registration</span></span>
-        <span class="badge badge-live">Live</span>
-      </button>
-      <button class="module-tab" data-mod="live" role="tab">
-        <span class="mt-text"><span class="mt-num">02 / Scoring</span><span class="mt-name">Ringside Scoreboard</span></span>
-        <span class="badge badge-soon">Soon</span>
-      </button>
-      <button class="module-tab" data-mod="draw" role="tab">
-        <span class="mt-text"><span class="mt-num">03 / Draws</span><span class="mt-name">Tournament Brackets</span></span>
-        <span class="badge badge-soon">Soon</span>
-      </button>
-      <button class="module-tab" data-mod="referee" role="tab">
-        <span class="mt-text"><span class="mt-num">04 / Officials</span><span class="mt-name">Referee Credentials</span></span>
-        <span class="badge badge-core">Core</span>
-      </button>
-    </div>
-
-    <div class="module-panel-wrap">
-      <!-- 01 REGISTER -->
-      <div class="module-panel active" data-panel="register">
-        <div class="mp-head">
-          <div><span class="mp-division">Division 01 // Combat Games Series</span><span class="mp-title">Fighter Entry Gateway</span></div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="mp-body">The official gateway for upcoming tournament entries. Select your weight group, lock down division data, and sign liability waivers — all in one structured intake. <strong>Submissions feed directly into the event grid.</strong></p>
-        <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;"><span>Open Registration Form ⚔</span></a>
-        <div class="mp-foot"><span>Target Node · CGS_NET</span><span>Intake Open</span></div>
-      </div>
-      <!-- 02 LIVE -->
-      <div class="module-panel" data-panel="live">
-        <div class="mp-head">
-          <div><span class="mp-division">Division 02 // Combat Games Series</span><span class="mp-title">Live Ringside Scoreboard</span></div>
-          <span class="badge badge-soon">Soon</span>
-        </div>
-        <p class="mp-body">Real-time scoring piped from the judges' table to every screen in the venue. When fights are scored ringside, results update <strong>instantly</strong> across the platform.</p>
-        <div class="mp-pending">
-          <span class="pulse-label">[ Stream Of Pipes Pending ]</span>
-          <p>Firebase endpoint active. Live results display will switch on for the next sanctioned event.</p>
-        </div>
-        <div class="mp-foot"><span>Endpoint · Firebase</span><span>Standby</span></div>
-      </div>
-      <!-- 03 DRAW -->
-      <div class="module-panel" data-panel="draw">
-        <div class="mp-head">
-          <div><span class="mp-division">Division 03 // Combat Games Series</span><span class="mp-title">Real-Time Brackets &amp; Draws</span></div>
-          <span class="badge badge-soon">Soon</span>
-        </div>
-        <p class="mp-body">Reordered match cards, mat allocations, and fighter check-in status — streamed live on event day so competitors and spectators always know <strong>who's next, and where.</strong></p>
-        <div class="mp-pending">
-          <span class="pulse-label">[ Order Matrix Initializing ]</span>
-          <p>System primed to stream match cards, mat arrays, and pool check-in statuses.</p>
-        </div>
-        <div class="mp-foot"><span>Engine · Draw Matrix</span><span>Standby</span></div>
-      </div>
-      <!-- 04 REFEREE -->
-      <div class="module-panel" data-panel="referee">
-        <div class="mp-head">
-          <div><span class="mp-division">Division 04 // Officials Education</span><span class="mp-title">Accreditation Curriculum</span></div>
-          <span class="badge badge-core">Core</span>
-        </div>
-        <p class="mp-body">A formal accreditation track covering rules uniformity, foul classification, and ring management — building a <strong>consistent national standard</strong> for officiating.</p>
-        <div class="mp-modlist">
-          <span class="m"><b>Mod 1:</b> Technique Legality Mechanics</span>
-          <span class="m"><b>Mod 2:</b> Mat Command Consistency</span>
-          <span class="m"><b>Mod 3:</b> Foul Classification &amp; Scoring Uniformity</span>
-        </div>
-        <div class="mp-foot"><span>Track · Officials Education</span><span>Enrolling</span></div>
-      </div>
-    </div>
+<section class="branches reveal" id="ecosystem">
+  <p class="section-label">The Ecosystem</p>
+  <h2 class="section-title">One Mission.<br><em>Five Branches.</em></h2>
+  <p class="section-intro">Most organisations offer one thing. Eagle DS connects five — each strengthening the others. We are not here to absorb the clubs and communities we work with. We are the <strong>shared infrastructure that lifts the whole sport</strong>: a place to train, a circuit to compete on, the clinical care that keeps it safe, and the programmes that bring it to those who need it.</p>
+  <div class="branch-grid">
+    <a href="gym.html" class="branch">
+      <span class="branch-tag"><span class="branch-num">01</span> The Facility</span>
+      <span class="branch-title">Training Academy</span>
+      <span class="branch-desc">Our East Tāmaki home. Boxing, kickboxing, MMA, K1 and Taekwondo for all ages — Kids MMA, Women's classes, performance tracks, and a clear development pathway. Class schedule, memberships and the shop live here.</span>
+      <span class="branch-go">Enter the Academy →</span>
+    </a>
+    <a href="cgs.html" class="branch">
+      <span class="branch-tag"><span class="branch-num">02</span> The Circuit</span>
+      <span class="branch-title">Combat Games Series</span>
+      <span class="branch-desc">New Zealand's light-contact competition circuit — uniting 50+ clubs across six styles under one safe, development-first standard. Clubs keep their identity; we provide the platform, the officials and the stage.</span>
+      <span class="branch-go">View the Series →</span>
+    </a>
+    <a href="wellness.html" class="branch">
+      <span class="branch-tag"><span class="branch-num">03</span> The Foundation</span>
+      <span class="branch-title">Wellness Hub</span>
+      <span class="branch-desc">Health is not an add-on — it is the foundation. Clinical nutrition, mindfulness, breathwork, mobility and recovery, led by Carrie Sanders RN. The clinical rigour behind our zero-concussion record.</span>
+      <span class="branch-go">Explore Wellness →</span>
+    </a>
+    <a href="community.html" class="branch">
+      <span class="branch-tag"><span class="branch-num">04</span> The Reach</span>
+      <span class="branch-title">Community Programmes</span>
+      <span class="branch-desc">Eagle Tū Māia and our funded rangatahi programmes — delivered with youth services, schools and social organisations. Combat sport as the vehicle; identity, belonging and pathways as the destination.</span>
+      <span class="branch-go">See the Programmes →</span>
+    </a>
+    <a href="sponsors.html" class="branch">
+      <span class="branch-tag"><span class="branch-num">05</span> The Partners</span>
+      <span class="branch-title">Partnership &amp; Sponsors</span>
+      <span class="branch-desc">Partner with our national events circuit, our Auckland facility, or both. Genuine, measurable brand association with a movement that puts community and safety first.</span>
+      <span class="branch-go">Partner With Us →</span>
+    </a>
+    <a href="cgs.html#register" class="branch">
+      <span class="branch-tag"><span class="branch-num">+</span> Get Involved</span>
+      <span class="branch-title">Compete &amp; Officiate</span>
+      <span class="branch-desc">Register for the next Combat Games Series event, or train as a certified Eagle DS referee or coach. The whole pathway — athlete, official, leader — runs through one system.</span>
+      <span class="branch-go">Open Registration →</span>
+    </a>
   </div>
 </section>
 
 <div class="gold-divider"></div>
 
-<!-- ============ WHAT WE BUILD ============ -->
-<section class="build-section reveal" id="build">
-  <p class="section-label">National Infrastructure</p>
-  <h2 class="section-title">Three Pillars.<br><em>One Standard.</em></h2>
-  <p class="section-intro">Eagle DS isn't a single venue — it's the infrastructure layer for combat sport in New Zealand: <strong>where athletes are developed, where they compete, and who governs the contest.</strong></p>
-  <div class="build-grid">
-    <div class="build-card">
-      <div class="build-num">01</div>
-      <div class="build-title">Academy Architecture</div>
-      <p class="build-desc">A structured, full-pathway development system — from a child's first pad class to national and international competition. The talent pipeline starts here.</p>
-    </div>
-    <div class="build-card">
-      <div class="build-num">02</div>
-      <div class="build-title">Tournament Software</div>
-      <p class="build-desc">An independent event platform: registration, live scoring, real-time brackets, and mat management — engineered specifically for combat sport, not borrowed from elsewhere.</p>
-    </div>
-    <div class="build-card">
-      <div class="build-num">03</div>
-      <div class="build-title">Officials Education</div>
-      <p class="build-desc">Formal referee and judge accreditation that drives consistency across every event. A credentialed standard the whole ecosystem can trust.</p>
-    </div>
+<section class="whare reveal">
+  <p class="section-label">Our Cultural Foundation</p>
+  <h2 class="section-title">Te Whare<br><em>Tapa Whā.</em></h2>
+  <p class="section-intro">The four pillars of Māori health are not a branding choice — they are the architecture of everything we build. Eagle DS is a Ngāi Tahu family business. We are not applying a cultural framework to our work; we are living it.</p>
+  <div class="whare-grid">
+    <div class="whare-cell"><div class="wt">Taha Tinana</div><div class="we">Physical</div><div class="wd">Strong, capable bodies through structured training and clinical wellness support.</div></div>
+    <div class="whare-cell"><div class="wt">Taha Hinengaro</div><div class="we">Mental</div><div class="wd">Confidence, clarity and emotional regulation — a new internal story about what is possible.</div></div>
+    <div class="whare-cell"><div class="wt">Taha Wairua</div><div class="we">Spiritual</div><div class="wd">Resilience, identity, and a deepening sense of purpose and self.</div></div>
+    <div class="whare-cell"><div class="wt">Taha Whānau</div><div class="we">Family</div><div class="wd">Connection and belonging. What happens on the mat extends into every relationship.</div></div>
   </div>
 </section>
 
 <div class="gold-divider"></div>
 
-<!-- ============ ACADEMY CROSS-LINK ============ -->
-<section class="academy-section reveal" id="academy">
-  <p class="section-label">The Development Engine</p>
-  <h2 class="section-title">Where the<br><em>Fighters</em> Come From.</h2>
-  <p class="section-intro">Every athlete on the event grid is built somewhere. The <strong>Eagle DS Academy</strong> is the development engine feeding the Combat Games Series — elite coaching, measurable pathways, and the high-performance habits that produce competitors who win.</p>
-
-  <div class="academy-card">
-    <div class="academy-card-left">
-      <p class="academy-tag">Eagle DS Academy · East Tāmaki</p>
-      <h3 class="academy-title">Train at the <em>Source.</em></h3>
-      <p class="academy-desc">Auckland's full-pathway combat sports academy — boxing, kickboxing, MMA, and Taekwondo — led every session by international medalist <strong>Dafydd Sanders</strong>. Class schedules, member portal, and the shop all live on the academy site.</p>
-      <div class="cta-group">
-        <a href="gym.html" class="btn-primary"><span>Visit the Academy →</span></a>
-        <a href="gym.html#schedule" class="btn-secondary">View Class Schedule</a>
-      </div>
-    </div>
-    <div class="academy-card-right">
-      <div class="academy-stat"><div class="n">31</div><div class="l">Years Mastery</div></div>
-      <div class="academy-stat"><div class="n">4</div><div class="l">Intl Disciplines Medaled</div></div>
-      <div class="academy-stat"><div class="n">7–Elite</div><div class="l">Full Pathway</div></div>
-    </div>
+<section class="founders reveal" style="padding:0;">
+  <div class="founder">
+    <p class="section-label">The Founders</p>
+    <h2 class="founder-name">Dafydd <em>(David)</em> Sanders</h2>
+    <p class="founder-role">Founder · Head Coach · Mindset Lead</p>
+    <p class="founder-body">A former international taekwondo athlete who represented New Zealand across two Olympic campaigns and was named <strong>Māori Sports Person of the Year</strong> at the University of Auckland in 2005.</p>
+    <p class="founder-body"><strong>27 years teaching and coaching.</strong> Dafydd has also spoken publicly about living through a near two-year mental health crisis — the lived foundation of everything Eagle DS teaches.</p>
+  </div>
+  <div class="founder">
+    <h2 class="founder-name">Carrie Sanders</h2>
+    <p class="founder-role">Co-Founder · Registered Nurse · Clinical Nutritionist</p>
+    <p class="founder-body">A Registered Nurse with frontline clinical experience and a qualified Clinical Nutritionist. A New Zealand representative in gymnastics and trampolining, and a National Taekwondo Champion.</p>
+    <p class="founder-body">Carrie designs and leads every wellness programme Eagle DS delivers — and is the reason Eagle DS holds a <strong>zero concussion record</strong> across five national tournaments and 450+ matches.</p>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="fb-word">EAGLE DS</div>
-      <p>National combat sports infrastructure — academy architecture, tournament software, and officials education. Built to one standard.</p>
+      <p>Combat and Wellness — developing people through combat sport, not damaging them. A training academy, a national circuit, clinical wellness, and community programmes under one mission.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
     </div>
     <div class="footer-col">
-      <h4>01 / Facility</h4>
-      <span>East Tāmaki Academy Centre</span>
-      <span>17 Nandina Ave, Auckland 2013</span>
-      <a href="tel:+64210902471">021 902 471</a>
-      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="wellness.html">Wellness Hub</a>
+      <a href="community.html">Community Programmes</a>
+      <a href="sponsors.html">Partnership &amp; Sponsors</a>
     </div>
     <div class="footer-col">
-      <h4>02 / Platform</h4>
-      <a href="#platform">Combat Games Series</a>
-      <a href="https://forms.gle/TcQCcid63rQQDiZF6" target="_blank" rel="noopener">Open Registration</a>
-      <a href="#build">Infrastructure</a>
-      <a href="#academy">Officials Education</a>
-    </div>
-    <div class="footer-col">
-      <h4>03 / Academy</h4>
-      <a href="gym.html">Visit Academy Site</a>
+      <h4>Train &amp; Compete</h4>
       <a href="gym.html#schedule">Class Schedule</a>
       <a href="https://eagleds.gymdesk.com/pricing" target="_blank" rel="noopener">Memberships</a>
-      <a href="https://eagleds.gymdesk.com/login" target="_blank" rel="noopener">Member Login</a>
+      <a href="cgs.html#register">Event Registration</a>
+      <a href="coach.html">Coaching Course</a>
+      <a href="ref.html">Referee Certification</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+      <a href="https://www.facebook.com/profile.php?id=100090018062998" target="_blank" rel="noopener">Facebook</a>
     </div>
   </div>
   <div class="footer-base">
-    <span>© Eagle DS · East Tāmaki, Auckland, New Zealand</span>
-    <span class="live"><span class="live-dot"></span> Platform Live · CGS_NET · SSL Encrypted</span>
+    <span>© Eagle DS Combat &amp; Wellness · East Tāmaki, Auckland</span>
+    <span class="live"><span class="live-dot"></span> Eagle DS Ecosystem</span>
   </div>
 </footer>
 
 <script>
-  // Nav shrink on scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
-  });
-
-  // Mobile menu
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // Platform module tabs
-  const tabs = document.querySelectorAll('.module-tab');
-  const panels = document.querySelectorAll('.module-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const mod = tab.dataset.mod;
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.querySelector('.module-panel[data-panel="' + mod + '"]').classList.add('active');
-    });
-  });
-
-  // Scroll reveal
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
