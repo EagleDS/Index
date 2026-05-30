@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eagle DS Shop — Combat Sports Gear & Equipment Auckland</title>
+<meta name="description" content="Eagle DS combat sports gear. Starter packs, MMA gloves, boxing equipment, Taekwondo uniforms. Morgan Sports and Eagle DS branded equipment. Ships NZ-wide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══ EAGLE DS SHARED DESIGN SYSTEM ═══ */
+:root {
+  --black:    #0a0a0a;
+  --black-2:  #0f0f0f;
+  --grey:     #1a1a1a;
+  --mid:      #2e2e2e;
+  --surf:     #141414;
+  --border:   #222222;
+  --border2:  #333333;
+  --text:     #f8f4ee;
+  --muted:    #888888;
+  --muted2:   #666666;
+  --gold:     #C8960C;
+  --gold-lt:  #E8B84B;
+  --gold-pale:#f5e6b8;
+  --gold-dk:  #9a7008;
+  --red:      #C0392B;
+  --blue:     #3d8eff;
+  --green:    #22b64a;
+  --orange:   #e07020;
+  --purple:   #9d55f5;
+  --cormorant:'Cormorant Garamond', serif;
+  --bebas:    'Bebas Neue', sans-serif;
+  --dm:       'DM Sans', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+  --r:        2px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--dm);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Film grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1000; opacity: 0.35;
+}
+
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 1px; }
+
+/* GATE */
+#gate {
+  position: fixed; inset: 0;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.gate-wrap { width: 300px; text-align: center; }
+.gate-eagle {
+  font-family: var(--bebas);
+  font-size: 56px; color: var(--gold);
+  letter-spacing: 4px; line-height: 1;
+}
+.gate-name {
+  font-family: var(--cormorant);
+  font-size: 15px; font-style: italic;
+  color: var(--muted); margin-bottom: 8px;
+}
+.gate-sub {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted2);
+  margin-bottom: 40px;
+}
+.gate-line {
+  width: 40px; height: 1px;
+  background: var(--gold-dk);
+  margin: 0 auto 40px;
+}
+.gate-input {
+  width: 100%;
+  background: var(--grey);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 24px; text-align: center;
+  letter-spacing: 10px; padding: 14px;
+  outline: none;
+  transition: border-color .2s;
+}
+.gate-input:focus { border-color: var(--gold-dk); }
+.gate-btn {
+  margin-top: 10px; width: 100%;
+  background: var(--gold-dk); color: #000;
+  border: none; border-radius: var(--r);
+  font-family: var(--mono); font-size: 10px;
+  font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; padding: 13px;
+  cursor: pointer; transition: background .2s;
+}
+.gate-btn:hover { background: var(--gold); }
+.gate-err {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--red); margin-top: 10px; height: 14px;
+}
+
+/* NAV */
+#app { display: none; }
+.topbar {
+  position: sticky; top: 0; z-index: 200;
+  height: 54px;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(200,150,12,0.12);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.t-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.t-wordmark {
+  font-family: var(--bebas);
+  font-size: 20px; letter-spacing: 3px; color: var(--text);
+  line-height: 1;
+}
+.t-wordmark small {
+  display: block;
+  font-family: var(--dm); font-size: 8px;
+  letter-spacing: 0.28em; color: var(--gold);
+  font-weight: 500; text-transform: uppercase;
+}
+.t-nav { display: flex; gap: 2px; align-items: center; }
+.t-nav a {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--muted); padding: 6px 10px;
+  border-radius: var(--r); text-decoration: none;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: all .15s; position: relative;
+}
+.t-nav a::after {
+  content: ''; position: absolute;
+  left: 10px; bottom: 2px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .2s;
+}
+.t-nav a:hover { color: var(--text); }
+.t-nav a:hover::after { width: calc(100% - 20px); }
+.t-nav a.here { color: var(--gold); }
+.t-nav a.here::after { width: calc(100% - 20px); }
+.status-pill {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 9px; color: var(--muted);
+  background: var(--grey); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px;
+}
+.sdot { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
+.sdot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.sdot.err  { background: var(--red); }
+
+/* WORKSPACE */
+.ws { max-width: 1360px; margin: 0 auto; padding: 32px; }
+
+/* PAGE HEADER */
+.page-hd { margin-bottom: 32px; }
+.section-label {
+  font-family: var(--mono); font-size: 9px;
+  font-weight: 500; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px; display: block;
+}
+.page-title {
+  font-family: var(--cormorant);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 300; line-height: 1.1;
+  letter-spacing: -0.01em; color: var(--text);
+  margin-bottom: 8px;
+}
+.page-title em { font-style: italic; color: var(--gold-lt); }
+.page-sub {
+  font-family: var(--dm); font-size: 14px;
+  color: var(--muted); font-weight: 300;
+}
+
+/* GOLD DIVIDER */
+.gold-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,150,12,0.25), transparent);
+  margin: 8px 0;
+}
+.gold-line { width: 48px; height: 2px; background: var(--gold); margin-bottom: 20px; }
+
+/* TABS */
+.tabs {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.tab {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted); padding: 11px 18px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: all .15s;
+  background: none; border-top: none;
+  border-left: none; border-right: none;
+  position: relative;
+}
+.tab::after {
+  content: ''; position: absolute;
+  left: 18px; bottom: -1px;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width .2s;
+}
+.tab:hover { color: var(--muted2); }
+.tab.active { color: var(--gold); }
+.tab.active::after { width: calc(100% - 36px); }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* STAT CARDS */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 2px; margin-bottom: 2px;
+}
+@media(max-width:960px){ .stat-grid { grid-template-columns: 1fr 1fr; } }
+.scard {
+  background: var(--grey);
+  padding: 20px 24px;
+  position: relative; overflow: hidden;
+}
+.scard::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--border);
+}
+.scard.s-master::before { background: linear-gradient(90deg, var(--gold-dk), var(--gold)); }
+.scard.s-gym::before    { background: var(--blue); }
+.scard.s-cgs::before    { background: var(--red); }
+.scard.s-school::before { background: var(--purple); }
+.scard.s-corp::before   { background: var(--green); }
+.scard-n {
+  font-family: var(--bebas);
+  font-size: 44px; color: var(--gold);
+  line-height: 1; letter-spacing: 1px;
+}
+.scard.s-master .scard-n { font-size: 56px; }
+.scard-l {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--muted); text-transform: uppercase;
+  letter-spacing: 1.5px; margin-top: 4px;
+}
+
+/* TIER ROW */
+.tier-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 2px; margin-bottom: 2px;
+}
+@media(max-width:700px){ .tier-row { grid-template-columns: 1fr 1fr; } }
+.tcard {
+  background: var(--grey); padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.tdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tdot.hot     { background: #e84040; box-shadow: 0 0 8px #e84040; }
+.tdot.warm    { background: #e07020; box-shadow: 0 0 6px #e07020; }
+.tdot.cold    { background: #3d8eff; box-shadow: 0 0 5px #3d8eff; }
+.tdot.dormant { background: var(--muted); }
+.tcard-n {
+  font-family: var(--bebas); font-size: 30px;
+  color: var(--text); line-height: 1;
+}
+.tcard-l {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* PANELS */
+.panel {
+  background: var(--grey);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden; margin-bottom: 2px;
+}
+.ph {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pt {
+  font-family: var(--cormorant);
+  font-size: 16px; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.5px;
+}
+.pb { padding: 18px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+@media(max-width:768px){ .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+/* FORMS */
+label {
+  display: block;
+  font-family: var(--mono); font-size: 9px;
+  color: var(--muted2); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 5px;
+}
+select,
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+textarea {
+  width: 100%;
+  background: var(--black);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--mono); font-size: 11px;
+  padding: 9px 12px; outline: none;
+  transition: border-color .15s;
+  margin-bottom: 14px;
+  -webkit-appearance: none;
+}
+select:focus, input:focus, textarea:focus { border-color: var(--gold-dk); }
+textarea { resize: vertical; min-height: 90px; }
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  background: var(--gold-dk); color: #000;
+  border: none; border-radius: var(--r);
+  font-family: var(--mono); font-size: 10px;
+  font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 11px 18px;
+  cursor: pointer; transition: background .15s;
+  width: 100%; text-align: center;
+  position: relative; overflow: hidden;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold-lt);
+  transform: translateX(-100%);
+  transition: transform .25s ease;
+}
+.btn:hover::before { transform: translateX(0); }
+.btn span { position: relative; z-index: 1; }
+.btn-sm   { padding: 6px 14px; font-size: 9px; width: auto; }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+}
+.btn-ghost::before { display: none; }
+.btn-ghost:hover { border-color: var(--gold-dk); color: var(--gold); }
+.btn-red {
+  background: transparent;
+  border: 1px solid #3a1010; color: #ff7070;
+}
+.btn-red::before { background: #200606; }
+.btn-row { display: flex; gap: 2px; }
+.btn-row .btn { flex: 1; }
+
+/* SECTOR TILES */
+.sector-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 14px; }
+.stile {
+  border: 1px solid var(--border2);
+  padding: 10px 12px; cursor: pointer;
+  font-family: var(--mono); font-size: 10px;
+  text-align: center; transition: all .15s;
+  color: var(--muted2); user-select: none;
+  position: relative; overflow: hidden;
+}
+.stile::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 0; height: 2px;
+  transition: width .2s;
+}
+.stile:hover { color: var(--muted); }
+.stile.on-gym    { border-color: var(--blue); color: #6aadff; background: #080f1c; }
+.stile.on-cgs    { border-color: var(--red);  color: #ff7070; background: #1c0808; }
+.stile.on-school { border-color: var(--purple); color: #c080ff; background: #110820; }
+.stile.on-corp   { border-color: var(--green); color: #50e07a; background: #061410; }
+
+/* BADGES */
+.badge {
+  display: inline-block; padding: 2px 7px;
+  border-radius: 1px;
+  font-family: var(--mono); font-size: 8px;
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: .5px; margin: 1px;
+}
+.b-gym    { background: #080f1c; color: #6aadff; border: 1px solid #1a3a6a; }
+.b-cgs    { background: #1c0808; color: #ff7070; border: 1px solid #5a1616; }
+.b-school { background: #110820; color: #c080ff; border: 1px solid #481a6a; }
+.b-corp   { background: #061410; color: #50e07a; border: 1px solid #185a2a; }
+
+/* TIER BADGES */
+.tb {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 2px 8px; border-radius: 20px;
+  font-family: var(--mono); font-size: 8px;
+  font-weight: 600; letter-spacing: .5px;
+}
+.tb::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.tb-hot     { background: #200808; color: #ff7070; border: 1px solid #5a1010; } .tb-hot::before     { background: #e84040; }
+.tb-warm    { background: #1e1000; color: #ffa060; border: 1px solid #5a3000; } .tb-warm::before    { background: #e07020; }
+.tb-cold    { background: #080f1e; color: #70a8ff; border: 1px solid #103060; } .tb-cold::before    { background: #3d8eff; }
+.tb-dormant { background: #111111; color: var(--muted); border: 1px solid var(--border2); } .tb-dormant::before { background: var(--muted); }
+.tb-new     { background: #071410; color: #60e080; border: 1px solid #1a5a2a; } .tb-new::before     { background: var(--green); }
+
+/* PARENT/CHILD */
+.p-badge { display:inline-block;padding:1px 7px;border-radius:20px;font-family:var(--mono);font-size:8px;border:1px solid #5a3000;color:#ffa060;background:#180b00;margin-left:4px; }
+.c-badge { display:inline-block;padding:1px 7px;border-radius:20px;font-family:var(--mono);font-size:8px;border:1px solid #481a6a;color:#c080ff;background:#0e0620;margin-left:4px; }
+
+/* CONSOLE */
+.console {
+  background: var(--black);
+  border: 1px solid var(--border);
+  font-family: var(--mono); font-size: 10px;
+  padding: 12px; height: 80px;
+  overflow-y: auto; white-space: pre-wrap; line-height: 1.7;
+}
+.l-ok   { color: #22b64a; }
+.l-err  { color: var(--red); }
+.l-warn { color: var(--orange); }
+.l-info { color: var(--muted2); }
+.l-gold { color: var(--gold); }
+
+/* TABLE */
+.tbar {
+  display: flex; gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: center; flex-wrap: wrap;
+  background: var(--black-2);
+}
+.tbar input  { margin-bottom: 0; flex: 1; min-width: 180px; }
+.tbar select { margin-bottom: 0; width: auto; }
+.twrap { overflow-x: auto; max-height: 500px; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11px; }
+thead th {
+  background: var(--black-2); color: var(--muted2);
+  font-size: 9px; text-transform: uppercase;
+  letter-spacing: 1px; padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; white-space: nowrap; z-index: 1;
+}
+tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+tbody tr:hover td { background: var(--grey); }
+tbody tr:last-child td { border-bottom: none; }
+.nc strong { font-size: 12px; color: var(--text); font-weight: 500; display: block; font-family: var(--cormorant); letter-spacing: 0.2px; }
+.nc span   { color: var(--muted2); font-size: 10px; display: block; }
+.dbtn  { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 13px; padding: 4px 8px; transition: all .15s; }
+.dbtn:hover  { color: var(--red); }
+.edit-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 11px; padding: 4px 8px; transition: all .15s; }
+.edit-btn:hover { color: var(--gold); }
+
+/* MODAL */
+.modal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.92);
+  backdrop-filter: blur(8px);
+  z-index: 500; align-items: center;
+  justify-content: center; padding: 20px;
+}
+.modal.open { display: flex; }
+.mbox {
+  background: var(--grey);
+  border: 1px solid var(--border2);
+  width: 100%; max-width: 560px;
+  max-height: 90vh; overflow-y: auto;
+}
+.mh {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mt {
+  font-family: var(--cormorant);
+  font-size: 20px; font-weight: 600; color: var(--gold);
+}
+.mc {
+  background: none; border: none;
+  color: var(--muted); cursor: pointer;
+  font-size: 18px; padding: 2px 6px;
+  transition: color .15s;
+}
+.mc:hover { color: var(--text); }
+.mb { padding: 20px; }
+.mf {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* AUTO BANNER */
+.auto-banner {
+  background: var(--grey);
+  border: 1px solid rgba(200,150,12,0.2);
+  padding: 12px 18px; margin-bottom: 2px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+.ab-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 8px var(--gold);
+  flex-shrink: 0;
+  animation: abpulse 2s infinite;
+}
+@keyframes abpulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.ab-txt { font-family: var(--mono); font-size: 10px; color: var(--muted2); }
+.ab-count { font-family: var(--cormorant); font-size: 14px; font-weight: 600; color: var(--gold); }
+
+/* FIX ROWS */
+.fix-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.fix-row:last-child { border-bottom: none; }
+.fix-info strong { color: var(--text); display: block; font-family: var(--mono); font-size: 10px; }
+.fix-info span   { color: var(--muted2); font-family: var(--mono); font-size: 9px; }
+
+/* MAP MODAL ROWS */
+.map-r { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.map-l { font-family: var(--mono); font-size: 9px; color: var(--muted2); text-transform: uppercase; width: 80px; flex-shrink: 0; }
+.map-r select { margin-bottom: 0; flex: 1; }
+.map-prev {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 10px; font-family: var(--mono); font-size: 9px;
+  color: var(--muted2); margin-bottom: 14px;
+  max-height: 90px; overflow-y: auto; white-space: pre-wrap;
+}
+.detected-banner {
+  background: var(--black); border: 1px solid rgba(200,150,12,0.2);
+  padding: 10px 14px; font-family: var(--mono); font-size: 10px;
+  color: var(--gold); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.fp-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.fp-tag {
+  font-family: var(--mono); font-size: 9px;
+  padding: 2px 8px; border: 1px solid var(--border2);
+  color: var(--muted2);
+}
+.fp-tag.match { border-color: var(--green); color: var(--green); background: rgba(34,182,74,0.06); }
+
+/* VAR CHIPS */
+.var-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.var-chip {
+  font-family: var(--mono); font-size: 9px;
+  padding: 3px 9px; border: 1px solid var(--border2);
+  color: var(--gold-dk); cursor: pointer; transition: all .15s;
+  background: rgba(200,150,12,0.04);
+}
+.var-chip:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,150,12,0.1); }
+
+/* FAMILY INSIGHT */
+.family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.family-stat { background: var(--black); padding: 18px 20px; text-align: center; }
+.family-stat .fn { font-family: var(--bebas); font-size: 38px; line-height: 1; }
+.family-stat .fl { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* NOTIFY TOGGLE */
+.notify-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.toggle { width: 36px; height: 20px; background: var(--border2); border-radius: 10px; cursor: pointer; position: relative; transition: background .2s; flex-shrink: 0; }
+.toggle.on { background: var(--gold-dk); }
+.toggle::after { content: ''; position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: left .2s; }
+.toggle.on::after { left: 19px; }
+.toggle-label { font-family: var(--mono); font-size: 10px; color: var(--muted2); }
+
+/* EDITOR TOOLBAR */
+.editor-toolbar { display: flex; gap: 2px; flex-wrap: wrap; margin-bottom: 10px; }
+.tb-btn {
+  background: var(--black); border: 1px solid var(--border2);
+  color: var(--muted2); font-family: var(--mono); font-size: 10px;
+  padding: 5px 12px; cursor: pointer; transition: all .15s;
+}
+.tb-btn:hover { border-color: var(--gold-dk); color: var(--gold); }
+
+/* PREVIEW */
+.preview-wrap {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 24px; min-height: 200px;
+  font-family: var(--dm); font-size: 14px;
+  line-height: 1.8; color: var(--text);
+}
+.preview-wrap h1,.preview-wrap h2,.preview-wrap h3 { font-family: var(--cormorant); color: var(--gold-lt); font-weight: 300; letter-spacing: -0.01em; margin: 16px 0 8px; }
+.preview-wrap h1 { font-size: 32px; }
+.preview-wrap h2 { font-size: 24px; }
+.preview-wrap h3 { font-size: 19px; }
+.preview-wrap p  { margin-bottom: 12px; color: var(--muted); }
+.preview-wrap strong { color: var(--text); font-weight: 500; }
+.preview-wrap em { color: var(--gold-pale); font-style: italic; }
+.preview-wrap blockquote { border-left: 2px solid var(--gold); padding-left: 18px; color: var(--muted); margin: 16px 0; font-family: var(--cormorant); font-size: 18px; font-style: italic; }
+.preview-wrap hr { border: none; border-top: 1px solid var(--border2); margin: 18px 0; }
+.preview-wrap ul { margin: 0 0 12px 20px; color: var(--muted); }
+
+/* POST CARD */
+.post-card {
+  background: var(--black); border: 1px solid var(--border);
+  padding: 18px; margin-bottom: 2px;
+  transition: border-color .2s; cursor: default;
+}
+.post-card:hover { border-color: var(--border2); }
+.pc-title { font-family: var(--cormorant); font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.2; }
+.pc-meta  { font-family: var(--mono); font-size: 9px; color: var(--muted2); display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.pc-excerpt { font-size: 12px; color: var(--muted2); line-height: 1.6; margin-bottom: 10px; }
+.pc-actions { display: flex; gap: 6px; }
+.tag-published { background: rgba(34,182,74,0.08); color: var(--green); border: 1px solid rgba(34,182,74,0.3); padding: 1px 7px; font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: .5px; }
+.tag-draft     { background: rgba(224,112,32,0.08); color: var(--orange); border: 1px solid rgba(224,112,32,0.3); padding: 1px 7px; font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: .5px; }
+
+/* EVENT CARD */
+.event-card {
+  background: var(--grey); border: 1px solid var(--border);
+  overflow: hidden; transition: border-color .2s;
+}
+.event-card:hover { border-color: var(--border2); }
+.ec-top { padding: 16px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.ec-sector { font-family: var(--mono); font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; margin-bottom: 6px; display: inline-block; border: 1px solid; }
+.ec-s-cgs    { color: #ff7070; border-color: #5a1616; background: #1c0808; }
+.ec-s-gym    { color: #6aadff; border-color: #1a3a6a; background: #080f1c; }
+.ec-s-school { color: #c080ff; border-color: #481a6a; background: #110820; }
+.ec-s-corp   { color: #50e07a; border-color: #185a2a; background: #061410; }
+.ec-name { font-family: var(--cormorant); font-size: 20px; font-weight: 600; color: var(--text); line-height: 1.1; }
+.ec-date { font-family: var(--mono); font-size: 10px; color: var(--muted2); margin-top: 4px; }
+.ec-countdown { font-family: var(--bebas); font-size: 26px; text-align: right; line-height: 1; }
+.ec-countdown span { font-family: var(--mono); font-size: 9px; color: var(--muted); display: block; text-transform: uppercase; }
+.ec-body { padding: 14px 18px; }
+.ec-actions { display: flex; gap: 2px; padding: 12px 18px; border-top: 1px solid var(--border); }
+.ec-actions .btn { margin-top: 0; }
+.seq-steps { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+.seq-step { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 9px; padding: 5px 8px; background: var(--black); border: 1px solid var(--border); }
+.seq-step.sent    { border-color: rgba(34,182,74,0.3); color: var(--green); background: rgba(34,182,74,0.04); }
+.seq-step.due     { border-color: rgba(200,150,12,0.4); color: var(--gold); background: rgba(200,150,12,0.04); }
+.seq-step.upcoming { color: var(--muted); }
+.step-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.step-dot.sent { background: var(--green); }
+.step-dot.due  { background: var(--gold); animation: abpulse 1.5s infinite; }
+.step-dot.upcoming { background: var(--muted); }
+
+/* QUEUE STATUS */
+.q-status { display: inline-flex; align-items: center; gap: 4px; font-family: var(--mono); font-size: 9px; padding: 2px 8px; }
+.qs-pending { background: rgba(224,112,32,0.08); color: var(--orange); border: 1px solid rgba(224,112,32,0.3); }
+.qs-sent    { background: rgba(34,182,74,0.06); color: var(--green); border: 1px solid rgba(34,182,74,0.25); }
+.qs-due     { background: rgba(200,150,12,0.1); color: var(--gold); border: 1px solid rgba(200,150,12,0.4); animation: abpulse .9s infinite; }
+.qs-skipped { background: var(--black); color: var(--muted); border: 1px solid var(--border); }
+
+/* TEMPLATE CARD */
+.template-card { background: var(--black); border: 1px solid var(--border); padding: 16px; margin-bottom: 2px; cursor: pointer; transition: border-color .2s; }
+.template-card:hover { border-color: var(--gold-dk); }
+.tc-name { font-family: var(--cormorant); font-size: 17px; font-weight: 600; color: var(--gold); margin-bottom: 4px; }
+.tc-meta { font-family: var(--mono); font-size: 9px; color: var(--muted2); }
+
+/* CONTENT IDEAS */
+.idea-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: color .15s;
+  font-size: 12px; color: var(--muted2);
+}
+.idea-item:hover { color: var(--gold-lt); }
+.idea-item::before { content: '→'; color: var(--gold); font-family: var(--mono); font-size: 10px; flex-shrink: 0; }
+.idea-item:last-child { border-bottom: none; }
+
+/* WATERMARK */
+.section-watermark {
+  position: absolute; pointer-events: none;
+  font-family: var(--bebas); font-size: 180px;
+  color: rgba(255,255,255,0.02); letter-spacing: 0.1em;
+  white-space: nowrap; user-select: none;
+  right: -20px; top: 50%; transform: translateY(-50%) rotate(90deg);
+}
+
+/* FOOTER */
+.site-footer {
+  background: var(--black-2);
+  border-top: 1px solid rgba(200,150,12,0.1);
+  padding: 24px 32px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.sf-brand { font-family: var(--bebas); font-size: 16px; letter-spacing: 2px; color: var(--muted2); }
+.sf-links { display: flex; gap: 20px; }
+.sf-links a { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted2); text-decoration: none; transition: color .15s; }
+.sf-links a:hover { color: var(--gold); }
+.sf-copy { font-family: var(--mono); font-size: 9px; color: var(--muted2); letter-spacing: 1px; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes breathe { 0%,100%{opacity:.9;transform:scale(1);}50%{opacity:1;transform:scale(1.015);} }
+@keyframes expand  { from{width:0;opacity:0;}to{width:48px;opacity:1;} }
+
+/* ══ SHOP PUBLIC PAGE ══ */
+.pub-nav {
+  height: 60px; background: rgba(10,10,10,.95);
+  border-bottom: 1px solid rgba(200,150,12,0.12);
+  padding: 0 48px; display: flex;
+  align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 200;
+}
+.pub-nav .brand { font-family:var(--bebas); font-size:22px; letter-spacing:3px; color:var(--text); text-decoration:none; line-height:1; }
+.pub-nav .brand small { display:block; font-family:var(--dm); font-size:8px; letter-spacing:.28em; color:var(--gold); font-weight:500; text-transform:uppercase; }
+.pub-nav-links { display:flex; gap:24px; align-items:center; }
+.pub-nav-links a { font-family:var(--mono); font-size:9px; color:var(--muted); text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:color .15s; }
+.pub-nav-links a:hover { color:var(--text); }
+.pub-nav-links a.here { color:var(--gold); }
+.pub-nav-cta { background:var(--gold-dk)!important; color:#000!important; padding:8px 16px; font-weight:600!important; }
+
+.shop-hero {
+  background: var(--black);
+  padding: 72px 80px 56px;
+  border-bottom: 1px solid rgba(200,150,12,0.1);
+  position: relative; overflow: hidden;
+}
+.shop-hero::before {
+  content: 'SHOP'; position: absolute; right: -10px; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--bebas); font-size: 200px;
+  color: rgba(255,255,255,0.02); pointer-events: none;
+  letter-spacing: 0.1em; white-space: nowrap;
+}
+.shop-filters {
+  background: var(--black-2);
+  border-bottom: 1px solid rgba(200,150,12,0.08);
+  padding: 0 80px; display: flex; gap: 0; align-items: center;
+  position: sticky; top: 60px; z-index: 100; overflow-x: auto;
+}
+.filter-btn {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted); padding: 14px 18px;
+  cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap;
+  background: none; border-top: none; border-left: none; border-right: none;
+  transition: all .15s; margin-bottom: -1px;
+}
+.filter-btn:hover { color: var(--muted2); }
+.filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.f-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--gold-dk); color: #000;
+  font-family: var(--mono); font-size: 7px; font-weight: 600;
+  width: 14px; height: 14px; border-radius: 50%; margin-left: 5px;
+}
+.shop-grid {
+  max-width: 1360px; margin: 0 auto; padding: 48px 80px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px;
+}
+.product-card {
+  background: var(--grey); position: relative; overflow: hidden;
+  cursor: pointer; transition: background .2s; display: flex; flex-direction: column;
+}
+.product-card:hover { background: var(--mid); }
+.product-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--gold); transition: width .4s ease;
+}
+.product-card:hover::before { width: 100%; }
+.product-card.hidden { display: none; }
+.pc-img {
+  background: var(--black); aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.pc-placeholder { font-family: var(--bebas); font-size: 80px; color: rgba(200,150,12,0.07); user-select: none; letter-spacing: 3px; }
+.pc-tag { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; }
+.tag-eagle  { background: rgba(200,150,12,0.15); color: var(--gold);   border: 1px solid rgba(200,150,12,0.3); }
+.tag-morgan { background: rgba(61,142,255,0.12); color: #6aadff;        border: 1px solid rgba(61,142,255,0.3); }
+.tag-starter { background: rgba(34,182,74,0.1);  color: var(--green);   border: 1px solid rgba(34,182,74,0.3); }
+.pc-body { padding: 20px 20px 16px; flex: 1; display: flex; flex-direction: column; }
+.pc-name { font-family: var(--cormorant); font-size: 20px; font-weight: 600; color: var(--text); line-height: 1.2; margin-bottom: 8px; }
+.pc-desc { font-family: var(--dm); font-size: 12px; color: var(--muted2); line-height: 1.6; margin-bottom: auto; }
+.pc-foot { padding: 14px 20px; border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; align-items: center; }
+.pc-price { font-family: var(--bebas); font-size: 28px; color: var(--gold); line-height: 1; }
+.pc-price sup { font-family: var(--mono); font-size: 10px; color: var(--gold-dk); vertical-align: super; font-family: var(--mono); }
+.pc-arrow { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color .15s; }
+.product-card:hover .pc-arrow { color: var(--gold-lt); }
+
+/* Modal */
+.prod-modal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.95); backdrop-filter: blur(12px);
+  z-index: 500; align-items: center; justify-content: center; padding: 20px;
+}
+.prod-modal.open { display: flex; }
+.prod-box {
+  background: var(--grey); border: 1px solid var(--border2);
+  width: 100%; max-width: 680px; max-height: 92vh; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr; position: relative;
+}
+.prod-img-col {
+  background: var(--black); display: flex; align-items: center;
+  justify-content: center; padding: 40px; min-height: 280px;
+  border-right: 1px solid var(--border);
+}
+.prod-img-big { font-family: var(--bebas); font-size: 80px; color: rgba(200,150,12,0.1); letter-spacing: 4px; text-align: center; line-height: 1.1; }
+.prod-detail { padding: 30px 26px; display: flex; flex-direction: column; }
+.prod-name { font-family: var(--cormorant); font-size: 24px; font-weight: 600; color: var(--text); line-height: 1.15; margin-bottom: 8px; }
+.prod-price { font-family: var(--bebas); font-size: 38px; color: var(--gold); line-height: 1; margin-bottom: 14px; letter-spacing: 2px; }
+.prod-desc { font-family: var(--dm); font-size: 13px; color: var(--muted2); line-height: 1.75; margin-bottom: 18px; flex: 1; }
+.size-label { font-family: var(--mono); font-size: 8px; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; margin-bottom: 8px; }
+.size-grid { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.size-btn { font-family: var(--mono); font-size: 10px; padding: 6px 14px; border: 1px solid var(--border2); background: var(--black); color: var(--muted2); cursor: pointer; transition: all .15s; }
+.size-btn:hover { border-color: var(--gold-dk); color: var(--gold); }
+.size-btn.sel { border-color: var(--gold); color: var(--gold); background: rgba(200,150,12,0.06); }
+.buy-btn {
+  display: block; width: 100%; background: var(--gold-dk); color: #000;
+  border: none; font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; padding: 15px;
+  cursor: pointer; text-decoration: none; text-align: center;
+  transition: background .2s; position: relative; overflow: hidden;
+}
+.buy-btn::before { content:''; position:absolute; inset:0; background:var(--gold-lt); transform:translateX(-100%); transition:transform .25s ease; }
+.buy-btn:hover::before { transform:translateX(0); }
+.buy-btn span { position: relative; z-index: 1; }
+.buy-btn.disabled { opacity:.5; pointer-events:none; }
+.afterpay { display:inline-flex; align-items:center; gap:5px; background:rgba(178,90,245,.08); border:1px solid rgba(178,90,245,.25); padding:4px 10px; font-family:var(--mono); font-size:8px; color:#c090ff; letter-spacing:.5px; margin:10px 0 6px; }
+.prod-note { font-family:var(--mono); font-size:9px; color:var(--muted); line-height:1.7; text-align:center; }
+.modal-close { position:absolute; top:12px; right:12px; background:none; border:none; color:var(--muted); cursor:pointer; font-size:18px; padding:4px 8px; transition:color .15s; z-index:1; }
+.modal-close:hover { color:var(--text); }
+
+.cart-pill { display:flex; align-items:center; gap:6px; background:var(--grey); border:1px solid var(--border); border-radius:20px; padding:5px 12px; font-family:var(--mono); font-size:9px; color:var(--muted); cursor:pointer; transition:all .15s; }
+.cart-pill:hover { border-color:var(--gold-dk); color:var(--gold); }
+.cart-n { background:var(--gold-dk); color:#000; border-radius:50%; width:16px; height:16px; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; }
+
+.pub-footer { background:var(--black-2); border-top:1px solid rgba(200,150,12,0.1); padding:48px 80px; display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
+.pf-brand { font-family:var(--bebas); font-size:24px; letter-spacing:3px; color:var(--text); margin-bottom:8px; }
+.pf-desc { font-family:var(--dm); font-size:12px; color:var(--muted2); line-height:1.7; max-width:260px; margin-bottom:12px; }
+.pf-links { display:flex; gap:20px; flex-wrap:wrap; }
+.pf-links a { font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:1px; color:var(--muted2); text-decoration:none; transition:color .15s; }
+.pf-links a:hover { color:var(--gold-lt); }
+.pf-base { background:var(--black-2); border-top:1px solid rgba(255,255,255,.05); padding:20px 80px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.pf-base span { font-family:var(--mono); font-size:9px; color:var(--muted); letter-spacing:1px; }
+
+@media(max-width:1024px){
+  .shop-hero,.shop-filters,.pub-footer,.pf-base{padding-left:40px;padding-right:40px;}
+  .shop-grid{padding:32px 40px;}
+  .pub-nav{padding:0 24px;}
+  .prod-box{grid-template-columns:1fr;}
+  .prod-img-col{min-height:180px;border-right:none;border-bottom:1px solid var(--border);}
+}
+@media(max-width:768px){
+  .shop-hero{padding:56px 24px 40px;}
+  .shop-filters{padding:0 24px;}
+  .shop-grid{padding:24px;grid-template-columns:1fr;}
+  .pub-nav{padding:0 20px;}
+  .pub-nav-links{display:none;}
+  .pub-footer{padding:40px 24px;}
+  .pf-base{padding:16px 24px;flex-direction:column;text-align:center;}
+}
+
+</style>
+</head>
+<body>
+
+<nav class="pub-nav">
+  <a href="index.html" class="brand">EAGLE DS<small>Combat &amp; Wellness</small></a>
+  <div class="pub-nav-links">
+    <a href="gym.html">Academy</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="wellness.html">Wellness</a>
+    <a href="blog.html">Journal</a>
+    <a href="shop.html" class="here">Shop</a>
+    <a href="capture.html" class="pub-nav-cta">Book a Trial</a>
+  </div>
+  <div class="cart-pill"><span>Cart</span><div class="cart-n">0</div></div>
+</nav>
+
+<div class="shop-hero reveal">
+  <span class="section-label">Eagle DS · Combat Equipment</span>
+  <h1 class="page-title" style="font-size:clamp(32px,4vw,56px);margin-bottom:12px;">The <em>Right</em> Gear.<br>Nothing You Don't Need.</h1>
+  <p style="font-family:var(--dm);font-size:14px;color:var(--muted);max-width:520px;line-height:1.85;margin-bottom:20px;">Starter packs built around exactly what you need for your first session. Morgan Sports equipment selected and stocked by Eagle DS. Ships direct to your door across New Zealand.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+    <span class="afterpay" style="margin:0;">&#11043; Afterpay available at checkout</span>
+    <span style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;">NZ SHIPPING ONLY</span>
+  </div>
+</div>
+
+<div class="shop-filters">
+  <button class="filter-btn active" onclick="filterShop('all',this)">All <span class="f-count" id="fc-all">21</span></button>
+  <button class="filter-btn" onclick="filterShop('starter',this)">Starter Packs <span class="f-count" id="fc-starter"></span></button>
+  <button class="filter-btn" onclick="filterShop('eagle',this)">Eagle DS <span class="f-count" id="fc-eagle"></span></button>
+  <button class="filter-btn" onclick="filterShop('morgan',this)">Morgan Sports <span class="f-count" id="fc-morgan"></span></button>
+</div>
+
+<div class="shop-grid" id="shop-grid"></div>
+
+<footer class="pub-footer">
+  <div>
+    <div class="pf-brand">EAGLE DS</div>
+    <p class="pf-desc">Auckland's full-pathway combat sports academy. East Tāmaki.</p>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--gold-dk);letter-spacing:2px;text-transform:uppercase;margin-top:8px;">Ngāi Tahu · Te Whare Tapa Whā</div>
+  </div>
+  <div class="pf-links">
+    <a href="gym.html">Academy</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="wellness.html">Wellness</a>
+    <a href="capture.html">Book Trial</a>
+    <a href="blog.html">Journal</a>
+  </div>
+  <div style="font-family:var(--dm);font-size:12px;color:var(--muted2);line-height:1.9;">
+    <div>17 Nandina Ave, East Tāmaki, Auckland</div>
+    <div><a href="tel:+64210902471" style="color:var(--gold-dk);text-decoration:none;">021 902 471</a></div>
+    <div><a href="mailto:info@eagleds.co.nz" style="color:var(--gold-dk);text-decoration:none;">info@eagleds.co.nz</a></div>
+  </div>
+</footer>
+<div class="pf-base">
+  <span>© Eagle DS Combat &amp; Wellness · East Tāmaki, Auckland</span>
+  <span style="color:var(--gold);letter-spacing:2px;">EAGLE DS SHOP</span>
+  <span>Payments secured by Stripe · Afterpay available</span>
+</div>
+
+<!-- Product modal -->
+<div class="prod-modal" id="prod-modal" onclick="if(event.target===this)closeProduct()">
+  <div class="prod-box">
+    <button class="modal-close" onclick="closeProduct()">&#10005;</button>
+    <div class="prod-img-col">
+      <div class="prod-img-big" id="m-img">DS</div>
+    </div>
+    <div class="prod-detail">
+      <div id="m-tag"></div>
+      <div class="prod-name" id="m-name"></div>
+      <div class="prod-price" id="m-price"></div>
+      <div class="prod-desc" id="m-desc"></div>
+      <div class="size-label">Select Size</div>
+      <div class="size-grid" id="m-sizes"></div>
+      <a class="buy-btn disabled" id="m-buy" href="#" target="_blank" rel="noopener"><span>Select a size above</span></a>
+      <div class="afterpay" style="justify-content:center;">&#11043; Afterpay available at checkout</div>
+      <p class="prod-note">Secure checkout via Stripe. Ships to NZ addresses only.<br>Returns within 14 days — contact info@eagleds.co.nz</p>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const PRODUCTS = [{"id": "eagleds-singlet", "cat": "eagle", "tag": "Eagle DS", "name": "Youth Eagle DS Training Singlet", "price": 34.99, "desc": "Official Eagle DS training singlet for young athletes.", "sizes": ["XS", "S", "M", "L", "XL"], "stripe": "STRIPE_SINGLET"}, {"id": "do-bok", "cat": "eagle", "tag": "Eagle DS", "name": "Do Bok Taekwondo Uniform", "price": 65.0, "desc": "WT-approved Taekwondo Do Bok for training and competition.", "sizes": ["130cm", "140cm", "150cm", "160cm", "170cm", "180cm"], "stripe": "STRIPE_DOBOK"}, {"id": "girls-shorts", "cat": "eagle", "tag": "Eagle DS", "name": "Fearless Girls Muay Thai Shorts", "price": 45.0, "desc": "Purpose-built Muay Thai shorts for female athletes. Lightweight, durable, designed to move.", "sizes": ["XS", "S", "M", "L"], "stripe": "STRIPE_GIRLSSHORTS"}, {"id": "kids-mma-boy", "cat": "eagle", "tag": "Starter Pack", "name": "Kids MMA Starter Pack \u2014 Boys", "price": 150.0, "desc": "Everything a young male athlete needs to begin training. Gloves, shin guards, mouth guard and hand wraps included.", "sizes": ["XS", "S", "M"], "stripe": "STRIPE_KIDSMMABOY"}, {"id": "kids-mma-girl", "cat": "eagle", "tag": "Starter Pack", "name": "Kids MMA Starter Pack \u2014 Girls", "price": 130.0, "desc": "Everything a young female athlete needs to begin training. Gloves, shin guards, mouth guard and hand wraps included.", "sizes": ["XS", "S", "M"], "stripe": "STRIPE_KIDSMMGIRL"}, {"id": "mma-starter", "cat": "eagle", "tag": "Starter Pack", "name": "MMA Starter Pack", "price": 185.0, "desc": "Complete entry-level MMA kit for adults. Gloves, shin guards, mouth guard and hand wraps.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MMASTARTER"}, {"id": "mma-premium-boy", "cat": "eagle", "tag": "Starter Pack", "name": "MMA Starter Pack Premium \u2014 Boys", "price": 180.0, "desc": "Premium MMA starter kit for male athletes. Upgraded gloves and protective gear.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MMAPREMBOY"}, {"id": "mma-premium-girl", "cat": "eagle", "tag": "Starter Pack", "name": "MMA Starter Pack Premium \u2014 Girls", "price": 160.0, "desc": "Premium MMA starter kit for female athletes. Upgraded gloves and protective gear.", "sizes": ["XS/S", "M/L"], "stripe": "STRIPE_MMAPREEMGIRL"}, {"id": "kickboxing-starter", "cat": "eagle", "tag": "Starter Pack", "name": "Kickboxing Starter Pack", "price": 180.0, "desc": "Complete beginner kickboxing kit. Gloves, shin guards, mouth guard and wraps.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_KBSTARTER"}, {"id": "kickboxing-mma", "cat": "eagle", "tag": "Starter Pack", "name": "Kickboxing & MMA Starter Pack", "price": 250.0, "desc": "The most versatile starter kit \u2014 covers both kickboxing and MMA training.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_KBMMA"}, {"id": "morgan-mma-gloves", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Alpha MMA Sparring Gloves", "price": 74.99, "desc": "Alpha Series MMA sparring gloves. Designed for stand-up and grappling.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MORGANALPHAMMA"}, {"id": "morgan-shin", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Alpha Shin & Instep Protectors", "price": 89.99, "desc": "Durable shin and instep protection for sparring and competition.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MORGANSHIN"}, {"id": "morgan-shoto", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan B2 Bomber Leather Shoto MMA Gloves", "price": 84.99, "desc": "Premium leather Shoto MMA sparring gloves. B2 Bomber series.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MORGANSHOTO"}, {"id": "morgan-wraps-cotton", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Cotton Boxing Hand Wraps 4m", "price": 14.99, "desc": "180 inch cotton hand wraps. Essential protection for every session.", "sizes": ["One Size"], "stripe": "STRIPE_MORGANCOTTONWRAP"}, {"id": "morgan-wraps-elastic", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Elasticated Easy Hand Wraps", "price": 19.99, "desc": "Quick-wrap elasticated hand wraps. Same protection, faster to put on.", "sizes": ["One Size"], "stripe": "STRIPE_MORGANELASTICWRAP"}, {"id": "morgan-mouthguard", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Endurance Mouth Guard", "price": 19.99, "desc": "Boil-and-bite mouth guard for training and sparring.", "sizes": ["Adult", "Junior"], "stripe": "STRIPE_MORGANMG"}, {"id": "morgan-boxing-gloves", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Endurance Pro Boxing Gloves", "price": 79.99, "desc": "Endurance Pro series boxing gloves. Reliable, durable, training-ready.", "sizes": ["8oz", "10oz", "12oz", "14oz", "16oz"], "stripe": "STRIPE_MORGANBOXING"}, {"id": "morgan-kids-shin", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Kids Elastic Shin & Instep Guards", "price": 34.99, "desc": "Elastic shin and instep guards designed for young athletes.", "sizes": ["XS", "S", "M"], "stripe": "STRIPE_MORGANKIDSHIN"}, {"id": "morgan-groin", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan Plastic Groin Guard with Cup", "price": 19.99, "desc": "Plastic groin guard with full cup protection. Essential kit.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MORGANGROIN"}, {"id": "morgan-gloves-pink", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan V2 Classic Boxing Gloves \u2014 Pink", "price": 64.99, "desc": "V2 Classic series boxing gloves in pink. Built for female athletes and beginners.", "sizes": ["8oz", "10oz", "12oz"], "stripe": "STRIPE_MORGANGLOVESPINK"}, {"id": "morgan-shin-v2", "cat": "morgan", "tag": "Morgan Sports", "name": "Morgan V2 Classic Shin & Instep Guards", "price": 74.99, "desc": "V2 Classic shin and instep protection. Reliable coverage for training.", "sizes": ["S/M", "L/XL"], "stripe": "STRIPE_MORGANSHINV2"}];
+const tagCls = {'Eagle DS':'tag-eagle','Morgan Sports':'tag-morgan','Starter Pack':'tag-starter'};
+let current = null, selSize = null;
+
+function fmt(p){ return 'NZD $' + (p % 1 === 0 ? p.toFixed(0) : p.toFixed(2)); }
+
+function buildGrid(){
+  const g = document.getElementById('shop-grid');
+  const counts = {all:PRODUCTS.length, starter:0, eagle:0, morgan:0};
+  PRODUCTS.forEach(p=>{
+    if(p.cat==='morgan') counts.morgan++;
+    else counts.eagle++;
+    if(p.tag==='Starter Pack') counts.starter++;
+  });
+  ['all','starter','eagle','morgan'].forEach(k=>{
+    const el=document.getElementById('fc-'+k);
+    if(el) el.textContent=counts[k];
+  });
+  g.innerHTML = PRODUCTS.map(p=>{
+    const tc = tagCls[p.tag]||'tag-eagle';
+    const price = fmt(p.price);
+    return '<div class="product-card reveal" data-id="'+p.id+'" data-cat="'+p.cat+'" data-tag="'+p.tag+'" onclick="openProduct(\''+p.id+'\')">'
+      +'<div class="pc-img"><div class="pc-placeholder">'+(p.cat==='morgan'?'M':'DS')+'</div>'
+      +'<div class="pc-tag '+tc+'">'+p.tag+'</div></div>'
+      +'<div class="pc-body"><div class="pc-name">'+p.name+'</div><div class="pc-desc">'+p.desc+'</div></div>'
+      +'<div class="pc-foot"><div class="pc-price"><sup>NZD </sup>$'+(p.price%1===0?p.price.toFixed(0):p.price.toFixed(2))+'</div><div class="pc-arrow">View →</div></div>'
+      +'</div>';
+  }).join('');
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.06});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+function openProduct(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  current = p;
+  selSize = p.sizes.length===1 ? p.sizes[0] : null;
+  document.getElementById('m-img').textContent = p.cat==='morgan' ? 'MORGAN\nSPORTS' : 'EAGLE\nDS';
+  document.getElementById('m-tag').innerHTML = '<span class="pc-tag '+(tagCls[p.tag]||'tag-eagle')+'" style="position:static;display:inline-block;margin-bottom:10px;">'+p.tag+'</span>';
+  document.getElementById('m-name').textContent = p.name;
+  document.getElementById('m-price').textContent = fmt(p.price);
+  document.getElementById('m-desc').textContent = p.desc;
+  document.getElementById('m-sizes').innerHTML = p.sizes.map(s=>'<button class="size-btn'+(selSize===s?' sel':'')+'" onclick="pickSize(\''+s+'\',this)">'+s+'</button>').join('');
+  refreshBuy();
+  document.getElementById('prod-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function pickSize(s,btn){
+  selSize=s;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  refreshBuy();
+}
+
+function refreshBuy(){
+  const btn=document.getElementById('m-buy');
+  if(!current) return;
+  if(selSize){
+    btn.href='https://buy.stripe.com/'+current.stripe+'?size='+encodeURIComponent(selSize);
+    btn.querySelector('span').textContent='Buy Now — '+selSize+' →';
+    btn.classList.remove('disabled');
+  } else {
+    btn.href='#';
+    btn.querySelector('span').textContent='Select a size above';
+    btn.classList.add('disabled');
+  }
+}
+
+function closeProduct(){
+  document.getElementById('prod-modal').classList.remove('open');
+  document.body.style.overflow='';
+  current=null; selSize=null;
+}
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProduct(); });
+
+function filterShop(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const show = type==='all' ? true
+      : type==='starter' ? card.dataset.tag==='Starter Pack'
+      : type==='eagle'   ? card.dataset.cat==='eagle'
+      : card.dataset.cat==='morgan';
+    card.classList.toggle('hidden',!show);
+  });
+}
+
+buildGrid();
+
+</script>
+</body>
+</html>

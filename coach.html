@@ -3,52 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coaching Course & Youth Academy — Eagle DS</title>
-<meta name="description" content="The Eagle DS Certificate in Combat Sports Coaching (Applied) and Youth Academy — a competency-based pathway turning practitioners into standards-driven coaches. We aren't selling time on the mat. We're selling outcomes.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Coaching Course — Eagle DS</title>
+<meta name="description" content="The Eagle DS Certificate in Combat Sports Coaching (Applied) — a three-year, competency-based pathway from practitioner to certified coach. Blue Belt qualifies you to coach kids. Black Belt qualifies you to coach teens and adults. We aren't selling time on the mat. We're selling outcomes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="eagle.css">
 <style>
-  .hero { min-height: 86vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 90px; position: relative; overflow: hidden; background: var(--black); }
-  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 78% 32%, rgba(200,150,12,0.10), transparent 55%); }
-  .hero-inner { max-width: 880px; position: relative; z-index: 2; }
-  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5.4vw, 82px); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
-  .hero-headline em { font-style: italic; color: var(--gold-light); }
-  .hero-body { font-size: 16px; color: #aaa; max-width: 560px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
-  .hero-body strong { color: var(--white); font-weight: 500; }
-  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
-  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
 
+  /* ── HERO ── */
+  .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 90px; position: relative; overflow: hidden; background: var(--black); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 78% 32%, rgba(200,150,12,0.09), transparent 55%); }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,150,12,0.3), transparent); }
+  .hero-inner { max-width: 920px; position: relative; z-index: 2; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(46px, 5.8vw, 88px); font-weight: 300; line-height: 1.03; letter-spacing: -0.02em; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 16px; color: #aaa; max-width: 580px; margin-bottom: 18px; line-height: 1.85; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-body strong { color: var(--white); font-weight: 500; }
+  .hero-note { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.72s ease forwards; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.85s ease forwards; }
+
+  /* ── STAT STRIP ── */
+  .stat-strip { display: flex; align-items: stretch; background: var(--grey); border-top: 1px solid rgba(200,150,12,0.12); border-bottom: 1px solid rgba(200,150,12,0.12); }
+  .stat-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 16px; text-align: center; }
+  .stat-item .n { font-family: 'Bebas Neue'; font-size: 36px; color: var(--gold); line-height: 1; }
+  .stat-item .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-top: 6px; line-height: 1.5; }
+  .stat-sep { width: 1px; background: rgba(255,255,255,0.06); }
+
+  /* ── ETHOS ── */
   .ethos { background: var(--grey); text-align: center; }
   .ethos-quote { max-width: 820px; margin: 0 auto; }
   .ethos-quote p { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,3.4vw,46px); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--white); }
   .ethos-quote p em { color: var(--gold-light); font-style: italic; }
   .ethos-quote .src { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: 28px; }
 
-  .cert { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
-  .cert-left { padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; }
-  .cert-right { background: var(--grey); padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; }
-  .cert-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; }
-  .cert-body strong { color: var(--white); font-weight: 500; }
-  .cert-list { display: flex; flex-direction: column; gap: 16px; }
-  .cert-list .ci { display: flex; gap: 16px; align-items: flex-start; }
-  .cert-list .ci .cn { font-family: 'Bebas Neue'; font-size: 24px; color: var(--gold); line-height: 1; flex-shrink: 0; width: 30px; }
-  .cert-list .ci .ct { font-size: 14px; color: #aaa; line-height: 1.6; }
-  .cert-list .ci .ct b { color: var(--white); font-weight: 500; }
+  /* ── THREE YEAR PATHWAY ── */
+  .pathway { background: var(--black); }
+  .pathway-intro { max-width: 680px; margin-bottom: 64px; }
+  .pathway-intro p { font-size: 15px; color: #999; line-height: 1.9; }
+  .pathway-intro p strong { color: var(--white); font-weight: 500; }
 
-  .weeks { background: var(--grey); }
-  .week-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; margin-top: 56px; }
+  .year-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 0; }
+  .year-block { background: var(--grey); padding: 52px 40px; position: relative; overflow: hidden; }
+  .year-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .year-block.y1::before { background: linear-gradient(90deg, #3a8a3a, #5ab05a); }
+  .year-block.y2::before { background: linear-gradient(90deg, #6a3ab5, #8a5ad5); }
+  .year-block.y3::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .year-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #666; margin-bottom: 12px; }
+  .year-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--white); margin-bottom: 6px; line-height: 1.15; }
+  .year-belt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
+  .year-block.y1 .year-belt { color: #5ab05a; }
+  .year-block.y2 .year-belt { color: #8a5ad5; }
+  .year-block.y3 .year-belt { color: var(--gold); }
+  .year-unlock { display: inline-block; padding: 6px 14px; border-radius: 2px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 28px; }
+  .year-block.y1 .year-unlock { background: rgba(58,138,58,0.15); color: #5ab05a; border: 1px solid rgba(58,138,58,0.3); }
+  .year-block.y2 .year-unlock { background: rgba(106,58,181,0.15); color: #8a5ad5; border: 1px solid rgba(106,58,181,0.3); }
+  .year-block.y3 .year-unlock { background: rgba(200,150,12,0.12); color: var(--gold); border: 1px solid rgba(200,150,12,0.25); }
+  .year-items { display: flex; flex-direction: column; gap: 10px; }
+  .year-item { display: flex; gap: 12px; align-items: flex-start; }
+  .year-item .yi-dot { width: 5px; height: 5px; border-radius: 50%; background: #444; margin-top: 7px; flex-shrink: 0; }
+  .year-block.y1 .year-item .yi-dot { background: #3a8a3a; }
+  .year-block.y2 .year-item .yi-dot { background: #6a3ab5; }
+  .year-block.y3 .year-item .yi-dot { background: var(--gold); }
+  .year-item .yi-text { font-size: 13px; color: #999; line-height: 1.6; }
+  .year-item .yi-text strong { color: var(--white); font-weight: 500; }
+
+  /* ── YEAR 1 DETAIL ── */
+  .year1-detail { background: var(--grey); }
+  .week-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px; }
   .wk { background: var(--black); padding: 36px 24px; transition: background 0.3s ease; position: relative; }
-  .wk:hover { background: #111; }
+  .wk:hover { background: #0d0d0d; }
   .wk .wn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .wk .wt { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
   .wk .wd { font-size: 12px; color: #777; line-height: 1.65; }
+  .wk.wk-future { opacity: 0.5; }
+  .wk.wk-future .wn { color: #555; }
 
+  /* ── SYLLABUS ── */
+  .syllabus { background: var(--black); }
+  .syllabus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+  .syl-block { background: var(--grey); padding: 44px 40px; }
+  .syl-block .sb-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .syl-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
+  .syl-items { display: flex; flex-direction: column; gap: 10px; }
+  .syl-item { display: flex; gap: 14px; align-items: flex-start; }
+  .syl-item .si-num { font-family: 'Bebas Neue'; font-size: 18px; color: var(--gold); line-height: 1.2; flex-shrink: 0; width: 22px; }
+  .syl-item .si-text { font-size: 13px; color: #999; line-height: 1.65; }
+  .syl-item .si-text strong { color: var(--white); font-weight: 500; }
+
+  /* ── BUSINESS SKILLS ── */
+  .business { background: var(--grey); }
+  .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .biz-card { background: var(--black); padding: 40px 32px; }
+  .biz-card .bc-num { font-family: 'Bebas Neue'; font-size: 48px; color: rgba(200,150,12,0.2); line-height: 1; margin-bottom: 16px; }
+  .biz-card .bc-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+  .biz-card .bc-body { font-size: 13px; color: #888; line-height: 1.7; }
+  .biz-card .bc-body strong { color: #bbb; font-weight: 500; }
+
+  /* ── GRADING ── */
   .grading { background: var(--black); }
   .belt-track { display: flex; flex-wrap: wrap; gap: 0; margin-top: 50px; border: 1px solid rgba(200,150,12,0.15); border-radius: 4px; overflow: hidden; }
   .belt { flex: 1 1 12%; min-width: 110px; padding: 24px 16px; text-align: center; border-right: 1px solid rgba(255,255,255,0.05); position: relative; }
   .belt:last-child { border-right: none; }
-  .belt .bdot { width: 26px; height: 26px; border-radius: 50%; margin: 0 auto 12px; border: 2px solid rgba(255,255,255,0.2); }
+  .belt .bdot { width: 26px; height: 26px; border-radius: 50%; margin: 0 auto 12px; border: 2px solid rgba(255,255,255,0.12); }
   .belt .bn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: #aaa; text-transform: uppercase; line-height: 1.4; }
   .belt.b1 .bdot { background: #f8f4ee; }
   .belt.b2 .bdot { background: linear-gradient(135deg,#f8f4ee 50%,#e8d44b 50%); }
@@ -65,6 +123,13 @@
   .grading-note { margin-top: 30px; font-size: 13px; color: #888; line-height: 1.8; max-width: 720px; }
   .grading-note strong { color: var(--gold-light); font-weight: 500; }
 
+  /* ── PROGRESSION NOTE ── */
+  .prog-note { margin-top: 48px; background: var(--grey); border: 1px solid rgba(200,150,12,0.15); border-radius: 4px; padding: 36px 40px; max-width: 820px; }
+  .prog-note .pn-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .prog-note p { font-size: 14px; color: #999; line-height: 1.85; }
+  .prog-note p strong { color: var(--white); font-weight: 500; }
+
+  /* ── ACADEMY ── */
   .academy { background: var(--grey); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
   .academy-left { background: var(--black); padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; }
   .academy-right { padding: 100px 70px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
@@ -72,6 +137,7 @@
   .academy-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; position: relative; z-index: 2; }
   .academy-body strong { color: var(--white); font-weight: 500; }
 
+  /* ── MIT ── */
   .mit { background: var(--black); }
   .mit-card { margin-top: 40px; background: linear-gradient(135deg, #141414, #0a0a0a); border: 1px solid rgba(200,150,12,0.18); border-radius: 6px; padding: 50px 50px; max-width: 880px; }
   .mit-card .mk2 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
@@ -79,17 +145,32 @@
   .mit-card p { font-size: 14px; color: #999; line-height: 1.85; }
   .mit-card p strong { color: var(--white); font-weight: 500; }
 
+  /* ── CTA ── */
   .cta-band { background: var(--grey); text-align: center; }
   .cta-band .cta-group { justify-content: center; margin-top: 8px; }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
-    .hero { padding: 120px 40px 70px; } .cert, .academy { grid-template-columns: 1fr; }
-    .cert-left, .cert-right, .academy-left, .academy-right { padding: 56px 40px; }
-    .week-grid { grid-template-columns: 1fr 1fr; } .marks-row { grid-template-columns: 1fr 1fr; } .mit-card { padding: 40px 32px; }
+    .hero { padding: 120px 40px 70px; }
+    .year-blocks { grid-template-columns: 1fr; }
+    .year-block { padding: 40px 32px; }
+    .week-grid { grid-template-columns: 1fr 1fr; }
+    .syllabus-grid { grid-template-columns: 1fr; }
+    .biz-grid { grid-template-columns: 1fr 1fr; }
+    .marks-row { grid-template-columns: 1fr 1fr; }
+    .academy { grid-template-columns: 1fr; }
+    .academy-left, .academy-right { padding: 56px 40px; }
+    .mit-card { padding: 40px 32px; }
   }
   @media (max-width: 768px) {
-    .hero { padding: 110px 24px 60px; } .week-grid { grid-template-columns: 1fr; } .marks-row { grid-template-columns: 1fr; }
+    .hero { padding: 110px 24px 60px; }
+    .week-grid { grid-template-columns: 1fr; }
+    .biz-grid { grid-template-columns: 1fr; }
+    .marks-row { grid-template-columns: 1fr; }
     .belt { flex: 1 1 45%; }
+    .syllabus-grid { grid-template-columns: 1fr; }
+    .syl-block { padding: 36px 28px; }
+    .prog-note { padding: 28px 24px; }
   }
 </style>
 </head>
@@ -105,32 +186,40 @@
   <div class="nav-links" id="navLinks">
     <a href="index.html">Ecosystem</a>
     <a href="gym.html">Academy</a>
-    <a href="#course">The Course</a>
+    <a href="#pathway">The Pathway</a>
     <a href="#grading">Grading</a>
     <a href="#academy">Youth Academy</a>
+    <a href="shop.html">Shop</a>
+    <a href="blog.html">Journal</a>
+    <a href="capture.html">Book a Trial</a>
     <a href="mailto:info@eagleds.co.nz?subject=Coaching%20Course%20Enquiry" class="nav-cta">Enrol</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
     <div class="gold-line"></div>
     <p class="eyebrow">Certificate in Combat Sports Coaching (Applied)</p>
-    <h1 class="hero-headline">Train the Ones Who<br>Will <em>Train the Rest.</em></h1>
-    <p class="hero-body">A structured, competency-based course that develops practitioners into capable, <strong>standards-driven coaches</strong> across boxing, kickboxing and MMA — and the Youth Academy pathway that turns advanced students into certified coaches of their own.<br><br>Built on outcomes, not participation. You progress when you meet the standard.</p>
+    <h1 class="hero-headline">Three Years.<br>One <em>Standard.</em><br>Your Own Gym.</h1>
+    <p class="hero-body">The Eagle DS coaching course is a <strong>three-year, competency-based pathway</strong> from practitioner to certified combat sports coach — built on outcomes, not participation. You progress when you meet the standard. You earn the right to coach when you are ready — not before.</p>
+    <p class="hero-note">Blue Belt · Coach Kids &nbsp;—&nbsp; Black Belt · Coach Teens & Adults</p>
     <div class="cta-group">
       <a href="mailto:info@eagleds.co.nz?subject=Coaching%20Course%20Enquiry" class="btn-primary"><span>Enrol / Enquire</span></a>
-      <a href="#course" class="btn-secondary">See the Course</a>
+      <a href="#pathway" class="btn-secondary">See the Pathway</a>
     </div>
   </div>
 </section>
 
+<!-- STAT STRIP -->
 <div class="stat-strip">
-  <div class="stat-item"><span class="n">5</span><span class="l">Core Course Weeks</span></div>
+  <div class="stat-item"><span class="n">3</span><span class="l">Years to<br>Black Belt</span></div>
   <div class="stat-sep"></div>
-  <div class="stat-item"><span class="n">112</span><span class="l">Marks Per Grading</span></div>
+  <div class="stat-item"><span class="n">112</span><span class="l">Marks Per<br>Grading</span></div>
   <div class="stat-sep"></div>
-  <div class="stat-item"><span class="n">8</span><span class="l">Belt Levels · White → Blue</span></div>
+  <div class="stat-item"><span class="n">8</span><span class="l">Belt Levels<br>White → Blue</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">3</span><span class="l">Disciplines<br>Boxing · KB · MMA</span></div>
   <div class="stat-sep"></div>
   <div class="stat-item"><span class="n">16+</span><span class="l">Entry Age</span></div>
 </div>
@@ -145,38 +234,208 @@
 
 <div class="gold-divider"></div>
 
-<!-- CERTIFICATE -->
-<section class="cert reveal" id="course">
-  <div class="cert-left">
-    <p class="section-label">The Programme</p>
-    <h2 class="section-title">Built on<br><em>Outcomes.</em></h2>
-    <p class="cert-body">The Certificate in Combat Sports Coaching (Applied) is a competency-based programme designed to develop capable, standards-driven coaches. It's <strong>inclusive by design</strong> — no prior formal coaching qualification required, only a commitment to the standard.</p>
-    <p class="cert-body">Delivered as a blended model: guided worksheets and facilitated discussion in the classroom, technique demonstration and observed coaching on the mat.</p>
+<!-- THREE YEAR PATHWAY -->
+<section class="pathway reveal" id="pathway">
+  <p class="section-label">The Pathway</p>
+  <h2 class="section-title">This Is Not a<br>Short <em>Course.</em></h2>
+  <div class="pathway-intro">
+    <p>The Eagle DS coaching course is a structured, three-year development programme. Each year builds on the last — technically, philosophically, and in terms of what you are qualified to deliver. <strong>You do not shortcut this.</strong> The standard is what makes the qualification worth having.</p>
+    <p style="margin-top:14px;">You can reach Blue Belt — and qualify to coach kids — within your first year. From there, the pathway continues through Purple and Brown to Black Belt, which qualifies you to coach teens and adults and run your own programme under the Eagle DS system.</p>
   </div>
-  <div class="cert-right">
-    <p class="section-label">Four Core Areas</p>
-    <div class="cert-list">
-      <div class="ci"><span class="cn">01</span><span class="ct"><b>Technical coaching capability</b> across striking and grappling disciplines.</span></div>
-      <div class="ci"><span class="cn">02</span><span class="ct"><b>Athlete development frameworks</b> built on measurable progression standards.</span></div>
-      <div class="ci"><span class="cn">03</span><span class="ct"><b>Performance-based assessment</b> with transparent, fixed criteria.</span></div>
-      <div class="ci"><span class="cn">04</span><span class="ct"><b>Communication, leadership</b> and coaching business skills.</span></div>
+
+  <div class="year-blocks">
+
+    <!-- YEAR 1 -->
+    <div class="year-block y1">
+      <div class="year-label">Year One</div>
+      <div class="year-title">Foundation</div>
+      <div class="year-belt">White Belt → Blue Belt</div>
+      <div class="year-unlock">Qualifies you to coach kids</div>
+      <div class="year-items">
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Grading system, mindset & messaging</strong> — understanding what the system is and how to communicate its value</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Teaching & enforcing standards</strong> — you cannot enforce what you cannot perform</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Fundamentals & coaching kids</strong> — the detail inside the technique, and why young athletes require more from a coach, not less</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Operational definitions</strong> — if you cannot define it, you cannot teach it</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Managing teams at events</strong> — leading your team at the Eagle DS Combat Game Series</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Business foundations</strong> — pricing, communication, and building a coaching practice worth investing in</div></div>
+      </div>
+    </div>
+
+    <!-- YEAR 2 -->
+    <div class="year-block y2">
+      <div class="year-label">Year Two</div>
+      <div class="year-title">Intermediate</div>
+      <div class="year-belt">Blue Belt → Brown Belt</div>
+      <div class="year-unlock">Extended coaching scope</div>
+      <div class="year-items">
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Full technical syllabus</strong> — all sequences across boxing, kickboxing and MMA to coaching standard</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Athlete development frameworks</strong> — periodisation, progression planning, and long-term athlete management</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Competition preparation</strong> — preparing athletes for the Combat Game Series and external events</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Running gradings</strong> — assessing athletes against fixed criteria, consistently and without compromise</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Growing your programme</strong> — building student numbers, retaining athletes, and managing your gym</div></div>
+      </div>
+    </div>
+
+    <!-- YEAR 3 -->
+    <div class="year-block y3">
+      <div class="year-label">Year Three</div>
+      <div class="year-title">Advanced</div>
+      <div class="year-belt">Brown Belt → Black Belt</div>
+      <div class="year-unlock">Qualifies you to coach teens & adults</div>
+      <div class="year-items">
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>High performance coaching</strong> — developing athletes who compete at a serious level</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Advanced athlete psychology</strong> — mindset coaching, adversity, and performance under pressure</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Programme leadership</strong> — supervising junior coaches, setting standards across your team</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Business ownership</strong> — running a full Eagle DS affiliated gym, building a sustainable business</div></div>
+        <div class="year-item"><div class="yi-dot"></div><div class="yi-text"><strong>Legacy & culture</strong> — creating a coaching environment that develops people, not just athletes</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- YEAR 1 DETAIL -->
+<section class="year1-detail reveal" id="course">
+  <p class="section-label">Year One · Foundation Module</p>
+  <h2 class="section-title">Where Every<br>Coach <em>Starts.</em></h2>
+  <p class="section-intro">The foundation module is the entry point for every Eagle DS coach. It covers the mindset, the system, the technical fundamentals, and what it actually means to lead athletes — in the gym and at events. This is a segment of the full three-year programme.</p>
+  <div class="week-grid">
+    <div class="wk">
+      <div class="wn">Week 1</div>
+      <div class="wt">Gradings, Mindset & Messaging</div>
+      <div class="wd">The grading pathway, the outcome-based philosophy, and how to communicate the system's value honestly to parents, students, and the community.</div>
+    </div>
+    <div class="wk">
+      <div class="wn">Week 2</div>
+      <div class="wt">Standards</div>
+      <div class="wd">Teaching and enforcing technical excellence. You are the standard — you cannot enforce what you cannot perform, and you cannot compromise what you do not truly believe in.</div>
+    </div>
+    <div class="wk">
+      <div class="wn">Weeks 3–4</div>
+      <div class="wt">Fundamentals & Coaching Kids</div>
+      <div class="wd">The detail inside the technique, and why coaching young athletes requires more from a coach, not less. Treat their outcomes as your own.</div>
+    </div>
+    <div class="wk">
+      <div class="wn">Week 5</div>
+      <div class="wt">Operational Definitions</div>
+      <div class="wd">If you cannot define it, you cannot teach it. Building definitions that create real understanding — not just labels with more words.</div>
+    </div>
+    <div class="wk">
+      <div class="wn">Weeks 6–7</div>
+      <div class="wt">Managing Teams at Events</div>
+      <div class="wd">Leading your team at the Eagle DS Combat Game Series. Tracking bouts, running warm-ups, pre-bout preparation, cornering, and keeping athletes focused all day.</div>
+    </div>
+    <div class="wk wk-future">
+      <div class="wn">Continuing</div>
+      <div class="wt">Business Foundations</div>
+      <div class="wd">Pricing your coaching, communicating value, building a practice worth investing in, and understanding what you are actually selling.</div>
+    </div>
+    <div class="wk wk-future">
+      <div class="wn">Continuing</div>
+      <div class="wt">Applied Practice</div>
+      <div class="wd">Supervised coaching, observed assessment, real-time correction in live sessions — turning knowledge into coaching capability under observation.</div>
+    </div>
+    <div class="wk wk-future">
+      <div class="wn">Blue Belt</div>
+      <div class="wt">Certification & Scope</div>
+      <div class="wd">On meeting the standard across all foundation modules, you are certified at Blue Belt — qualified to coach kids and begin building your programme.</div>
     </div>
   </div>
 </section>
 
 <div class="gold-divider"></div>
 
-<!-- WEEKS -->
-<section class="weeks reveal">
-  <p class="section-label">The Course · Week by Week</p>
-  <h2 class="section-title">Five Weeks.<br>One <em>Standard.</em></h2>
-  <p class="section-intro">Each week builds the knowledge, the mindset, and the ability to communicate value — to parents, students, and the wider community.</p>
-  <div class="week-grid">
-    <div class="wk"><div class="wn">Week 1</div><div class="wt">Gradings, Mindset &amp; Messaging</div><div class="wd">The grading pathway, the outcome-based mindset, and how to communicate the system's value honestly.</div></div>
-    <div class="wk"><div class="wn">Week 2</div><div class="wt">Standards</div><div class="wd">Teaching and enforcing technical excellence. You are the standard — you cannot enforce what you cannot perform.</div></div>
-    <div class="wk"><div class="wn">Weeks 3–4</div><div class="wt">Fundamentals &amp; Coaching Kids</div><div class="wd">The detail inside the technique, and why coaching kids requires more, not less. Treat their outcomes as your own.</div></div>
-    <div class="wk"><div class="wn">Week 5</div><div class="wt">Operational Definitions</div><div class="wd">If you cannot define it, you cannot teach it. Building definitions that create real understanding, not just labels.</div></div>
-    <div class="wk"><div class="wn">Future</div><div class="wt">Applied Practice &amp; Leadership</div><div class="wd">Supervised coaching, competition preparation, athlete welfare, and programme delivery — the full certificate pathway.</div></div>
+<!-- SYLLABUS -->
+<section class="syllabus reveal">
+  <p class="section-label">The Technical Syllabus</p>
+  <h2 class="section-title">Built to Be<br><em>Taught.</em></h2>
+  <p class="section-intro">The Eagle DS syllabus is not just a grading framework. Every technique exists to be understood, defined, and taught — not just performed. Coaches learn the syllabus to coaching standard, not athlete standard.</p>
+  <div class="syllabus-grid">
+    <div class="syl-block">
+      <div class="sb-label">Striking</div>
+      <h3>The Foundation of Every Combination</h3>
+      <div class="syl-items">
+        <div class="syl-item"><div class="si-num">01</div><div class="si-text"><strong>Jab, Cross, Hook</strong> — the core striking toolkit, taught to operational definition standard</div></div>
+        <div class="syl-item"><div class="si-num">02</div><div class="si-text"><strong>Lead & Rear Uppercut</strong> — range management and close-quarter striking</div></div>
+        <div class="syl-item"><div class="si-num">03</div><div class="si-text"><strong>Kick & Switch Kick</strong> — the only two kicks in the system, applied across all combination levels</div></div>
+        <div class="syl-item"><div class="si-num">04</div><div class="si-text"><strong>Combination progressions</strong> — White through Blue, building from single strikes to full integrated combinations under fatigue</div></div>
+        <div class="syl-item"><div class="si-num">05</div><div class="si-text"><strong>Defensive framework</strong> — dodging, blocking, body blocks and checks across boxing and kickboxing</div></div>
+      </div>
+    </div>
+    <div class="syl-block">
+      <div class="sb-label">Grappling</div>
+      <h3>Seven Sequences. One Standard.</h3>
+      <div class="syl-items">
+        <div class="syl-item"><div class="si-num">01</div><div class="si-text"><strong>Takedowns & finishes</strong> — double leg, single leg, body lock, hip throw, inside trip — each with correct entries and finishing positions</div></div>
+        <div class="syl-item"><div class="si-num">02</div><div class="si-text"><strong>Ground control</strong> — side control, mount, back mount, scarf hold — positional understanding and transitions</div></div>
+        <div class="syl-item"><div class="si-num">03</div><div class="si-text"><strong>Escapes</strong> — double shrimp, bridge trap and roll, ghost escape, leg grab — systematic escape routes at every position</div></div>
+        <div class="syl-item"><div class="si-num">04</div><div class="si-text"><strong>Submissions</strong> — rear naked choke, arm bar, triangle, D'Arce, kimura — applied within sequences, not in isolation</div></div>
+        <div class="syl-item"><div class="si-num">05</div><div class="si-text"><strong>Sequence 7 — Blue Stripe only</strong> — the most advanced sequence in the grading system, including hand cuff tie-up and half guard sweeps</div></div>
+      </div>
+    </div>
+    <div class="syl-block">
+      <div class="sb-label">Sparring</div>
+      <h3>The Same Criteria. Every Level.</h3>
+      <div class="syl-items">
+        <div class="syl-item"><div class="si-num">01</div><div class="si-text"><strong>Boxing sparring /9</strong> — dodging (3), blocking (3), punches 1–5 in combination form (3)</div></div>
+        <div class="syl-item"><div class="si-num">02</div><div class="si-text"><strong>Kickboxing sparring /15</strong> — boxing criteria plus kick and switch kick execution, body blocks and checks</div></div>
+        <div class="syl-item"><div class="si-num">03</div><div class="si-text"><strong>MMA sparring /22</strong> — kickboxing criteria plus takedowns, escapes, and submission attempt</div></div>
+        <div class="syl-item"><div class="si-num">04</div><div class="si-text"><strong>Identical criteria across all belt levels</strong> — the standard does not change with the colour of the belt</div></div>
+      </div>
+    </div>
+    <div class="syl-block">
+      <div class="sb-label">Fitness & Conditioning</div>
+      <h3>Applied Under Pressure.</h3>
+      <div class="syl-items">
+        <div class="syl-item"><div class="si-num">01</div><div class="si-text"><strong>Strength circuits</strong> — applied between sequences, not separately</div></div>
+        <div class="syl-item"><div class="si-num">02</div><div class="si-text"><strong>Endurance conditioning</strong> — building the capacity to perform technically under fatigue</div></div>
+        <div class="syl-item"><div class="si-num">03</div><div class="si-text"><strong>Fight fatigue drills</strong> — replicating competition conditions in training</div></div>
+        <div class="syl-item"><div class="si-num">04</div><div class="si-text"><strong>Explosive output & recovery</strong> — testing real athletic capacity, not just willingness to work hard</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- BUSINESS SKILLS -->
+<section class="business reveal">
+  <p class="section-label">Business Skills</p>
+  <h2 class="section-title">Built to Run<br>Your Own <em>Gym.</em></h2>
+  <p class="section-intro">Technical coaching is half the job. The other half is building something sustainable — a business that reflects the quality of what you deliver on the mat. Eagle DS coaches leave with both.</p>
+  <div class="biz-grid">
+    <div class="biz-card">
+      <div class="bc-num">01</div>
+      <div class="bc-title">Value & Pricing</div>
+      <div class="bc-body">Understanding what you are actually selling — <strong>outcomes, not mat time</strong> — and pricing your coaching in a way that reflects the standard you deliver. How to have the pricing conversation with confidence.</div>
+    </div>
+    <div class="biz-card">
+      <div class="bc-num">02</div>
+      <div class="bc-title">Messaging & Communication</div>
+      <div class="bc-body">How to explain the Eagle DS system to parents, students, and the wider community. <strong>Not sales talk — truth, clearly communicated.</strong> The grading system sells itself when coaches know how to describe it.</div>
+    </div>
+    <div class="biz-card">
+      <div class="bc-num">03</div>
+      <div class="bc-title">Building Your Student Base</div>
+      <div class="bc-body">Attracting the right students, retaining them through genuine development, and building a reputation through the quality of your coaching — <strong>not marketing spend.</strong></div>
+    </div>
+    <div class="biz-card">
+      <div class="bc-num">04</div>
+      <div class="bc-title">Running Gradings & Events</div>
+      <div class="bc-body">How to run a grading event that means something. Managing the Combat Game Series from a coach's perspective. <strong>Events are your shop window</strong> — how they are run reflects your standard.</div>
+    </div>
+    <div class="biz-card">
+      <div class="bc-num">05</div>
+      <div class="bc-title">Growing Your Programme</div>
+      <div class="bc-body">From small class to full programme — understanding when and how to scale, how to bring in junior coaches, and how to <strong>protect the standard as you grow.</strong></div>
+    </div>
+    <div class="biz-card">
+      <div class="bc-num">06</div>
+      <div class="bc-title">The Eagle DS Ecosystem</div>
+      <div class="bc-body">How your gym connects to the Combat Game Series, the grading system, and the wider Eagle DS network. <strong>You are not building alone</strong> — you are building within a system designed to grow with you.</div>
+    </div>
   </div>
 </section>
 
@@ -199,11 +458,16 @@
   </div>
   <div class="marks-row">
     <div class="mk"><div class="mv">/10</div><div class="ml">Foundational Section<br>striking, kicks, combinations</div></div>
-    <div class="mk"><div class="mv">/60</div><div class="ml">Technical Sequences<br>6 sequences at /10 each</div></div>
-    <div class="mk"><div class="mv">/20</div><div class="ml">Fitness &amp; Conditioning<br>applied between sequences</div></div>
-    <div class="mk"><div class="mv">/22</div><div class="ml">MMA Sparring<br>boxing, kickboxing &amp; MMA</div></div>
+    <div class="mk"><div class="mv">/60</div><div class="ml">Technical Sequences<br>up to 7 sequences at /10 each</div></div>
+    <div class="mk"><div class="mv">/20</div><div class="ml">Fitness & Conditioning<br>applied between sequences</div></div>
+    <div class="mk"><div class="mv">/22</div><div class="ml">MMA Sparring<br>boxing, kickboxing & MMA</div></div>
   </div>
   <p class="grading-note"><strong>112 marks in total</strong> — a number that isn't round by accident. It signals to everyone involved that this is a real assessment with real criteria. Students pass when they meet the standard — not for attendance, not because a parent is watching, and not because they tried hard. Effort is respected; the standard is what is rewarded.</p>
+
+  <div class="prog-note">
+    <div class="pn-label">Coaching Qualification by Belt Level</div>
+    <p>Reaching <strong>Blue Belt</strong> through the coaching course — achievable within Year One — qualifies you to coach kids. Continuing through <strong>Purple and Brown Belt</strong> in Year Two extends your coaching scope. Earning your <strong>Black Belt</strong> at the end of Year Three qualifies you to coach teens and adults, and to run your own affiliated Eagle DS programme. The qualification reflects the standard — and the standard reflects how long it genuinely takes to develop a capable coach.</p>
+  </div>
 </section>
 
 <div class="gold-divider"></div>
@@ -238,9 +502,9 @@
 
 <!-- CTA -->
 <section class="cta-band reveal">
-  <p class="section-label">Become a Coach</p>
-  <h2 class="section-title">Run Your Own Gym.<br>Coach Your Own <em>Students.</em></h2>
-  <p class="section-intro" style="margin:0 auto;">By the end of this course you'll be equipped to coach your own students and deliver Eagle DS gradings to a standard that makes the whole system stronger. Get in touch about the next intake.</p>
+  <p class="section-label">Begin the Pathway</p>
+  <h2 class="section-title">Three Years.<br>Your Own <em>Gym.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">The Eagle DS coaching course is not a shortcut. It is a three-year pathway built on a standard worth holding — and at the end of it, you will be equipped to coach your own students, run your own programme, and deliver Eagle DS gradings that mean something. Get in touch about the next intake.</p>
   <div class="cta-group">
     <a href="mailto:info@eagleds.co.nz?subject=Coaching%20Course%20Enquiry" class="btn-primary"><span>Enrol / Enquire</span></a>
     <a href="gym.html" class="btn-secondary">Back to the Academy</a>
@@ -251,12 +515,13 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="fb-word">EAGLE DS</div>
-      <p>The Coaching Course &amp; Youth Academy — turning practitioners into standards-driven coaches. We aren't selling time on the mat. We're selling outcomes.</p>
+      <p>The Coaching Course & Youth Academy — a three-year pathway turning practitioners into standards-driven coaches. We aren't selling time on the mat. We're selling outcomes.</p>
       <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
     </div>
     <div class="footer-col">
       <h4>The Course</h4>
-      <a href="#course">The Programme</a>
+      <a href="#pathway">The Pathway</a>
+      <a href="#course">Year One</a>
       <a href="#grading">Grading System</a>
       <a href="#academy">Youth Academy</a>
     </div>
@@ -276,7 +541,7 @@
     </div>
   </div>
   <div class="footer-base">
-    <span>© Eagle DS Combat &amp; Wellness · Coaching Course</span>
+    <span>© Eagle DS Combat & Wellness · Coaching Course</span>
     <span class="live"><span class="live-dot"></span> Selling Outcomes</span>
   </div>
 </footer>
