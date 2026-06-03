@@ -955,7 +955,7 @@ async function submitCapture() {
   btn.textContent = "Sending…";
 
   const name = (first + " " + last).trim();
-  const key  = email.replace(/\./g, "%2E");
+  const key  = email.replace(/\./g, "_").replace(/@/g, "_at_");
   const ts   = new Date().toISOString();
   const arms = selectedSectors.length ? selectedSectors : ["gym"];
 
