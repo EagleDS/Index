@@ -987,6 +987,17 @@ async function submitCapture() {
       method: "PUT", body: JSON.stringify(lead)
     });
 
+    // Trigger the engine — fires welcome email, files to directory, starts follow-up sequence
+    await fetch(FB + "/events.json", {
+      method: "POST",
+      body: JSON.stringify({
+        type: "enquiry",
+        email, name, arm: arms[0] || "gym",
+        data: { source: "web_capture", arms, phone, message: msg || null },
+        ts
+      })
+    });
+
     // Send confirmation email (uses stored Resend key or falls back silently)
     const apiKey = localStorage.getItem("RESEND_KEY");
     if (apiKey) {
