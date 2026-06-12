@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pool Lists — Combat Games Series | Eagle DS</title>
+<meta name="description" content="Live pool lists for the Combat Games Series. See which athletes from your club have entered and what divisions they're competing in."/>
+<link rel="icon" href="https://eagleds.co.nz/logo.PNG"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0d;--surf:#111116;--surf2:#16161b;--border:#1e1e26;
+  --text:#f0f0f4;--muted:#64646e;--dim:#3a3a44;
+  --gold:#f0b429;--gold-dk:#c89010;--gold-bg:rgba(240,180,41,.06);
+  --red:#e03030;--green:#20b040;--blue:#2a7fd4;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--bebas:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:#333}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{background:#0a0a0d;border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo img{width:28px;height:28px;object-fit:contain}
+.nav-brand{font-family:var(--bebas);font-size:18px;letter-spacing:3px;color:var(--gold)}
+.nav-links{display:flex;gap:0;margin-left:auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:0 12px;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-register{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:var(--red);color:#fff;padding:6px 14px;border-radius:2px;flex-shrink:0;white-space:nowrap}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(180deg,#0d0d10 0%,var(--bg) 100%);border-bottom:1px solid var(--border);padding:40px 24px 32px}
+.hero-inner{max-width:900px;margin:0 auto}
+.hero-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.hero-title{font-family:var(--bebas);font-size:clamp(2.4rem,6vw,4rem);letter-spacing:3px;line-height:1;margin-bottom:8px}
+.hero-title em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:20px}
+.hero-event{display:inline-flex;align-items:center;gap:12px;background:var(--gold-bg);border:1px solid rgba(240,180,41,.2);border-radius:3px;padding:10px 16px}
+.hero-event-date{font-family:var(--bebas);font-size:22px;letter-spacing:2px;color:var(--gold)}
+.hero-event-name{font-size:12px;color:var(--muted);line-height:1.4}
+.hero-event-loc{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:1px;margin-top:2px}
+.sync-pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--dim)}
+.sync-dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
+
+/* ── BODY ── */
+.main{max-width:900px;margin:0 auto;padding:32px 24px 60px}
+
+/* ── DISCIPLINE SECTION ── */
+.disc-section{margin-bottom:40px}
+.disc-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+.disc-name{font-family:var(--bebas);font-size:28px;letter-spacing:3px;color:var(--gold)}
+.disc-count{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px}
+
+/* ── POOL CARD ── */
+.pool-card{background:var(--surf);border:1px solid var(--border);border-radius:3px;margin-bottom:10px;overflow:hidden}
+.pool-hdr{background:var(--surf2);border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;gap:10px}
+.pool-division{font-family:var(--bebas);font-size:15px;letter-spacing:1.5px}
+.pool-gender-f{color:#c878d4}
+.pool-gender-m{color:#5090d4}
+.pool-count{font-family:var(--mono);font-size:9px;color:var(--muted);margin-left:auto;letter-spacing:1px}
+
+.athlete-list{display:flex;flex-direction:column}
+.athlete-row{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid #0f0f14}
+.athlete-row:last-child{border-bottom:none}
+.athlete-num{font-family:var(--mono);font-size:9px;color:var(--dim);min-width:20px}
+.athlete-name{font-weight:500;font-size:13px;flex:1;letter-spacing:.2px}
+.athlete-club{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:right;letter-spacing:.5px}
+
+/* ── STATES ── */
+.loading{padding:60px 24px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:1px;line-height:2.5}
+.updated-bar{font-family:var(--mono);font-size:8px;color:var(--dim);text-align:center;padding:12px;letter-spacing:1.5px;border-top:1px solid var(--border);margin-top:32px}
+
+/* ── FOOTER ── */
+.footer{background:#0a0a0d;border-top:1px solid var(--border);padding:32px 24px}
+.footer-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.footer-brand{font-family:var(--bebas);font-size:18px;letter-spacing:3px;color:var(--gold);margin-bottom:6px}
+.footer-sub{font-size:11px;color:var(--muted);line-height:1.7}
+.footer-col-title{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.footer-link{display:block;font-size:11px;color:var(--muted);line-height:2;transition:color .15s}
+.footer-link:hover{color:var(--text)}
+.footer-copy{max-width:900px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border);font-family:var(--mono);font-size:8px;color:var(--dim);letter-spacing:1px}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hero{padding:28px 16px 24px}
+  .main{padding:24px 16px 48px}
+  .footer-inner{grid-template-columns:1fr}
+  .hero-event{flex-direction:column;align-items:flex-start;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="https://eagleds.co.nz/index.html" class="nav-logo">
+    <img src="https://eagleds.co.nz/logo.PNG" alt="Eagle DS"/>
+    <span class="nav-brand">EAGLE DS</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://eagleds.co.nz/index.html" class="nav-link">Ecosystem</a>
+    <a href="https://eagleds.co.nz/cgs.html" class="nav-link active">Combat Games</a>
+    <a href="https://eagleds.co.nz/cgs.html#styles" class="nav-link">Styles</a>
+    <a href="https://eagleds.co.nz/cgs.html#season" class="nav-link">Season</a>
+    <a href="https://eagleds.co.nz/ref.html" class="nav-link">Referees</a>
+    <a href="https://eagleds.co.nz/shop.html" class="nav-link">Shop</a>
+    <a href="https://eagleds.co.nz/blog.html" class="nav-link">Journal</a>
+  </div>
+  <a href="https://forms.gle/TcQCcid63rQQDiZF6" class="nav-register">Register ⚔</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Combat Games Series · 2026</div>
+    <h1 class="hero-title">Pool <em>Lists</em></h1>
+    <p class="hero-sub">Live athlete registrations grouped by division. Updated in real time as entries come in. Contact your club coach if your details need correcting.</p>
+    <div class="hero-event" id="event-block" style="display:none">
+      <div>
+        <div class="hero-event-date" id="event-date-display"></div>
+        <div class="hero-event-name" id="event-name-display"></div>
+        <div class="hero-event-loc" id="event-loc-display"></div>
+      </div>
+    </div>
+    <div class="sync-pill">
+      <span class="sync-dot" id="sync-dot"></span>
+      <span id="sync-label">Connecting…</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div id="pools-body">
+    <div class="loading">Loading pool lists…</div>
+  </div>
+  <div class="updated-bar" id="updated-bar" style="display:none"></div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">EAGLE DS</div>
+      <div class="footer-sub">The Combat Games Series — New Zealand's light-contact circuit, uniting clubs nationwide under one safe, development-first standard.<br><br>Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Series</div>
+      <a href="https://eagleds.co.nz/cgs.html#platform" class="footer-link">Event Platform</a>
+      <a href="https://eagleds.co.nz/cgs.html#styles" class="footer-link">Six Styles</a>
+      <a href="https://eagleds.co.nz/cgs.html#season" class="footer-link">2026 Season</a>
+      <a href="https://forms.gle/TcQCcid63rQQDiZF6" class="footer-link">Register</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <a href="tel:+64210902471" class="footer-link">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz" class="footer-link">info@eagleds.co.nz</a>
+      <div class="footer-link" style="cursor:default">17 Nandina Ave, East Tāmaki<br>Auckland 2013, NZ</div>
+    </div>
+  </div>
+  <div class="footer-copy">© Eagle DS Combat &amp; Wellness · Combat Games Series · Registration Open · 2026</div>
+</footer>
+
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, onValue, get } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+const FB = {
+  apiKey: "AIzaSyDKqodxFjM0EG_qu4zkCAQ37udwYTdSSQY",
+  authDomain: "cgs-manager.firebaseapp.com",
+  databaseURL: "https://cgs-manager-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "cgs-manager",
+  storageBucket: "cgs-manager.firebasestorage.app",
+  messagingSenderId: "928662574013",
+  appId: "1:928662574013:web:be540e308d022d28f678d4"
+};
+
+const STYLE_ORDER = ['Hybrid Light','MMA','K1 Light','Boxing Light','Taekwondo'];
+const STYLE_NORM = {
+  'HYBRID LIGHT':'Hybrid Light','MMA':'MMA','K1 LIGHT':'K1 Light',
+  'K1':'K1 Light','BOXING LIGHT':'Boxing Light','BOXING':'Boxing Light',
+  'KICKBOXING':'K1 Light','LOW KICK KICKBOXING':'K1 Light',
+  'LIGHT CONTINUOUS KICKBOXING':'K1 Light','POINT FIGHTING':'K1 Light',
+  'TAEKWONDO':'Taekwondo','OLYMPIC TAEKWONDO':'Taekwondo'
+};
+
+const params = new URLSearchParams(location.search);
+const eventId = params.get('event') || 'cgs-july-11-2026';
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function normStyle(s){ const u=s.trim().toUpperCase(); return STYLE_NORM[u]||s.trim(); }
+function ageGroup(age){
+  if(!age||age<=0) return 'Adult';
+  if(age<=12) return 'Under 12';
+  if(age<=17) return '13-17';
+  return 'Adult';
+}
+
+try {
+  const existing = getApps().find(a=>a.name==='pools-site');
+  const app = existing || initializeApp(FB, 'pools-site');
+  const db = getDatabase(app);
+
+  const dot = document.getElementById('sync-dot');
+  const syncLabel = document.getElementById('sync-label');
+  dot.classList.add('live');
+  syncLabel.textContent = 'Live · Updates automatically';
+
+  // Load event meta
+  get(ref(db, 'events/'+eventId+'/meta')).then(snap => {
+    if(!snap.exists()) return;
+    const meta = snap.val();
+    const block = document.getElementById('event-block');
+    if(block) block.style.display = 'flex';
+    const dateEl = document.getElementById('event-date-display');
+    const nameEl = document.getElementById('event-name-display');
+    const locEl = document.getElementById('event-loc-display');
+    if(dateEl) dateEl.textContent = meta.date || '';
+    if(nameEl) nameEl.textContent = meta.name || '';
+    if(locEl) locEl.textContent = meta.location || '';
+    // Update page title
+    if(meta.name) document.title = 'Pool Lists — '+meta.name+' | Eagle DS';
+  });
+
+  // Live registrations
+  onValue(ref(db, 'events/'+eventId+'/registrations'), snap => {
+    const body = document.getElementById('pools-body');
+    const updatedBar = document.getElementById('updated-bar');
+
+    if(!snap.exists()) {
+      body.innerHTML = '<div class="loading">Pool lists not yet available.<br>Check back closer to the event.</div>';
+      return;
+    }
+
+    const regs = snap.val();
+    const athletes = Object.values(regs).filter(a => !a.withdrawn);
+
+    if(!athletes.length) {
+      body.innerHTML = '<div class="loading">No registrations yet.<br>Entries open now — <a href="https://forms.gle/TcQCcid63rQQDiZF6" style="color:var(--gold)">register here</a>.</div>';
+      return;
+    }
+
+    // Build pools
+    const pools = {};
+    athletes.forEach(a => {
+      (a.styles || []).forEach(rawStyle => {
+        const disc = normStyle(rawStyle);
+        if(!disc) return;
+        const ag = ageGroup(a.age || 0);
+        const key = disc+'|'+ag+'|'+a.gender;
+        if(!pools[key]) pools[key] = { disc, ag, gender: a.gender, athletes: [] };
+        if(!pools[key].athletes.find(x => x.name===a.name && x.sur===a.sur)) {
+          pools[key].athletes.push(a);
+        }
+      });
+    });
+
+    // Sort athletes by name within pool
+    Object.values(pools).forEach(p => {
+      p.athletes.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+    });
+
+    // Sort pools
+    const agO = {'Under 12':0,'13-17':1,'Adult':2};
+    const sortedKeys = Object.keys(pools).sort((a,b) => {
+      const pa=pools[a], pb=pools[b];
+      const di = STYLE_ORDER.indexOf(pa.disc) - STYLE_ORDER.indexOf(pb.disc);
+      if(di!==0) return di;
+      const ai = (agO[pa.ag]??2) - (agO[pb.ag]??2);
+      if(ai!==0) return ai;
+      return pa.gender==='Female' ? -1 : 1;
+    });
+
+    // Group by discipline
+    const byDisc = {};
+    sortedKeys.forEach(key => {
+      const p = pools[key];
+      if(!byDisc[p.disc]) byDisc[p.disc] = [];
+      byDisc[p.disc].push({key, pool: p});
+    });
+
+    let html = '';
+    const discOrder = [...STYLE_ORDER, ...Object.keys(byDisc).filter(d=>!STYLE_ORDER.includes(d))];
+
+    discOrder.filter(d=>byDisc[d]).forEach(disc => {
+      const entries = byDisc[disc];
+      const totalInDisc = entries.reduce((sum,e)=>sum+e.pool.athletes.length,0);
+
+      html += '<div class="disc-section">'
+        + '<div class="disc-hdr">'
+        + '<div class="disc-name">'+esc(disc)+'</div>'
+        + '<div class="disc-count">'+totalInDisc+' athlete'+(totalInDisc!==1?'s':'')+' · '+entries.length+' pool'+(entries.length!==1?'s':'')+'</div>'
+        + '</div>';
+
+      entries.forEach(({pool}) => {
+        const genderCls = pool.gender==='Female' ? 'pool-gender-f' : 'pool-gender-m';
+        const count = pool.athletes.length;
+
+        html += '<div class="pool-card">'
+          + '<div class="pool-hdr">'
+          + '<div class="pool-division '+genderCls+'">'+esc(pool.ag)+' · '+esc(pool.gender)+'</div>'
+          + '<div class="pool-count">'+count+' athlete'+(count!==1?'s':'')+'</div>'
+          + '</div>'
+          + '<div class="athlete-list">';
+
+        pool.athletes.forEach((a, i) => {
+          const fullName = ((a.name||'')+' '+(a.sur||'')).trim();
+          const club = a.club || a.clubRaw || '';
+          html += '<div class="athlete-row">'
+            + '<div class="athlete-num">'+(i+1)+'</div>'
+            + '<div class="athlete-name">'+esc(fullName)+'</div>'
+            + '<div class="athlete-club">'+esc(club)+'</div>'
+            + '</div>';
+        });
+
+        html += '</div></div>';
+      });
+
+      html += '</div>';
+    });
+
+    body.innerHTML = html;
+
+    // Updated timestamp
+    const now = new Date();
+    if(updatedBar) {
+      updatedBar.style.display = 'block';
+      updatedBar.textContent = 'Pool lists updated ' + now.toLocaleString('en-NZ', {
+        weekday:'short', day:'numeric', month:'short',
+        hour:'2-digit', minute:'2-digit'
+      }) + ' · Updates automatically';
+    }
+  });
+
+} catch(e) {
+  console.warn('Error:', e);
+  document.getElementById('sync-dot').style.background = 'var(--red)';
+  document.getElementById('sync-label').textContent = 'Connection error — try refreshing';
+  document.getElementById('pools-body').innerHTML = '<div class="loading">Could not connect. Try refreshing the page.</div>';
+}
+</script>
+</body>
+</html>
