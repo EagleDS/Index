@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanctum 7 — Eagle DS Supporter</title>
+<meta name="description" content="Eagle DS is proud to be supported by Sanctum 7, luxury 7-day wellness retreats hosted at Earnscleugh Castle. Thank you for backing our mission.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT — Supporter page — base gold (shared bones stay identical) === */
+  .hero-supp { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 70px; position: relative; overflow: hidden; background: var(--black); }
+  .hero-supp::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 40%, rgba(var(--accent-rgb),0.10), transparent 55%); }
+  .hero-supp-inner { max-width: 780px; position: relative; z-index: 2; }
+  .hero-supp-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 68px); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-supp-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-supp-body { font-size: 16px; color: #aaa; max-width: 560px; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-supp-body strong { color: var(--white); font-weight: 500; }
+  .hero-supp .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero-supp .cta-group { margin-top: 36px; opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+
+  .about-supp { background: var(--grey); display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .about-supp-text { padding: 90px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .about-supp-img { background: var(--black); padding: 90px 70px; display: flex; flex-direction: column; justify-content: center; }
+  .about-supp-body { font-size: 15px; color: #999; line-height: 1.9; margin-bottom: 18px; }
+  .about-supp-body strong { color: var(--white); font-weight: 500; }
+  .quote-block { border-left: 3px solid var(--gold); padding-left: 28px; }
+  .quote-block p { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px,2vw,24px); font-style: italic; line-height: 1.55; color: var(--white); }
+  .quote-block .src { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: 18px; }
+
+  .feature-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 48px; }
+  .feature-card { background: var(--grey); padding: 36px 28px; }
+  .feature-card .fk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .feature-card .ft { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+  .feature-card .fd { font-size: 13px; color: #999; line-height: 1.7; }
+
+  .thanks-band { background: var(--grey); text-align: center; }
+  .thanks-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero-supp { padding: 120px 40px 60px; } .about-supp { grid-template-columns: 1fr; } .about-supp-text, .about-supp-img { padding: 56px 40px; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-supp { padding: 110px 24px 50px; } .feature-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Supporter Spotlight</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="sponsors.html">Partnership</a>
+    <a href="cgs.html">Combat Games</a>
+    <a href="community.html">Community</a>
+    <a href="blog.html">Journal</a>
+    <a href="mailto:info@eagleds.co.nz?subject=Partnership%20Enquiry" class="nav-cta">Partner</a>
+  </div>
+</nav>
+
+<section class="hero-supp" id="top">
+  <div class="hero-supp-inner">
+    <div class="gold-line"></div>
+    <p class="eyebrow">Supporter Spotlight</p>
+    <h1 class="hero-supp-headline">Thank You,<br><em>Sanctum 7.</em></h1>
+    <p class="hero-supp-body">Sanctum 7 supports the movement we're building at Eagle DS — a safer, more unified future for combat sport and wellbeing in New Zealand. We're proud to share what they do.</p>
+    <div class="cta-group">
+      <a href="https://www.sanctum7.co" target="_blank" rel="noopener" class="btn-primary"><span>Visit Sanctum 7</span></a>
+      <a href="sponsors.html" class="btn-secondary">Back to Partnership</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-supp reveal">
+  <div class="about-supp-text">
+    <p class="section-label">About Our Supporter</p>
+    <h2 class="section-title">Seven Days.<br>One <em>Reset.</em></h2>
+    <p class="about-supp-body">Sanctum 7 runs <strong>seven-day luxury wellness retreats in exclusive locales</strong>, built for anyone navigating the pressures of work and family life who needs a genuinely restorative break.</p>
+    <p class="about-supp-body">Their flagship retreat takes place at <strong>Earnscleugh Castle</strong> — as featured on Grand Designs — limited to just <strong>12 guests across 10 retreats a year</strong>, commencing late spring 2026.</p>
+  </div>
+  <div class="about-supp-img">
+    <div class="quote-block">
+      <p>"We'd love to welcome you. Your body, mind and heart will thank you."</p>
+      <div class="src">Sanctum 7</div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- FEATURES -->
+<section class="features reveal">
+  <p class="section-label">What They Offer</p>
+  <h2 class="section-title">Small Groups.<br>Fully <em>Personalised.</em></h2>
+  <p class="section-intro">Every retreat is built around four pillars — care that's exclusive, restorative, personalised, and nourishing.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="fk">Exclusive</div>
+      <div class="ft">Accommodation</div>
+      <div class="fd">High-end accommodations designed for an unparalleled experience of comfort and tranquility.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fk">Restorative</div>
+      <div class="ft">Guided Practice</div>
+      <div class="fd">Expert-led yoga, breath work, sound healing and ice baths to guide the wellness journey.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fk">Personalised</div>
+      <div class="ft">Tailored Protocols</div>
+      <div class="fd">Pre-retreat testing, custom juices and diet, IV drips and protocols — all tailored to the individual.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fk">Nourishing</div>
+      <div class="ft">Organic Food</div>
+      <div class="fd">Organic food grown on-site and locally, with low to zero food miles, supporting a gentle reset.</div>
+    </div>
+  </div>
+</section>
+
+<!-- THANKS -->
+<section class="thanks-band reveal">
+  <p class="section-label">Backing the Movement</p>
+  <h2 class="section-title">Supporting What<br>We're <em>Building.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">Sanctum 7's support helps Eagle DS keep building a safer, more unified future for combat sport and wellbeing in New Zealand. Explore their retreats, or find out how your brand can support the same mission.</p>
+  <div class="cta-group">
+    <a href="https://www.sanctum7.co" target="_blank" rel="noopener" class="btn-primary"><span>Visit sanctum7.co</span></a>
+    <a href="sponsors.html#tiers" class="btn-secondary">Become a Partner</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>Supporter Spotlight — proud to be backed by partners building a safer, more unified future for combat sport and wellbeing in New Zealand.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Partnership</h4>
+      <a href="sponsors.html#arms">The Two Arms</a>
+      <a href="sponsors.html#tiers">Partnership Tiers</a>
+      <a href="cgs.html">Combat Games Series</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="wellness.html">Wellness Hub</a>
+      <a href="community.html">Community Programmes</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat &amp; Wellness · Supporter Spotlight</span>
+    <span class="live"><span class="live-dot"></span> 2026 Season · Open</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
