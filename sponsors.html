@@ -75,6 +75,20 @@
   .cta-band { background: var(--grey); text-align: center; }
   .cta-band .cta-group { justify-content: center; margin-top: 8px; }
 
+  /* === SUPPORTERS (new section) === */
+  .supporters { background: var(--black); }
+  .supporters-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 48px; }
+  .supporter-card { background: var(--grey); padding: 40px 34px; text-decoration: none; display: block; transition: background 0.25s ease; position: relative; overflow: hidden; }
+  .supporter-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .supporter-card:hover { background: #202020; }
+  .supporter-card:hover::before { transform: scaleX(1); }
+  .supporter-card .sk { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .supporter-card .sn { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.1; }
+  .supporter-card .sd { font-size: 13px; color: #999; line-height: 1.7; margin-bottom: 18px; }
+  .supporter-card .sl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); }
+  @media (max-width: 1024px) { .supporters-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) { .supporters-grid { grid-template-columns: 1fr; } }
+
   @media (max-width: 1024px) {
     .hero { padding: 120px 40px 70px; } .impact { grid-template-columns: 1fr; } .impact-left, .impact-right { padding: 56px 40px; }
     .arm-grid { grid-template-columns: 1fr; } .season-grid { grid-template-columns: 1fr 1fr; }
@@ -99,6 +113,7 @@
     <a href="cgs.html">Combat Games</a>
     <a href="#arms">Two Arms</a>
     <a href="#tiers">Tiers</a>
+    <a href="#supporters">Supporters</a>
     <a href="community.html">Community</a>
     <a href="shop.html">Shop</a>
     <a href="blog.html">Journal</a>
@@ -250,6 +265,23 @@
       <div class="tier-head"><div class="tier-name">Founding Wellness Partner</div><div class="tier-price">$2,000+</div></div>
       <div class="tier-body"><ul><li>Premium brand presence across the full Eagle DS facility</li><li>Named partnership with youth or community outreach programmes</li><li>Sponsored scholarship for a youth or community participant</li><li>Featured partner spotlight across all Eagle DS platforms</li></ul><div class="dur">12-month commitment from signing</div></div>
     </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SUPPORTERS -->
+<section class="supporters reveal" id="supporters">
+  <p class="section-label">Our Supporters</p>
+  <h2 class="section-title">Backed by Brands<br>Who <em>Show Up.</em></h2>
+  <p class="section-intro">A genuine thank you to the partners already standing behind Eagle DS. Read more about each below.</p>
+  <div class="supporters-grid">
+    <a href="sponsor-sanctum7.html" class="supporter-card">
+      <div class="sk">Founding Wellness Partner</div>
+      <div class="sn">Sanctum 7</div>
+      <div class="sd">Seven-day luxury wellness retreats in exclusive locales, including Earnscleugh Castle — limited to 12 guests across 10 retreats a year.</div>
+      <div class="sl">Read Their Story →</div>
+    </a>
   </div>
 </section>
 
