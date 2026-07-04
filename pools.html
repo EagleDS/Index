@@ -47,6 +47,7 @@ a{color:inherit;text-decoration:none}
 .sync-pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:var(--dim)}
 .sync-dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
+.draw-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:8px 16px;border-radius:2px;margin-top:14px}
 
 /* ── BODY ── */
 .main{max-width:900px;margin:0 auto;padding:32px 24px 60px}
@@ -136,6 +137,9 @@ a{color:inherit;text-decoration:none}
     <div class="sync-pill">
       <span class="sync-dot" id="sync-dot"></span>
       <span id="sync-label">Connecting…</span>
+    </div>
+    <div>
+      <a href="draw.html" class="draw-link">View Live Draw →</a>
     </div>
   </div>
 </div>
