@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Live Draw | Combat Games Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%;background:#0a0a0f;overflow:hidden}
@@ -17,23 +18,38 @@
   #print-status{position:fixed;bottom:10px;left:10px;z-index:10;font-family:sans-serif;font-size:11px;color:#999;background:rgba(0,0,0,.6);padding:5px 10px;border-radius:6px;display:none}
 
   @media print{
+    @page{margin:14mm 12mm}
     body{background:#fff;overflow:visible;height:auto}
     .back-link,.mat-link,.print-btn,#print-status,iframe{display:none!important}
     #print-view{display:block!important}
 
-    #print-view{font-family:Arial,Helvetica,sans-serif;color:#111;padding:0 12px}
-    .pv-title{font-size:20px;font-weight:700;letter-spacing:1px;margin-bottom:2px}
-    .pv-sub{font-size:10px;color:#555;margin-bottom:14px}
-    .pv-mat{font-size:15px;font-weight:700;text-transform:uppercase;border-bottom:2px solid #111;padding-bottom:3px;margin:16px 0 6px;break-after:avoid}
-    .pv-bout{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;padding:4px 0;border-bottom:1px solid #ccc;break-inside:avoid}
+    #print-view{font-family:'IBM Plex Sans',Arial,Helvetica,sans-serif;color:#111;padding:0}
+
+    /* Ticket header — the one bold, ink-heavy element on the page */
+    .pv-headerband{background:#C0392B;color:#fff;padding:10px 16px 8px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:flex-end;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pv-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#f0c9c2;margin-bottom:2px}
+    .pv-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;line-height:1}
+    .pv-title em{color:#f0c040;font-style:normal}
+    .pv-headerright{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#f5d9d4;line-height:1.6}
+    .pv-perf{border-top:2px dashed #C0392B;margin-bottom:14px}
+
+    .pv-mat{display:flex;align-items:baseline;gap:8px;border-bottom:3px solid #C0392B;padding-bottom:4px;margin:18px 0 6px;break-after:avoid}
+    .pv-mat-name{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px;color:#111}
+    .pv-mat-count{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#999;letter-spacing:1px;margin-left:auto}
+
+    .pv-bout{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:6px 4px;border-bottom:1px solid #e2e2e2;break-inside:avoid}
+    .pv-bout:nth-child(even){background:#f8f8f8}
     .pv-bout-left{flex:1}
-    .pv-num{color:#777;font-size:10px;margin-right:6px}
-    .pv-names{font-weight:600}
-    .pv-vs{color:#999;font-weight:400;margin:0 4px}
-    .pv-meta{color:#555;font-size:10px}
-    .pv-clubs{color:#777;font-size:9px;margin-top:1px}
-    .pv-status{font-size:10px;font-weight:700;margin-left:10px;white-space:nowrap}
-    .pv-empty{font-size:11px;color:#777;padding:20px 0}
+    .pv-num{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:8px;color:#C8960C;border:1px solid #C8960C;border-radius:2px;padding:1px 4px;margin-right:7px}
+    .pv-names{font-weight:600;font-size:12.5px}
+    .pv-vs{font-family:'Bebas Neue',sans-serif;color:#aaa;font-weight:400;margin:0 5px;font-size:11px}
+    .pv-meta{color:#777;font-size:9px;font-family:'IBM Plex Mono',monospace;margin-top:1px}
+    .pv-clubs{color:#999;font-size:9px;font-style:italic;margin-top:1px}
+    .pv-status{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.5px;margin-left:10px;white-space:nowrap;border:1.5px solid #999;border-radius:10px;padding:2px 8px;color:#666}
+    .pv-status.is-live{border-color:#C0392B;color:#C0392B}
+    .pv-status.is-hold{border-color:#2a6fa8;color:#2a6fa8}
+    .pv-status.is-done{border-color:#1f8a4a;color:#1f8a4a}
+    .pv-empty{font-size:11px;color:#777;padding:20px 4px}
   }
 </style>
 </head>
@@ -68,18 +84,28 @@ const eventId = params.get('event') || 'cgs-july-11-2026';
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-function statusLabel(b){
-  if(b.status==='live') return '● LIVE';
-  if(b.status==='paused') return '⏸ HOLD';
+function statusInfo(b){
+  if(b.status==='live') return {cls:'is-live', label:'● LIVE'};
+  if(b.status==='paused') return {cls:'is-hold', label:'⏸ HOLD'};
   if(b.status==='completed'){
     const w = b.winner==='draw' ? 'DRAW' : b.winner==='red' ? (b.red&&b.red.name||'Red') : (b.blue&&b.blue.name||'Blue');
-    return '✓ '+ (b.score&&b.score.red||0) +'–'+ (b.score&&b.score.blue||0) +' '+w;
+    return {cls:'is-done', label:'✓ '+(b.score&&b.score.red||0)+'–'+(b.score&&b.score.blue||0)+' '+w};
   }
-  return '';
+  return {cls:'', label:'UP NEXT'};
 }
 
 function buildPrintHtml(bouts){
-  if(!bouts.length) return '<div class="pv-empty">No bouts loaded for this event yet.</div>';
+  const now = new Date().toLocaleString('en-NZ',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+
+  let html = '<div class="pv-headerband">'
+    + '<div><div class="pv-eyebrow">Eagle DS · Combat Games Series</div>'
+    + '<div class="pv-title">OFFICIAL <em>DRAW SHEET</em></div></div>'
+    + '<div class="pv-headerright">Event: '+esc(eventId)+'<br>Printed '+esc(now)+'</div>'
+    + '</div><div class="pv-perf"></div>';
+
+  if(!bouts.length){
+    return html + '<div class="pv-empty">No bouts loaded for this event yet.</div>';
+  }
 
   const mats = {};
   bouts.forEach(b=>{
@@ -89,28 +115,25 @@ function buildPrintHtml(bouts){
     mats[mat].push(b);
   });
 
-  const now = new Date().toLocaleString('en-NZ',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-
-  let html = '<div class="pv-title">Combat Games Series — Draw Sheet</div>'
-    + '<div class="pv-sub">Event: '+esc(eventId)+' · Printed '+esc(now)+'</div>';
-
   Object.keys(mats).sort().forEach(mat=>{
-    html += '<div class="pv-mat">'+esc(mat)+'</div>';
+    const count = mats[mat].length;
+    html += '<div class="pv-mat"><span class="pv-mat-name">'+esc(mat)+'</span><span class="pv-mat-count">'+count+' bout'+(count!==1?'s':'')+'</span></div>';
     mats[mat].forEach(b=>{
       const fightNum = b.matFightNum ? 'F'+b.matFightNum : (b.id||'');
       const redName = esc(b.red&&b.red.name||'TBA');
       const blueName = esc(b.blue&&b.blue.name||'TBA');
       const redClub = esc(b.red&&b.red.club||'');
       const blueClub = esc(b.blue&&b.blue.club||'');
-      const noHead = b.noHead ? ' (NO HEAD)' : '';
+      const noHead = b.noHead ? ' · NO HEAD' : '';
+      const st = statusInfo(b);
       html += '<div class="pv-bout">'
         + '<div class="pv-bout-left">'
         + '<span class="pv-num">'+esc(fightNum)+'</span>'
-        + '<span class="pv-names">'+redName+'</span><span class="pv-vs">vs</span><span class="pv-names">'+blueName+'</span>'
+        + '<span class="pv-names">'+redName+'</span><span class="pv-vs">VS</span><span class="pv-names">'+blueName+'</span>'
         + '<div class="pv-meta">'+esc(b.disc||'')+' · '+esc(b.ageGrp||'')+esc(noHead)+'</div>'
         + '<div class="pv-clubs">'+redClub+(redClub&&blueClub?' vs ':'')+blueClub+'</div>'
         + '</div>'
-        + '<div class="pv-status">'+esc(statusLabel(b))+'</div>'
+        + '<div class="pv-status '+st.cls+'">'+esc(st.label)+'</div>'
         + '</div>';
     });
   });
