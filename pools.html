@@ -47,7 +47,6 @@ a{color:inherit;text-decoration:none}
 .sync-pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:var(--dim)}
 .sync-dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
-.draw-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:8px 16px;border-radius:2px;margin-top:14px}
 
 /* ── BODY ── */
 .main{max-width:900px;margin:0 auto;padding:32px 24px 60px}
@@ -121,12 +120,7 @@ a{color:inherit;text-decoration:none}
   <div class="hero-inner">
     <div class="hero-eyebrow">Combat Games Series · 2026</div>
     <h1 class="hero-title">Pool <em>Lists</em></h1>
-    <p class="hero-sub">Live athlete registrations grouped by division. Updated in real time as entries come in. Contact your club coach if any details need correcting.</p>
-    <div id="entry-counter" style="display:none;margin-bottom:16px">
-      <div style="font-family:var(--bebas);font-size:48px;letter-spacing:2px;line-height:1"><span id="entry-count" style="color:var(--gold)">0</span><span style="color:var(--dim)">/100</span></div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px">Competitors registered · 100 entry cap</div>
-      <div id="entry-bar-wrap" style="margin-top:8px;height:3px;background:var(--border);border-radius:2px;max-width:300px"><div id="entry-bar" style="height:100%;background:var(--gold);border-radius:2px;transition:width .4s;width:0%"></div></div>
-    </div>
+    <p class="hero-sub">Live athlete registrations grouped by division. Updated in real time as entries come in. Contact your club coach if your details need correcting.</p>
     <div class="hero-event" id="event-block" style="display:none">
       <div>
         <div class="hero-event-date" id="event-date-display"></div>
@@ -138,9 +132,7 @@ a{color:inherit;text-decoration:none}
       <span class="sync-dot" id="sync-dot"></span>
       <span id="sync-label">Connecting…</span>
     </div>
-    <div>
-      <a href="draw.html" class="draw-link">View Live Draw →</a>
-    </div>
+    <a href="https://eagleds.co.nz/results.html" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-top:12px;border:1px solid rgba(240,180,41,.3);border-radius:2px;padding:6px 12px;background:var(--gold-bg)">🏆 View Results →</a>
   </div>
 </div>
 
@@ -249,17 +241,6 @@ try {
 
     const regs = snap.val();
     const athletes = Object.values(regs).filter(a => !a.withdrawn);
-
-    // Entry counter
-    const totalRegs = Object.keys(regs).length;
-    const counterEl = document.getElementById('entry-counter');
-    const countEl = document.getElementById('entry-count');
-    const barEl = document.getElementById('entry-bar');
-    if(counterEl) counterEl.style.display = 'block';
-    if(countEl) countEl.textContent = totalRegs;
-    if(barEl) barEl.style.width = Math.min(100, (totalRegs/100)*100)+'%';
-    // Turn bar red when getting close
-    if(barEl) barEl.style.background = totalRegs >= 90 ? 'var(--red)' : totalRegs >= 75 ? 'var(--orange)' : 'var(--gold)';
 
     if(!athletes.length) {
       body.innerHTML = '<div class="loading">No registrations yet.<br>Entries open now — <a href="https://forms.gle/TcQCcid63rQQDiZF6" style="color:var(--gold)">register here</a>.</div>';
