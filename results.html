@@ -52,7 +52,7 @@ td{padding:5px 10px;border-bottom:1px solid #111115}
   <button id="tab-recent" class="tab-btn on" onclick="goTab('recent')">RECENT</button>
   <button id="tab-standings" class="tab-btn" onclick="goTab('standings')">STANDINGS</button>
   <button id="tab-byclub" class="tab-btn" onclick="goTab('byclub')">BY CLUB</button>
-  <button id="tab-overall" class="tab-btn" onclick="goTab('overall')">OVERALL</button>
+  <button id="tab-overall" class="tab-btn" onclick="goTab('overall')">EAGLE CUP</button>
 </div>
 
 <div class="body">
@@ -71,7 +71,7 @@ td{padding:5px 10px;border-bottom:1px solid #111115}
     <div id="byclub-empty" class="empty" style="display:none">No completed bouts yet.</div>
   </div>
   <div id="panel-overall" class="panel">
-    <div class="note">Win 3pts · Loss 1pt · every discipline combined into one overall ranking</div>
+    <div class="note">Win 3pts · Loss 1pt · every discipline combined, duplicate names consolidated</div>
     <div id="overall-body"></div>
     <div id="overall-empty" class="empty" style="display:none">No completed bouts yet.</div>
   </div>
@@ -86,9 +86,11 @@ const eventId = params.get('event') || 'cgs-july-11-2026';
 document.getElementById('hot-link').href = 'https://eagleds.github.io/CGS-manager/hot.html?event='+encodeURIComponent(eventId);
 const STYLE_ORDER=['Hybrid Light','MMA','K1 Light','Boxing Light'];
 
-let bouts = [];
+let bouts = [], nameMerges = {};
 
 function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function normS(s){return String(s||'').trim().toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim();}
+function jaccardSim(a,b){const sa=new Set(a.split(' ').filter(x=>x.length>1));const sb=new Set(b.split(' ').filter(x=>x.length>1));if(!sa.size&&!sb.size)return 1;let inter=0;sa.forEach(w=>{if(sb.has(w))inter++;});return inter/(sa.size+sb.size-inter||1);}
 function updateSyncDot(state){const d=document.getElementById('sync-dot');if(d)d.className='sync-dot '+state;}
 
 window.goTab=function(tab){
@@ -208,40 +210,61 @@ function renderWinnersByClub(){
   body.innerHTML=html;
 }
 
-function computeOverallLeaderboard(){
+function computeEagleCupLeaderboard(){
   const completed=bouts.filter(b=>b.status==='completed'&&(b.winner==='red'||b.winner==='blue'));
-  const athletes={};
-  const ensure=(name,club)=>{if(!athletes[name])athletes[name]={name,club,points:0,w:0,l:0};return athletes[name];};
+  const raw={};
+  const ensure=(name,club)=>{if(!raw[name])raw[name]={name,club,points:0,w:0,l:0};return raw[name];};
   completed.forEach(b=>{
     const red=ensure(b.red.name,b.red.club);
     const blue=ensure(b.blue.name,b.blue.club);
     if(b.winner==='red'){red.points+=3;red.w++;blue.points+=1;blue.l++;}
     else{blue.points+=3;blue.w++;red.points+=1;red.l++;}
   });
-  return Object.values(athletes).sort((a,b)=>b.points-a.points||b.w-a.w);
+  const rawList=Object.values(raw);
+  const clusters=[];
+  rawList.forEach(entry=>{
+    const manualTarget=nameMerges[entry.name];
+    let matched=null;
+    if(manualTarget)matched=clusters.find(c=>c.canonicalName===manualTarget||c.members.includes(manualTarget));
+    if(!matched){
+      for(const c of clusters){
+        if(jaccardSim(normS(entry.name),normS(c.canonicalName))>=0.6){matched=c;break;}
+      }
+    }
+    if(matched){
+      matched.points+=entry.points;matched.w+=entry.w;matched.l+=entry.l;
+      matched.members.push(entry.name);
+      if(manualTarget)matched.canonicalName=manualTarget;
+      else if(entry.name.length>matched.canonicalName.length)matched.canonicalName=entry.name;
+    }else{
+      clusters.push({canonicalName:manualTarget||entry.name,club:entry.club,points:entry.points,w:entry.w,l:entry.l,members:[entry.name]});
+    }
+  });
+  return clusters.sort((a,b)=>b.points-a.points||b.w-a.w);
 }
 
-function renderOverallLeaderboard(){
-  const list=computeOverallLeaderboard();
+function renderEagleCupLeaderboard(){
+  const list=computeEagleCupLeaderboard();
   const body=document.getElementById('overall-body'),empty=document.getElementById('overall-empty');
   if(!list.length){body.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
   let html='<div class="stand-card"><table><thead><tr><th>#</th><th>NAME</th><th>CLUB</th><th style="text-align:right">W-L</th><th style="text-align:right">PTS</th></tr></thead><tbody>';
-  list.forEach((a,idx)=>{
+  list.forEach((c,idx)=>{
     const rank=idx+1,isTop3=rank<=3,medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':'';
+    const hasVariants=c.members.length>1;
     html+='<tr'+(isTop3?' style="background:var(--gold-bg)"':'')+'>'
       +'<td style="font-family:var(--mono);color:var(--muted)">'+rank+'</td>'
-      +'<td style="font-weight:600;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+medal+(medal?' ':'')+escH(a.name)+'</td>'
-      +'<td style="font-size:10px;color:var(--muted)">'+escH(a.club||'')+'</td>'
-      +'<td style="font-family:var(--mono);font-size:10px;text-align:right;color:var(--muted)">'+a.w+'-'+a.l+'</td>'
-      +'<td style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;text-align:right;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+a.points+'</td>'
+      +'<td style="font-weight:600;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+medal+(medal?' ':'')+escH(c.canonicalName)+(hasVariants?'<div style="font-family:var(--mono);font-size:8px;color:var(--muted);font-weight:400">'+c.members.length+' combined</div>':'')+'</td>'
+      +'<td style="font-size:10px;color:var(--muted)">'+escH(c.club||'')+'</td>'
+      +'<td style="font-family:var(--mono);font-size:10px;text-align:right;color:var(--muted)">'+c.w+'-'+c.l+'</td>'
+      +'<td style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;text-align:right;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+c.points+'</td>'
       +'</tr>';
   });
   html+='</tbody></table></div>';
   body.innerHTML=html;
 }
 
-function renderAll(){renderRecent();renderStandings();renderWinnersByClub();renderOverallLeaderboard();}
+function renderAll(){renderRecent();renderStandings();renderWinnersByClub();renderEagleCupLeaderboard();}
 
 function initFirebase(){
   const cfg={
@@ -262,6 +285,10 @@ function initFirebase(){
       if(!snap.exists())return;
       const data=snap.val();
       if(Array.isArray(data)){bouts=data;renderAll();}
+    });
+    onValue(ref(db,`events/${eventId}/nameMerges`),snap=>{
+      nameMerges=snap.exists()?(snap.val()||{}):{};
+      renderAll();
     });
   }catch(e){updateSyncDot('err');console.warn(e);}
 }
