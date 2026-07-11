@@ -45,7 +45,6 @@ td{padding:5px 10px;border-bottom:1px solid #111115}
 <div class="hdr">
   <div class="hdr-title">🏆 RESULTS</div>
   <div class="sync-dot" id="sync-dot" title="Firebase sync"></div>
-  <a id="hot-link" href="https://eagleds.github.io/CGS-manager/hot.html" style="text-decoration:none"><button style="font-family:var(--mono);font-size:9px;letter-spacing:1px;padding:5px 10px;border-radius:2px;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer">🎙 HEAD OF TABLE</button></a>
 </div>
 
 <div class="tabs">
@@ -83,7 +82,6 @@ import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10
 
 const params = new URLSearchParams(location.search);
 const eventId = params.get('event') || 'cgs-july-11-2026';
-document.getElementById('hot-link').href = 'https://eagleds.github.io/CGS-manager/hot.html?event='+encodeURIComponent(eventId);
 const STYLE_ORDER=['Hybrid Light','MMA','K1 Light','Boxing Light'];
 
 let bouts = [], nameMerges = {};
