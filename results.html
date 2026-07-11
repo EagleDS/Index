@@ -45,12 +45,14 @@ td{padding:5px 10px;border-bottom:1px solid #111115}
 <div class="hdr">
   <div class="hdr-title">🏆 RESULTS</div>
   <div class="sync-dot" id="sync-dot" title="Firebase sync"></div>
+  <a id="hot-link" href="https://eagleds.github.io/CGS-manager/hot.html" style="text-decoration:none"><button style="font-family:var(--mono);font-size:9px;letter-spacing:1px;padding:5px 10px;border-radius:2px;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer">🎙 HEAD OF TABLE</button></a>
 </div>
 
 <div class="tabs">
   <button id="tab-recent" class="tab-btn on" onclick="goTab('recent')">RECENT</button>
   <button id="tab-standings" class="tab-btn" onclick="goTab('standings')">STANDINGS</button>
   <button id="tab-byclub" class="tab-btn" onclick="goTab('byclub')">BY CLUB</button>
+  <button id="tab-overall" class="tab-btn" onclick="goTab('overall')">OVERALL</button>
 </div>
 
 <div class="body">
@@ -68,6 +70,11 @@ td{padding:5px 10px;border-bottom:1px solid #111115}
     <div id="byclub-body"></div>
     <div id="byclub-empty" class="empty" style="display:none">No completed bouts yet.</div>
   </div>
+  <div id="panel-overall" class="panel">
+    <div class="note">Win 3pts · Loss 1pt · every discipline combined into one overall ranking</div>
+    <div id="overall-body"></div>
+    <div id="overall-empty" class="empty" style="display:none">No completed bouts yet.</div>
+  </div>
 </div>
 
 <script type="module">
@@ -76,6 +83,7 @@ import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10
 
 const params = new URLSearchParams(location.search);
 const eventId = params.get('event') || 'cgs-july-11-2026';
+document.getElementById('hot-link').href = 'https://eagleds.github.io/CGS-manager/hot.html?event='+encodeURIComponent(eventId);
 const STYLE_ORDER=['Hybrid Light','MMA','K1 Light','Boxing Light'];
 
 let bouts = [];
@@ -84,7 +92,7 @@ function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
 function updateSyncDot(state){const d=document.getElementById('sync-dot');if(d)d.className='sync-dot '+state;}
 
 window.goTab=function(tab){
-  ['recent','standings','byclub'].forEach(t=>{
+  ['recent','standings','byclub','overall'].forEach(t=>{
     document.getElementById('panel-'+t).classList.toggle('on',t===tab);
     document.getElementById('tab-'+t).classList.toggle('on',t===tab);
   });
@@ -200,7 +208,40 @@ function renderWinnersByClub(){
   body.innerHTML=html;
 }
 
-function renderAll(){renderRecent();renderStandings();renderWinnersByClub();}
+function computeOverallLeaderboard(){
+  const completed=bouts.filter(b=>b.status==='completed'&&(b.winner==='red'||b.winner==='blue'));
+  const athletes={};
+  const ensure=(name,club)=>{if(!athletes[name])athletes[name]={name,club,points:0,w:0,l:0};return athletes[name];};
+  completed.forEach(b=>{
+    const red=ensure(b.red.name,b.red.club);
+    const blue=ensure(b.blue.name,b.blue.club);
+    if(b.winner==='red'){red.points+=3;red.w++;blue.points+=1;blue.l++;}
+    else{blue.points+=3;blue.w++;red.points+=1;red.l++;}
+  });
+  return Object.values(athletes).sort((a,b)=>b.points-a.points||b.w-a.w);
+}
+
+function renderOverallLeaderboard(){
+  const list=computeOverallLeaderboard();
+  const body=document.getElementById('overall-body'),empty=document.getElementById('overall-empty');
+  if(!list.length){body.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  let html='<div class="stand-card"><table><thead><tr><th>#</th><th>NAME</th><th>CLUB</th><th style="text-align:right">W-L</th><th style="text-align:right">PTS</th></tr></thead><tbody>';
+  list.forEach((a,idx)=>{
+    const rank=idx+1,isTop3=rank<=3,medal=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':'';
+    html+='<tr'+(isTop3?' style="background:var(--gold-bg)"':'')+'>'
+      +'<td style="font-family:var(--mono);color:var(--muted)">'+rank+'</td>'
+      +'<td style="font-weight:600;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+medal+(medal?' ':'')+escH(a.name)+'</td>'
+      +'<td style="font-size:10px;color:var(--muted)">'+escH(a.club||'')+'</td>'
+      +'<td style="font-family:var(--mono);font-size:10px;text-align:right;color:var(--muted)">'+a.w+'-'+a.l+'</td>'
+      +'<td style="font-family:\'Bebas Neue\',sans-serif;font-size:18px;text-align:right;color:'+(isTop3?'var(--gold)':'var(--text)')+'">'+a.points+'</td>'
+      +'</tr>';
+  });
+  html+='</tbody></table></div>';
+  body.innerHTML=html;
+}
+
+function renderAll(){renderRecent();renderStandings();renderWinnersByClub();renderOverallLeaderboard();}
 
 function initFirebase(){
   const cfg={
