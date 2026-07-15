@@ -335,7 +335,7 @@ async function resolveEvent(){
     if(data.meta.status !== 'active') return; // only list events not yet passed/archived
     if(isExcluded(id)) return; // explicitly excluded (e.g. passed event)
     anyActive = true;
-    html += '<option value="'+esc(id)+'">'+esc(data.meta.name||id)+' — '+esc(data.meta.date||'')+' ['+esc(id)+']</option>';
+    html += '<option value="'+esc(id)+'">'+esc(data.meta.name||id)+' — '+esc(data.meta.date||'')+'</option>';
   });
   if(!anyActive){
     showStatus('status-banner','No events are currently open for registration. Please check back soon.','err');
