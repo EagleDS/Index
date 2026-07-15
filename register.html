@@ -101,6 +101,16 @@ textarea{resize:vertical;min-height:70px}
 .lookup-result-row .lname{font-weight:600;font-size:12px}
 .lookup-result-row .lclub{font-size:10px;color:var(--muted)}
 
+.waiver-text-wrap summary{cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--gold);margin-bottom:10px;list-style:none}
+.waiver-text-wrap summary::-webkit-details-marker{display:none}
+.waiver-text{background:#08080a;border:1px solid var(--border);border-radius:2px;padding:16px;max-height:280px;overflow-y:auto;font-size:11px;line-height:1.7;color:var(--muted);margin-bottom:14px}
+.waiver-text p{margin-bottom:10px}
+.waiver-text strong{color:var(--text)}
+.guardian-note{background:var(--gold-bg);border:1px solid rgba(240,180,41,.3);color:var(--gold);border-radius:2px;padding:10px 12px;font-size:11px;line-height:1.6;margin-bottom:14px}
+.consent-row{display:flex;align-items:flex-start;gap:8px;background:#08080a;border:1px solid var(--border);border-radius:2px;padding:10px;font-size:11px;line-height:1.5;cursor:pointer}
+.consent-row input{width:auto;margin-top:2px;flex-shrink:0}
+.consent-row.on{border-color:var(--gold);background:var(--gold-bg)}
+
 .footer-note{font-family:var(--mono);font-size:10px;color:var(--dim);text-align:center;margin-top:30px;line-height:1.8}
 </style>
 </head>
@@ -229,6 +239,34 @@ textarea{resize:vertical;min-height:70px}
       </div>
     </div>
 
+    <div class="card" id="waiver-card">
+      <div class="section-label">Waiver &amp; Consent *</div>
+      <div class="card-sub" id="waiver-age-note">Enter your date of birth above to continue.</div>
+
+      <details class="waiver-text-wrap" id="waiver-text-wrap" style="display:none">
+        <summary>READ FULL WAIVER TEXT ▾</summary>
+        <div class="waiver-text" id="waiver-text-body"></div>
+      </details>
+
+      <div id="adult-waiver-section" style="display:none">
+        <label class="consent-row" id="adult-consent-row">
+          <input type="checkbox" id="f-waiver-agree"/>
+          <div>I have read and agree to the Eagle DS Combat Games Series Waiver and Release of Liability above.</div>
+        </label>
+        <div class="fld" style="margin-top:12px"><label>Signature — type your full legal name *</label><input type="text" id="f-signature" placeholder="Full legal name"/></div>
+      </div>
+
+      <div id="guardian-waiver-section" style="display:none">
+        <div class="guardian-note">This competitor is under 18. A parent or legal guardian must read and sign this waiver on their behalf — the competitor cannot sign for themselves.</div>
+        <div class="fld"><label>Parent / Guardian Full Name *</label><input type="text" id="f-guardian-name" placeholder="Full legal name"/></div>
+        <label class="consent-row" id="guardian-consent-row">
+          <input type="checkbox" id="f-guardian-agree"/>
+          <div>I am the parent or legal guardian of the above-named competitor and I have read, understood, and agree to the Eagle DS Waiver and Release of Liability on their behalf.</div>
+        </label>
+        <div class="fld" style="margin-top:12px"><label>Guardian Signature — type your full legal name *</label><input type="text" id="f-guardian-signature" placeholder="Full legal name"/></div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="section-label">Payment</div>
       <div style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2">
@@ -236,7 +274,7 @@ textarea{resize:vertical;min-height:70px}
         Account Number: <span style="color:var(--text)">38-9024-0488910-03</span><br>
         Reference: <span style="color:var(--text)">Your full name</span>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.7">A waiver form will be emailed to you separately to complete. Refunds available up to the night before the event — no refunds after that for withdrawal, non-attendance, or missing your bout.</p>
+      <p style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.7">Refunds available up to the night before the event — no refunds after that for withdrawal, non-attendance, or missing your bout.</p>
     </div>
 
     <button type="submit" class="btn btn-gold" id="submit-btn">Submit Registration →</button>
@@ -274,6 +312,7 @@ const params = new URLSearchParams(location.search);
 let eventId = params.get('event') || '';
 let mode = 'new';
 let loadedCompetitorId = null;
+let currentEventMeta = null;
 
 // Passed events explicitly excluded from the public registration form,
 // independent of their Firebase status field.
@@ -357,6 +396,8 @@ function showEventPill(meta){
   document.getElementById('event-pill-date').textContent = meta.date || '';
   document.getElementById('event-pill-name').textContent = meta.name || eventId;
   document.getElementById('event-pill').style.display = 'inline-flex';
+  currentEventMeta = meta;
+  renderWaiverText();
 }
 
 // ── MODE SWITCH ──
@@ -385,6 +426,56 @@ function updateFee(){
   const fee = 50 + 20*(n-1);
   document.getElementById('fee-amount').textContent = '$'+fee;
 }
+
+// ── WAIVER ──
+function waiverHtml(eventName, eventDate){
+  const en = esc(eventName||'the event');
+  const ed = esc(eventDate||'the scheduled date');
+  return ''
+    +'<p>I, the Participant (or the Participant\'s parent/guardian if under 18), in consideration of being permitted to compete in the Eagle DS Combat Games Series event <strong>'+en+' on '+ed+'</strong> at 17 Nandina Avenue, East Tāmaki, Auckland ("the Event"), and in consideration for the right to participate, knowingly and voluntarily enter into this waiver and release of liability. For myself, my heirs, executors, administrators and personal representatives, I waive any and all claims or causes of action arising out of my participation in the Event, and release and forever discharge Eagle DS Limited, its directors, coaches, officials, volunteers, contractors and agents (together "Eagle DS") from any physical or psychological injury — including illness, disability, or death — that I may suffer as a direct or indirect result of my participation, including travel to and from the Event venue.</p>'
+    +'<p><strong>I AM PARTICIPATING VOLUNTARILY AND ENTIRELY AT MY OWN RISK.</strong> I understand that light-contact combat sport carries an inherent risk of injury, including but not limited to bruising, sprains, fractures, concussion, or more serious harm, and that these risks exist even where Eagle DS\'s safety standards, rules, and officiating are properly followed. I confirm I am aware of these risks and choose to accept them.</p>'
+    +'<p>I agree to indemnify Eagle DS against any claim, suit, or action brought by me or on my behalf arising from my participation, including reasonable costs Eagle DS incurs in defending such a claim.</p>'
+    +'<p><strong>Accident Compensation (ACC):</strong> I understand that as a New Zealand event, injuries sustained during the Event may be covered in part by the Accident Compensation Corporation (ACC) scheme in accordance with New Zealand law. This waiver applies to the fullest extent the law allows to any loss, cost, or liability not covered by ACC.</p>'
+    +'<p><strong>Medical Costs:</strong> I understand I am responsible for my own health/medical insurance, and for any treatment costs not covered by ACC.</p>'
+    +'<p><strong>Media Consent:</strong> I consent to Eagle DS photographing, filming, and livestreaming me during the Event, and to Eagle DS using that footage or imagery — including my name — for promotional, educational, and archival purposes, in any format, without further compensation to me.</p>'
+    +'<p>I confirm I have read and understood this waiver in full before signing.</p>';
+}
+function renderWaiverText(){
+  const el = document.getElementById('waiver-text-body');
+  if(!el) return;
+  el.innerHTML = waiverHtml(currentEventMeta && currentEventMeta.name, currentEventMeta && currentEventMeta.date);
+}
+function updateWaiverSection(){
+  const dob = document.getElementById('f-dob').value;
+  const ageNote = document.getElementById('waiver-age-note');
+  const textWrap = document.getElementById('waiver-text-wrap');
+  const adultSec = document.getElementById('adult-waiver-section');
+  const guardianSec = document.getElementById('guardian-waiver-section');
+  if(!dob){
+    ageNote.style.display = 'block';
+    textWrap.style.display = 'none';
+    adultSec.style.display = 'none';
+    guardianSec.style.display = 'none';
+    return;
+  }
+  ageNote.style.display = 'none';
+  textWrap.style.display = 'block';
+  const age = calcAge(dob);
+  if(age < 18){
+    adultSec.style.display = 'none';
+    guardianSec.style.display = 'block';
+  } else {
+    guardianSec.style.display = 'none';
+    adultSec.style.display = 'block';
+  }
+}
+document.getElementById('f-dob').addEventListener('input', updateWaiverSection);
+document.getElementById('f-waiver-agree').addEventListener('change', function(){
+  document.getElementById('adult-consent-row').classList.toggle('on', this.checked);
+});
+document.getElementById('f-guardian-agree').addEventListener('change', function(){
+  document.getElementById('guardian-consent-row').classList.toggle('on', this.checked);
+});
 
 // ── RETURNING COMPETITOR: LOAD BY ID ──
 window.lookupById = async function(){
@@ -420,6 +511,7 @@ function fillForm(c){
   document.getElementById('f-clubcity').value = c.clubCity||'';
   document.getElementById('f-clubphone').value = c.clubPhone||'';
   document.getElementById('f-instructor').value = c.instructor||'';
+  updateWaiverSection();
 }
 
 // ── FIND MY ID (name + DOB, not name alone — avoids exposing another competitor's edit-key on a bare name search) ──
@@ -480,6 +572,36 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
     return;
   }
 
+  const ageNow = calcAge(dob);
+  let waiverRecord = null;
+  if(ageNow < 18){
+    const guardianName = document.getElementById('f-guardian-name').value.trim();
+    const guardianAgree = document.getElementById('f-guardian-agree').checked;
+    const guardianSignature = document.getElementById('f-guardian-signature').value.trim();
+    if(!guardianName || !guardianAgree || !guardianSignature){
+      showStatus('status-banner','A parent or legal guardian must fill in their name, check the consent box, and sign before this can be submitted.','err');
+      return;
+    }
+    waiverRecord = {
+      signerType: 'guardian',
+      guardianName,
+      signature: guardianSignature,
+      signedAt: new Date().toISOString()
+    };
+  } else {
+    const waiverAgree = document.getElementById('f-waiver-agree').checked;
+    const signature = document.getElementById('f-signature').value.trim();
+    if(!waiverAgree || !signature){
+      showStatus('status-banner','You must agree to and sign the waiver before submitting.','err');
+      return;
+    }
+    waiverRecord = {
+      signerType: 'self',
+      signature,
+      signedAt: new Date().toISOString()
+    };
+  }
+
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Submitting…';
 
@@ -522,6 +644,7 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
       clubRaw: club, club,
       email,
       competitorId,
+      waiver: waiverRecord,
       withdrawn: existingReg ? (existingReg.withdrawn||false) : false,
       inDraw: existingReg ? (existingReg.inDraw||false) : false,
       weighIn: existingReg ? (existingReg.weighIn||'pending') : 'pending',
@@ -533,7 +656,7 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
     document.getElementById('reg-form').style.display = 'none';
     document.getElementById('id-display').textContent = competitorId;
     document.getElementById('id-result').classList.add('show');
-    showStatus('status-banner','Registration received. A waiver form will be emailed to you separately.','ok');
+    showStatus('status-banner','Registration received. Your waiver has been recorded.','ok');
     window.scrollTo({top:0, behavior:'smooth'});
   } catch(err){
     console.error(err);
