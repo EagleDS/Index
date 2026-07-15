@@ -212,7 +212,7 @@ textarea{resize:vertical;min-height:70px}
       <div id="fee-box" class="fee-box" style="display:none;margin-top:14px">
         <div class="ft">Entry Fee</div>
         <div class="fv" id="fee-amount">$0</div>
-        <div class="fs">First style $40 · each additional style +$20. Pay by bank transfer — details below.</div>
+        <div class="fs">First style $50 · each additional style +$20. Pay by bank transfer — details below.</div>
       </div>
     </div>
 
@@ -272,6 +272,10 @@ let eventId = params.get('event') || '';
 let mode = 'new';
 let loadedCompetitorId = null;
 
+// Passed events explicitly excluded from the public registration form,
+// independent of their Firebase status field.
+const EXCLUDED_EVENTS = ['cgs-july-11-2026'];
+
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function normS(s){ return String(s||'').trim().toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim(); }
 function calcAge(dobStr){
@@ -298,12 +302,15 @@ function clearStatus(id){
 
 // ── EVENT RESOLUTION ──
 async function resolveEvent(){
-  if(eventId){
+  if(eventId && !EXCLUDED_EVENTS.includes(eventId)){
     const snap = await get(ref(db, 'events/'+eventId+'/meta'));
-    if(snap.exists()){
+    if(snap.exists() && snap.val().status === 'active'){
       showEventPill(snap.val());
       return;
     }
+    eventId = ''; // link pointed at a passed/archived/unknown event — fall through to picker
+  } else {
+    eventId = '';
   }
   // No event in URL or not found — list active events for manual pick
   const snap = await get(ref(db, 'events'));
@@ -315,10 +322,19 @@ async function resolveEvent(){
   const events = snap.val();
   const picker = document.getElementById('event-picker');
   let html = '<option value="">— select an event —</option>';
+  let anyActive = false;
   Object.entries(events).forEach(([id, data]) => {
     if(!data || !data.meta) return;
+    if(data.meta.status !== 'active') return; // only list events not yet passed/archived
+    if(EXCLUDED_EVENTS.includes(id)) return; // explicitly excluded (e.g. passed event)
+    anyActive = true;
     html += '<option value="'+esc(id)+'">'+esc(data.meta.name||id)+' — '+esc(data.meta.date||'')+'</option>';
   });
+  if(!anyActive){
+    showStatus('status-banner','No events are currently open for registration. Please check back soon.','err');
+    document.getElementById('reg-form').style.display = 'none';
+    return;
+  }
   picker.innerHTML = html;
   document.getElementById('event-picker-wrap').style.display = 'block';
   picker.onchange = () => {
@@ -359,7 +375,7 @@ function updateFee(){
   const box = document.getElementById('fee-box');
   if(n===0){ box.style.display='none'; return; }
   box.style.display='block';
-  const fee = 40 + 20*(n-1);
+  const fee = 50 + 20*(n-1);
   document.getElementById('fee-amount').textContent = '$'+fee;
 }
 
