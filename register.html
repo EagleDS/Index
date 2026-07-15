@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <title>Competitor Registration — Combat Games Series | Eagle DS</title>
 <meta name="description" content="Register to compete in the Eagle DS Combat Games Series. Returning competitors: enter your Competitor ID to prefill your details."/>
 <link rel="icon" href="https://eagleds.co.nz/logo.PNG"/>
@@ -275,6 +278,10 @@ let loadedCompetitorId = null;
 // Passed events explicitly excluded from the public registration form,
 // independent of their Firebase status field.
 const EXCLUDED_EVENTS = ['cgs-july-11-2026'];
+function isExcluded(id){
+  const norm = String(id||'').trim().toLowerCase();
+  return EXCLUDED_EVENTS.some(x => x.trim().toLowerCase() === norm);
+}
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function normS(s){ return String(s||'').trim().toLowerCase().replace(/[^a-z0-9]/g,' ').replace(/\s+/g,' ').trim(); }
@@ -302,7 +309,7 @@ function clearStatus(id){
 
 // ── EVENT RESOLUTION ──
 async function resolveEvent(){
-  if(eventId && !EXCLUDED_EVENTS.includes(eventId)){
+  if(eventId && !isExcluded(eventId)){
     const snap = await get(ref(db, 'events/'+eventId+'/meta'));
     if(snap.exists() && snap.val().status === 'active'){
       showEventPill(snap.val());
@@ -326,9 +333,9 @@ async function resolveEvent(){
   Object.entries(events).forEach(([id, data]) => {
     if(!data || !data.meta) return;
     if(data.meta.status !== 'active') return; // only list events not yet passed/archived
-    if(EXCLUDED_EVENTS.includes(id)) return; // explicitly excluded (e.g. passed event)
+    if(isExcluded(id)) return; // explicitly excluded (e.g. passed event)
     anyActive = true;
-    html += '<option value="'+esc(id)+'">'+esc(data.meta.name||id)+' — '+esc(data.meta.date||'')+'</option>';
+    html += '<option value="'+esc(id)+'">'+esc(data.meta.name||id)+' — '+esc(data.meta.date||'')+' ['+esc(id)+']</option>';
   });
   if(!anyActive){
     showStatus('status-banner','No events are currently open for registration. Please check back soon.','err');
@@ -539,4 +546,3 @@ resolveEvent();
 </script>
 </body>
 </html>
-
