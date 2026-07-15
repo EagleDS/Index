@@ -111,6 +111,13 @@ textarea{resize:vertical;min-height:70px}
 .consent-row input{width:auto;margin-top:2px;flex-shrink:0}
 .consent-row.on{border-color:var(--gold);background:var(--gold-bg)}
 
+.sig-wrap{background:#08080a;border:1px solid var(--border);border-radius:2px;padding:8px;margin-top:6px}
+.sig-canvas{width:100%;height:150px;background:#fff;border-radius:2px;touch-action:none;cursor:crosshair;display:block}
+.sig-controls{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.sig-hint{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.5px}
+.sig-clear{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:2px;cursor:pointer}
+.sig-clear:hover{border-color:#555;color:var(--text)}
+
 .footer-note{font-family:var(--mono);font-size:10px;color:var(--dim);text-align:center;margin-top:30px;line-height:1.8}
 </style>
 </head>
@@ -253,7 +260,15 @@ textarea{resize:vertical;min-height:70px}
           <input type="checkbox" id="f-waiver-agree"/>
           <div>I have read and agree to the Eagle DS Combat Games Series Waiver and Release of Liability above.</div>
         </label>
-        <div class="fld" style="margin-top:12px"><label>Signature — type your full legal name *</label><input type="text" id="f-signature" placeholder="Full legal name"/></div>
+        <div class="fld" style="margin-top:12px"><label>Printed Full Legal Name *</label><input type="text" id="f-signature" placeholder="Full legal name"/></div>
+        <label>Sign Here *</label>
+        <div class="sig-wrap">
+          <canvas class="sig-canvas" id="sig-pad-adult"></canvas>
+          <div class="sig-controls">
+            <span class="sig-hint">Draw your signature above with your finger or mouse</span>
+            <button type="button" class="sig-clear" onclick="clearSig('adult')">CLEAR</button>
+          </div>
+        </div>
       </div>
 
       <div id="guardian-waiver-section" style="display:none">
@@ -263,7 +278,15 @@ textarea{resize:vertical;min-height:70px}
           <input type="checkbox" id="f-guardian-agree"/>
           <div>I am the parent or legal guardian of the above-named competitor and I have read, understood, and agree to the Eagle DS Waiver and Release of Liability on their behalf.</div>
         </label>
-        <div class="fld" style="margin-top:12px"><label>Guardian Signature — type your full legal name *</label><input type="text" id="f-guardian-signature" placeholder="Full legal name"/></div>
+        <div class="fld" style="margin-top:12px"><label>Printed Guardian Name (signature line) *</label><input type="text" id="f-guardian-signature" placeholder="Full legal name"/></div>
+        <label>Guardian Sign Here *</label>
+        <div class="sig-wrap">
+          <canvas class="sig-canvas" id="sig-pad-guardian"></canvas>
+          <div class="sig-controls">
+            <span class="sig-hint">Draw your signature above with your finger or mouse</span>
+            <button type="button" class="sig-clear" onclick="clearSig('guardian')">CLEAR</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -464,9 +487,11 @@ function updateWaiverSection(){
   if(age < 18){
     adultSec.style.display = 'none';
     guardianSec.style.display = 'block';
+    setTimeout(() => initSigPad('guardian','sig-pad-guardian'), 0);
   } else {
     guardianSec.style.display = 'none';
     adultSec.style.display = 'block';
+    setTimeout(() => initSigPad('adult','sig-pad-adult'), 0);
   }
 }
 document.getElementById('f-dob').addEventListener('input', updateWaiverSection);
@@ -476,6 +501,51 @@ document.getElementById('f-waiver-agree').addEventListener('change', function(){
 document.getElementById('f-guardian-agree').addEventListener('change', function(){
   document.getElementById('guardian-consent-row').classList.toggle('on', this.checked);
 });
+
+// ── SIGNATURE PADS ──
+const sigPads = {};
+function initSigPad(name, canvasId){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas || sigPads[name]) return;
+  const rect = canvas.getBoundingClientRect();
+  if(rect.width===0 || rect.height===0) return; // not visible yet — try again next time section opens
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#111';
+  const pad = { canvas, ctx, drawing:false, hasInk:false };
+  sigPads[name] = pad;
+
+  function pos(e){
+    const r = canvas.getBoundingClientRect();
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    const cy = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: cx - r.left, y: cy - r.top };
+  }
+  function start(e){ e.preventDefault(); pad.drawing = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }
+  function move(e){ if(!pad.drawing) return; e.preventDefault(); const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); pad.hasInk = true; }
+  function end(){ pad.drawing = false; }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', end);
+  canvas.addEventListener('touchstart', start, {passive:false});
+  canvas.addEventListener('touchmove', move, {passive:false});
+  canvas.addEventListener('touchend', end);
+}
+window.clearSig = function(name){
+  const pad = sigPads[name];
+  if(!pad) return;
+  pad.ctx.clearRect(0,0,pad.canvas.width,pad.canvas.height);
+  pad.hasInk = false;
+};
+function sigIsEmpty(name){ const pad = sigPads[name]; return !pad || !pad.hasInk; }
+function sigDataUrl(name){ const pad = sigPads[name]; return (pad && pad.hasInk) ? pad.canvas.toDataURL('image/png') : null; }
 
 // ── RETURNING COMPETITOR: LOAD BY ID ──
 window.lookupById = async function(){
@@ -577,27 +647,37 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
   if(ageNow < 18){
     const guardianName = document.getElementById('f-guardian-name').value.trim();
     const guardianAgree = document.getElementById('f-guardian-agree').checked;
-    const guardianSignature = document.getElementById('f-guardian-signature').value.trim();
-    if(!guardianName || !guardianAgree || !guardianSignature){
-      showStatus('status-banner','A parent or legal guardian must fill in their name, check the consent box, and sign before this can be submitted.','err');
+    const guardianPrintedName = document.getElementById('f-guardian-signature').value.trim();
+    if(!guardianName || !guardianAgree || !guardianPrintedName){
+      showStatus('status-banner','A parent or legal guardian must fill in their name and check the consent box before this can be submitted.','err');
+      return;
+    }
+    if(sigIsEmpty('guardian')){
+      showStatus('status-banner','The parent or legal guardian must draw their signature in the box before this can be submitted.','err');
       return;
     }
     waiverRecord = {
       signerType: 'guardian',
       guardianName,
-      signature: guardianSignature,
+      printedName: guardianPrintedName,
+      signatureImage: sigDataUrl('guardian'),
       signedAt: new Date().toISOString()
     };
   } else {
     const waiverAgree = document.getElementById('f-waiver-agree').checked;
-    const signature = document.getElementById('f-signature').value.trim();
-    if(!waiverAgree || !signature){
-      showStatus('status-banner','You must agree to and sign the waiver before submitting.','err');
+    const printedName = document.getElementById('f-signature').value.trim();
+    if(!waiverAgree || !printedName){
+      showStatus('status-banner','You must agree to the waiver and print your name before submitting.','err');
+      return;
+    }
+    if(sigIsEmpty('adult')){
+      showStatus('status-banner','You must draw your signature in the box before submitting.','err');
       return;
     }
     waiverRecord = {
       signerType: 'self',
-      signature,
+      printedName,
+      signatureImage: sigDataUrl('adult'),
       signedAt: new Date().toISOString()
     };
   }
