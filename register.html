@@ -661,7 +661,8 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
       guardianName,
       printedName: guardianPrintedName,
       signatureImage: sigDataUrl('guardian'),
-      signedAt: new Date().toISOString()
+      signedAt: new Date().toISOString(),
+      textAgreedTo: waiverHtml(currentEventMeta && currentEventMeta.name, currentEventMeta && currentEventMeta.date)
     };
   } else {
     const waiverAgree = document.getElementById('f-waiver-agree').checked;
@@ -678,7 +679,8 @@ document.getElementById('reg-form').addEventListener('submit', async (e) => {
       signerType: 'self',
       printedName,
       signatureImage: sigDataUrl('adult'),
-      signedAt: new Date().toISOString()
+      signedAt: new Date().toISOString(),
+      textAgreedTo: waiverHtml(currentEventMeta && currentEventMeta.name, currentEventMeta && currentEventMeta.date)
     };
   }
 
@@ -749,3 +751,4 @@ resolveEvent();
 </script>
 </body>
 </html>
+
