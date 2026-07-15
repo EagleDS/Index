@@ -112,7 +112,7 @@ a{color:inherit;text-decoration:none}
     <a href="https://eagleds.co.nz/shop.html" class="nav-link">Shop</a>
     <a href="https://eagleds.co.nz/blog.html" class="nav-link">Journal</a>
   </div>
-  <a href="https://forms.gle/TcQCcid63rQQDiZF6" class="nav-register">Register ⚔</a>
+  <a href="https://eagleds.co.nz/register.html" class="nav-register">Register ⚔</a>
 </nav>
 
 <!-- HERO -->
@@ -159,7 +159,7 @@ a{color:inherit;text-decoration:none}
       <a href="https://eagleds.co.nz/cgs.html#platform" class="footer-link">Event Platform</a>
       <a href="https://eagleds.co.nz/cgs.html#styles" class="footer-link">Six Styles</a>
       <a href="https://eagleds.co.nz/cgs.html#season" class="footer-link">2026 Season</a>
-      <a href="https://forms.gle/TcQCcid63rQQDiZF6" class="footer-link">Register</a>
+      <a href="https://eagleds.co.nz/register.html" class="footer-link">Register</a>
     </div>
     <div>
       <div class="footer-col-title">Contact</div>
@@ -195,7 +195,7 @@ const STYLE_NORM = {
 };
 
 const params = new URLSearchParams(location.search);
-const eventId = params.get('event') || 'cgs-july-11-2026';
+const eventId = params.get('event') || 'cgs-september-5-2026';
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function normStyle(s){ const u=s.trim().toUpperCase(); return STYLE_NORM[u]||s.trim(); }
@@ -246,7 +246,7 @@ try {
     const athletes = Object.values(regs).filter(a => !a.withdrawn);
 
     if(!athletes.length) {
-      body.innerHTML = '<div class="loading">No registrations yet.<br>Entries open now — <a href="https://forms.gle/TcQCcid63rQQDiZF6" style="color:var(--gold)">register here</a>.</div>';
+      body.innerHTML = '<div class="loading">No registrations yet.<br>Entries open now — <a href="https://eagleds.co.nz/register.html" style="color:var(--gold)">register here</a>.</div>';
       return;
     }
 
