@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Partnerships — Eagle DS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Eagle DS brings a world-ranked combat sports coach into your school for a mindset talk and hands-on workshop -- building students who can perform under pressure. Presented by Dafydd Sanders, Founder of Eagle DS.">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  :root {
+    --black: #080807;
+    --white: #f7f3ed;
+    --gold: #B8860B;
+    --gold-light: #D4A017;
+    --grey: #141412;
+    --mid: #222220;
+    --muted: #666;
+    --rule: rgba(184,134,11,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: var(--black);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover-texture {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(184,134,11,0.03) 80px,
+        rgba(184,134,11,0.03) 81px
+      );
+    pointer-events: none;
+  }
+
+  .cover-top {
+    padding: 48px 64px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .cover-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(247,243,237,0.3);
+    padding-top: 8px;
+  }
+
+  .cover-main {
+    padding: 0 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cover-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .cover-headline em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cover-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(247,243,237,0.5);
+    margin-bottom: 56px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .cover-credentials {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .cred {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cred-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cred-desc {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,243,237,0.35);
+    line-height: 1.4;
+    max-width: 100px;
+  }
+
+  .cover-bottom {
+    padding: 40px 64px 48px;
+    border-top: 1px solid rgba(184,134,11,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-presented {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,243,237,0.3);
+    line-height: 1.8;
+  }
+
+  .cover-presented strong {
+    color: var(--white);
+    font-weight: 600;
+    display: block;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .cover-contact {
+    text-align: right;
+    font-size: 11px;
+    color: rgba(247,243,237,0.3);
+    line-height: 2;
+  }
+
+  .cover-contact a { color: var(--gold); text-decoration: none; }
+
+  /* ── INNER PAGES ── */
+  .page {
+    background: var(--white);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 80px;
+  }
+
+  .page + .page {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 80px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-mark {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(184,134,11,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-info {}
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── BODY TEXT ── */
+  .body-text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    max-width: 680px;
+  }
+
+  .body-text strong { color: var(--black); font-weight: 600; }
+
+  .lead-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 680px;
+  }
+
+  .lead-text em { font-style: italic; color: var(--gold); }
+
+  /* ── COACH PROFILE ── */
+  .coach-profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 40px 0;
+  }
+
+  .profile-left {
+    background: var(--black);
+    padding: 48px 44px;
+    color: var(--white);
+  }
+
+  .profile-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.1;
+  }
+
+  .profile-name em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .profile-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .profile-body {
+    font-size: 14px;
+    color: rgba(247,243,237,0.65);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .profile-body strong { color: var(--white); font-weight: 500; }
+
+  .profile-right {
+    background: #f0ebe1;
+    padding: 48px 44px;
+  }
+
+  .medal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .medal-item {
+    background: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .medal-org {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 64px;
+    line-height: 1.2;
+  }
+
+  .medal-info {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .medal-info strong { color: var(--black); font-weight: 600; display: block; }
+
+  .profile-right-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── SESSIONS ── */
+  .sessions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 40px 0;
+  }
+
+  .session-card {
+    background: var(--black);
+    padding: 44px 40px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .session-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+  }
+
+  .session-card.light {
+    background: #f0ebe1;
+    color: var(--black);
+  }
+
+  .session-card.light .session-card-title { color: var(--black); }
+  .session-card.light .session-card-body { color: #555; }
+  .session-card.light .session-outcome::before { color: var(--gold); }
+  .session-card.light .session-outcome { color: #555; }
+
+  .session-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .session-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .session-card-body {
+    font-size: 13px;
+    color: rgba(247,243,237,0.65);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .session-outcomes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .session-outcome {
+    font-size: 12px;
+    color: rgba(247,243,237,0.55);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .session-outcome::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  /* ── WHAT SCHOOLS GET ── */
+  .outcomes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 40px 0;
+  }
+
+  .outcome-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0;
+    background: #f0ebe1;
+  }
+
+  .outcome-row:nth-child(even) { background: #e8e2d6; }
+
+  .outcome-num {
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  .outcome-content {
+    padding: 20px 28px;
+  }
+
+  .outcome-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .outcome-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ── PRICING ── */
+  .pricing-block {
+    border: 1px solid rgba(184,134,11,0.3);
+    margin: 40px 0;
+  }
+
+  .pricing-header {
+    background: var(--black);
+    padding: 24px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pricing-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .pricing-header-note {
+    font-size: 11px;
+    color: rgba(247,243,237,0.4);
+    font-style: italic;
+  }
+
+  .pricing-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 20px 36px;
+    border-bottom: 1px solid rgba(184,134,11,0.1);
+    align-items: center;
+  }
+
+  .pricing-row:last-child { border-bottom: none; }
+
+  .pricing-item {
+    font-size: 14px;
+    color: var(--black);
+    font-weight: 400;
+  }
+
+  .pricing-item span {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  .pricing-cost {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .pricing-note {
+    padding: 16px 36px;
+    background: rgba(184,134,11,0.05);
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+    border-top: 1px solid rgba(184,134,11,0.1);
+  }
+
+  /* ── CLOSING ── */
+  .closing-page {
+    background: var(--black);
+    padding: 80px;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .closing-eyebrow {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .closing-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .closing-headline em { font-style: italic; color: var(--gold-light); }
+
+  .closing-body {
+    font-size: 15px;
+    color: rgba(247,243,237,0.55);
+    line-height: 1.9;
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+
+  .closing-body strong { color: var(--white); font-weight: 500; }
+
+  .closing-contact {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid rgba(184,134,11,0.3);
+    padding: 32px 48px;
+    margin-bottom: 48px;
+  }
+
+  .contact-item {
+    font-size: 13px;
+    color: rgba(247,243,237,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .contact-item strong { color: var(--white); font-weight: 500; }
+  .contact-item a { color: var(--gold); text-decoration: none; }
+
+  .gold-rule { width: 60px; height: 1px; background: var(--gold); margin: 0 auto 32px; }
+
+  @media print {
+    .cover { min-height: 100vh; }
+    .page { max-width: 100%; }
+    body { background: white; }
+  }
+
+  @media (max-width: 768px) {
+    .cover-top, .cover-main, .cover-bottom { padding-left: 32px; padding-right: 32px; }
+    .page { padding: 48px 32px; }
+    .coach-profile, .sessions-grid { grid-template-columns: 1fr; }
+    .closing-page { padding: 48px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>School Partnerships</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="gym.html">Academy</a>
+    <a href="cgs.html">Combat Games Series</a>
+    <a href="coach.html">Coaching Course</a>
+    <a href="mailto:info@eagleds.co.nz?subject=School%20Partnership%20Enquiry" class="nav-cta">Enquire</a>
+  </div>
+</nav>
+
+<!-- ══ COVER PAGE ══ -->
+<div class="cover">
+  <div class="cover-texture"></div>
+
+  <div class="cover-top">
+    <div>
+      <div class="cover-brand">Eagle DS</div>
+      <div class="cover-label">Combat Sports & Human Performance · Auckland</div>
+    </div>
+    <div class="cover-label" style="text-align:right; padding-top:4px;">School Partnership Proposal<br>Presented for Discussion · 2026</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">Presented to Your School</div>
+    <h1 class="cover-headline">
+      Building<br>
+      Students Who<br>
+      <em>Don't Break.</em>
+    </h1>
+    <p class="cover-sub">A combat sports talk and workshop programme designed to develop focus, resilience, and the high-performance mindset in your students.</p>
+    <div class="cover-divider"></div>
+    <div class="cover-credentials">
+      <div class="cred">
+        <span class="cred-val">31</span>
+        <span class="cred-desc">Years Martial Arts Mastery</span>
+      </div>
+      <div class="cred">
+        <span class="cred-val">24+</span>
+        <span class="cred-desc">Years Coaching Young People</span>
+      </div>
+      <div class="cred">
+        <span class="cred-val">#10</span>
+        <span class="cred-desc">World Ranked Taekwondo</span>
+      </div>
+      <div class="cred">
+        <span class="cred-val">NZ</span>
+        <span class="cred-desc">Olympic Campaign Representative, Multiple Cycles</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-presented">
+      Presented by
+      <strong>Dafydd Sanders</strong>
+      Founder & Lead Coach, Eagle DS
+    </div>
+    <div class="cover-contact">
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a><br>
+      www.eagleds.co.nz<br>
+      17 Nandina Ave, East Tāmaki, Auckland
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE 1 — WHO IS DELIVERING THIS ══ -->
+<div class="page">
+  <div class="section-mark">
+    <div class="section-num">01</div>
+    <div class="section-info">
+      <div class="section-label">The Coach</div>
+      <h2 class="section-title">Who Is<br><em>Dafydd Sanders</em></h2>
+    </div>
+  </div>
+
+  <p class="lead-text">Your students will be in the room with one of New Zealand's most credentialed combat sports coaches — a <em>world-ranked competitor</em> who has spent 24 years turning that experience into a system that develops real people.</p>
+
+  <div class="coach-profile">
+    <div class="profile-left">
+      <div class="profile-name"><em>Dafydd Sanders</em></div>
+      <div class="profile-title">Founder · Eagle DS · International Competitor & Coach</div>
+      <p class="profile-body">Dafydd Sanders is not a motivational speaker with a sporting background. He is an <strong>active, practising combat sports system builder</strong> — someone who has spent three decades at the highest levels of competitive martial arts and 24 years engineering the methodology that transfers elite performance capability to young people.</p>
+      <p class="profile-body">He competed for <strong>New Zealand across multiple Olympic campaign cycles</strong>, reaching World #10 in Taekwondo. His competitive record spans WAKO Worlds kickboxing and K1, IMMAF Worlds MMA, and a Karate All Japan Championship title in 2010 — alongside being named Māori Sports Person of the Year at the University of Auckland in 2005. He understands, from the inside, what it takes to perform at the absolute limit — and what happens when you don't have the mental architecture to handle it.</p>
+      <p class="profile-body">What he brings to your school is not a story about sport. It is a <strong>proven system for building students who are mentally durable, focused under pressure, and capable of sustained high performance</strong> — in the classroom, in competition, and in life.</p>
+    </div>
+    <div class="profile-right">
+      <div class="profile-right-label">International Credentials</div>
+      <div class="medal-list">
+        <div class="medal-item">
+          <div class="medal-org">NZ REP</div>
+          <div class="medal-info"><strong>New Zealand Representative</strong>Multiple Olympic Campaign Cycles · Taekwondo</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">#10</div>
+          <div class="medal-info"><strong>World Ranked</strong>Taekwondo World Rankings</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">KARATE</div>
+          <div class="medal-info"><strong>All Japan Champion, 2010</strong>Karate · International Field</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">WAKO</div>
+          <div class="medal-info"><strong>WAKO Worlds Competitor</strong>Kickboxing & K1 (2017)</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">IMMAF</div>
+          <div class="medal-info"><strong>IMMAF Worlds 2019 Competitor</strong>Mixed Martial Arts</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">2005</div>
+          <div class="medal-info"><strong>Māori Sports Person of the Year</strong>University of Auckland</div>
+        </div>
+        <div class="medal-item">
+          <div class="medal-org">24 YRS</div>
+          <div class="medal-info"><strong>Teaching & Coaching</strong>Children, Teens & Young Adults</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE 2 — WHAT'S BEING PROPOSED ══ -->
+<div class="page">
+  <div class="section-mark">
+    <div class="section-num">02</div>
+    <div class="section-info">
+      <div class="section-label">The Programme</div>
+      <h2 class="section-title">Two Sessions.<br><em>Lasting Impact.</em></h2>
+    </div>
+  </div>
+
+  <p class="body-text">Each session is standalone and delivers immediate value — or they can be run back to back for a full school day experience. Both are designed and delivered personally by Dafydd Sanders.</p>
+
+  <div class="sessions-grid">
+    <div class="session-card">
+      <span class="session-tag">Session One · Classroom</span>
+      <div class="session-card-title">The High-Performance Mindset Talk</div>
+      <p class="session-card-body">An honest, direct presentation on what separates students who perform under pressure from those who don't — drawn from 31 years at the elite level of combat sports and 24 years coaching the next generation. This is not a motivational talk. It is a practical framework your students can use immediately.</p>
+      <div class="session-outcomes">
+        <div class="session-outcome">What elite athletes do differently — and why it applies to every student in the room</div>
+        <div class="session-outcome">How to perform under pressure rather than collapse under it</div>
+        <div class="session-outcome">The habits that separate high achievers from everyone else — and how to build them</div>
+        <div class="session-outcome">Dafydd's personal journey through adversity at world level — and what it taught him about mental durability</div>
+        <div class="session-outcome">Age-appropriate, direct, and built for a high school audience</div>
+      </div>
+    </div>
+    <div class="session-card light">
+      <span class="session-tag">Session Two · Field / Hall</span>
+      <div class="session-card-title">The Combat Sports Workshop</div>
+      <p class="session-card-body">A hands-on introductory session in Olympic Taekwondo and kickboxing fundamentals. No experience required. Designed to put students in a controlled physical challenge — where the lessons of the talk become immediately tangible. Students feel what focus, discipline, and technique actually mean in practice.</p>
+      <div class="session-outcomes">
+        <div class="session-outcome">Foundational movement, stance, and striking technique</div>
+        <div class="session-outcome">Partner drills that build communication and trust under pressure</div>
+        <div class="session-outcome">Safe, structured, and inclusive — every fitness level welcome</div>
+        <div class="session-outcome">Students leave with a physical experience of what high performance feels like</div>
+        <div class="session-outcome">A pathway offered to any student who wants to go further</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text" style="margin-top: 8px;"><strong>Session length is flexible</strong> — both sessions can be tailored to your timetable, from a 45-minute period through to a half or full-day format. Dafydd works around your schedule, not the other way around.</p>
+</div>
+
+<!-- ══ PAGE 3 — WHAT YOUR SCHOOL GETS ══ -->
+<div class="page">
+  <div class="section-mark">
+    <div class="section-num">03</div>
+    <div class="section-info">
+      <div class="section-label">The Outcomes</div>
+      <h2 class="section-title">What Your<br><em>Students Take Away</em></h2>
+    </div>
+  </div>
+
+  <p class="lead-text">Every school brings in external speakers. What separates this from a generic workshop is the <em>depth of the system behind it</em> — and the credibility of the person delivering it.</p>
+
+  <div class="outcomes-list">
+    <div class="outcome-row">
+      <div class="outcome-num">1</div>
+      <div class="outcome-content">
+        <div class="outcome-title">A Practical Framework for Performing Under Pressure</div>
+        <div class="outcome-desc">Not inspiration — tools. Students leave with a concrete understanding of how high performers manage pressure, build focus, and recover from failure. These are skills they can apply in exams, in sport, and in every high-stakes situation they face.</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-num">2</div>
+      <div class="outcome-content">
+        <div class="outcome-title">Physical Experience of Discipline and Focus</div>
+        <div class="outcome-desc">The workshop session doesn't just talk about discipline — it puts students inside it. They experience what it feels like to focus completely on a physical task, to listen precisely, and to improve within a single session. That experience is visceral and memorable.</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-num">3</div>
+      <div class="outcome-content">
+        <div class="outcome-title">Exposure to Elite-Level Thinking</div>
+        <div class="outcome-desc">Many students have never been in the room with someone who has competed at world level in anything. Dafydd's presence — and the way he thinks and speaks about performance — raises the ceiling of what students believe is possible for themselves.</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-num">4</div>
+      <div class="outcome-content">
+        <div class="outcome-title">A Pathway for Students Who Want More</div>
+        <div class="outcome-desc">Students who connect with the programme are offered a clear pathway into Eagle DS — from introductory classes through to competitive training and the Young Adult Coach Leadership Academy. This is a genuine developmental opportunity, not a sales pitch.</div>
+      </div>
+    </div>
+    <div class="outcome-row">
+      <div class="outcome-num">5</div>
+      <div class="outcome-content">
+        <div class="outcome-title">Something Your Prospectus Can Point To</div>
+        <div class="outcome-desc">A programme delivered by a world-ranked New Zealand international and 24-year coaching veteran is a genuine differentiator for your school. It signals that you invest in the kind of development that shapes character, not just curriculum.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE 4 — INVESTMENT ══ -->
+<div class="page">
+  <div class="section-mark">
+    <div class="section-num">04</div>
+    <div class="section-info">
+      <div class="section-label">Investment</div>
+      <h2 class="section-title">Simple, Transparent<br><em>Pricing</em></h2>
+    </div>
+  </div>
+
+  <p class="body-text">Pricing is straightforward and designed to make this accessible to Auckland high schools. Session lengths and formats are flexible — if your budget requires a different structure, Dafydd is open to a conversation.</p>
+
+  <div class="pricing-block">
+    <div class="pricing-header">
+      <span class="pricing-header-title">Programme Investment</span>
+      <span class="pricing-header-note">All prices per session · GST not included</span>
+    </div>
+    <div class="pricing-row">
+      <div class="pricing-item">
+        High-Performance Mindset Talk
+        <span>Classroom delivery · Flexible duration · All year groups</span>
+      </div>
+      <div class="pricing-cost">$125/hr</div>
+    </div>
+    <div class="pricing-row">
+      <div class="pricing-item">
+        Combat Sports Workshop
+        <span>Field or hall delivery · Flexible duration · All fitness levels</span>
+      </div>
+      <div class="pricing-cost">$125/hr</div>
+    </div>
+    <div class="pricing-row">
+      <div class="pricing-item">
+        Combined Full-Day Programme
+        <span>Talk + Workshop · Recommended for maximum impact</span>
+      </div>
+      <div class="pricing-cost">POA</div>
+    </div>
+    <div class="pricing-row">
+      <div class="pricing-item">
+        Travel (outside Auckland central)
+        <span>Hamilton and beyond · Flat rate per visit</span>
+      </div>
+      <div class="pricing-cost">$50</div>
+    </div>
+    <div class="pricing-note">
+      Pricing is a starting point, not a ceiling. If your school has specific budget constraints or wants to discuss a term-long or ongoing partnership arrangement, please reach out directly.
+    </div>
+  </div>
+
+  <p class="body-text">Eagle DS is also open to discussing <strong>ongoing school partnership arrangements</strong> — including term-based programmes, curriculum integration, and referral pathways for students who want to pursue training further.</p>
+</div>
+
+<!-- ══ CLOSING PAGE ══ -->
+<div class="closing-page">
+  <div class="closing-eyebrow">Eagle DS · Auckland · 2026</div>
+  <div class="gold-rule"></div>
+  <h2 class="closing-headline">Let's Put<br><em>Something Real</em><br>In Front of Your Students.</h2>
+  <p class="closing-body">This is a conversation, not a sales process. If what's in this proposal fits what your school is trying to build in your students — <strong>let's talk.</strong> Dafydd is available to meet in person, answer questions, or tailor the programme to your specific context.</p>
+
+  <div class="closing-contact">
+    <div class="contact-item"><strong>Dafydd Sanders</strong></div>
+    <div class="contact-item">Founder & Lead Coach · Eagle DS</div>
+    <div class="contact-item"><a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a></div>
+    <div class="contact-item"><a href="http://www.eagleds.co.nz">www.eagleds.co.nz</a></div>
+    <div class="contact-item">17 Nandina Ave, East Tāmaki, Auckland</div>
+  </div>
+
+  <div style="font-size:10px; color:rgba(247,243,237,0.2); letter-spacing:0.2em; text-transform:uppercase;">Eagle DS Combat Sports & Human Performance · Auckland, New Zealand</div>
+</div>
+
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>A combat sports talk and workshop programme for schools -- building students who can perform under pressure, delivered personally by Founder Dafydd Sanders.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Training Academy</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="coach.html">Coaching Course</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat & Wellness · School Partnerships</span>
+    <span class="live"><span class="live-dot"></span> Selling Outcomes</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
