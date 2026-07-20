@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior School Partnerships — Eagle DS</title>
+<meta name="description" content="Eagle DS brings a world-ranked combat sports coach and a Registered Nurse into your primary school for a movement, focus, and confidence programme built for ages 5–12. Presented by Dafydd Sanders, Founder of Eagle DS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+/* ═══ EAGLE DS SHARED DESIGN SYSTEM (self-contained) ═══ */
+:root {
+  --black:    #0a0a0a;
+  --black-2:  #0f0f0f;
+  --grey:     #1a1a1a;
+  --mid:      #2e2e2e;
+  --surf:     #141414;
+  --border:   #222222;
+  --border2:  #333333;
+  --text:     #f8f4ee;
+  --muted:    #888888;
+  --muted2:   #666666;
+  --gold:     #C8960C;
+  --gold-lt:  #E8B84B;
+  --gold-pale:#f5e6b8;
+  --gold-dk:  #9a7008;
+  --red:      #C0392B;
+  --blue:     #3d8eff;
+  --green:    #22b64a;
+  --orange:   #e07020;
+  --purple:   #9d55f5;
+  --cormorant:'Cormorant Garamond', serif;
+  --bebas:    'Bebas Neue', sans-serif;
+  --dm:       'DM Sans', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+  --r: 2px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--dm);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 720px) { .wrap { padding: 0 20px; } }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+}
+.eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--gold-dk); }
+
+.section { padding: 90px 0; border-top: 1px solid var(--border); }
+.section-head { max-width: 640px; margin-bottom: 48px; }
+.section-title {
+  font-family: var(--cormorant); font-weight: 300; font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.1; letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--gold-lt); }
+.section-body { color: var(--muted); font-size: 15px; margin-top: 16px; max-width: 560px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── HERO ── */
+.hero {
+  min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 130px 0 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 82% 28%, rgba(200,150,12,0.10), transparent 55%);
+}
+.hero-eyebrow { opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards; }
+.hero-headline {
+  font-family: var(--cormorant); font-weight: 300; font-size: clamp(40px, 6vw, 78px);
+  line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 22px; max-width: 820px;
+  opacity: 0; animation: fadeUp 0.8s 0.38s ease forwards;
+}
+.hero-headline em { font-style: italic; color: var(--gold-lt); }
+.hero-body {
+  font-size: 16px; color: #aaa; max-width: 540px; margin-bottom: 34px; line-height: 1.85;
+  opacity: 0; animation: fadeUp 0.8s 0.55s ease forwards;
+}
+.hero-body strong { color: var(--text); font-weight: 500; }
+.hero-cta { opacity: 0; animation: fadeUp 0.8s 0.72s ease forwards; }
+
+/* ── TRUST STRIP ── */
+.trust-strip {
+  display: flex; flex-wrap: wrap; gap: 0; background: var(--grey);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.trust-item {
+  flex: 1 1 200px; padding: 26px 22px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.trust-item:last-child { border-right: none; }
+.trust-item .n {
+  font-family: var(--bebas); font-size: 30px; color: var(--gold); letter-spacing: 0.03em; line-height: 1;
+}
+.trust-item .lbl {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-top: 8px; line-height: 1.5;
+}
+
+/* ── PEOPLE ── */
+.people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 8px; }
+@media (max-width: 720px) { .people-grid { grid-template-columns: 1fr; } }
+.people-card { background: var(--surf); border: 1px solid var(--border); padding: 34px; }
+.people-role {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.people-name { font-family: var(--cormorant); font-size: 28px; font-weight: 600; margin-bottom: 14px; }
+.people-desc { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.people-desc strong { color: var(--text); font-weight: 500; }
+
+/* ── PROGRAMME ── */
+.prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 8px; }
+@media (max-width: 820px) { .prog-grid { grid-template-columns: 1fr; } }
+.prog-card { background: var(--surf); border: 1px solid var(--border); padding: 36px; }
+.prog-eyebrow {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
+}
+.prog-title { font-family: var(--cormorant); font-size: 26px; font-weight: 600; margin-bottom: 14px; line-height: 1.15; }
+.prog-desc { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 18px; }
+.prog-list { list-style: none; }
+.prog-list li {
+  font-size: 13.5px; color: #ccc; padding: 9px 0 9px 20px; position: relative;
+  border-top: 1px solid var(--border);
+}
+.prog-list li:first-child { border-top: none; }
+.prog-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold-dk); }
+
+/* ── BELT PROGRESSION (signature element) ── */
+.belt-strip { margin-top: 8px; }
+.belt-row { display: flex; gap: 3px; margin-bottom: 3px; }
+.belt-seg {
+  flex: 1; height: 14px; position: relative; overflow: hidden;
+}
+.belt-seg::after {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 60%);
+}
+.belt-labels { display: flex; gap: 3px; margin-top: 18px; }
+.belt-label { flex: 1; text-align: center; padding: 0 4px; }
+.belt-label .word { font-family: var(--cormorant); font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+.belt-label .desc { font-family: var(--dm); font-size: 12px; color: var(--muted); line-height: 1.6; }
+@media (max-width: 820px) {
+  .belt-row, .belt-labels { flex-wrap: wrap; }
+  .belt-seg, .belt-label { flex: 1 1 30%; }
+  .belt-label { margin-bottom: 16px; }
+}
+
+/* ── SAFETY BAND ── */
+.safety-band {
+  background: var(--grey); border: 1px solid var(--gold-dk); border-radius: var(--r);
+  padding: 40px; margin-top: 8px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px;
+}
+@media (max-width: 820px) { .safety-band { grid-template-columns: 1fr; } }
+.safety-num { font-family: var(--bebas); font-size: 64px; color: var(--gold); line-height: 1; }
+.safety-num-lbl {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-top: 10px; max-width: 200px;
+}
+.safety-body { color: #ccc; font-size: 14.5px; line-height: 1.85; }
+.safety-body strong { color: var(--text); font-weight: 500; }
+
+/* ── PRICING ── */
+.price-table { border: 1px solid var(--border); margin-top: 8px; }
+.price-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 22px 28px; border-top: 1px solid var(--border);
+}
+.price-row:first-child { border-top: none; }
+.price-name { font-size: 14.5px; color: var(--text); }
+.price-name .sub { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; }
+.price-val { font-family: var(--bebas); font-size: 22px; color: var(--gold); letter-spacing: 0.02em; white-space: nowrap; }
+.price-note { font-size: 12.5px; color: var(--muted); margin-top: 18px; line-height: 1.8; max-width: 560px; }
+
+/* ── CTA / BUTTON ── */
+.btn {
+  display: inline-block; background: var(--gold-dk); color: #000;
+  border: none; border-radius: var(--r); font-family: var(--mono); font-size: 11px;
+  font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 15px 28px;
+  cursor: pointer; text-decoration: none; position: relative; overflow: hidden;
+}
+.btn::before {
+  content: ''; position: absolute; inset: 0; background: var(--gold-lt);
+  transform: translateX(-100%); transition: transform 0.25s ease;
+}
+.btn:hover::before { transform: translateX(0); }
+.btn:focus-visible { outline: 2px solid var(--gold-lt); outline-offset: 3px; }
+.btn span { position: relative; z-index: 1; }
+.btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--muted); }
+.btn-ghost::before { display: none; }
+.btn-ghost:hover { border-color: var(--gold-dk); color: var(--gold); }
+.cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── CLOSING ── */
+.closing { text-align: center; padding: 100px 0 60px; }
+.closing-title {
+  font-family: var(--cormorant); font-weight: 300; font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1; max-width: 760px; margin: 0 auto 22px;
+}
+.closing-title em { font-style: italic; color: var(--gold-lt); }
+.closing-body { color: var(--muted); max-width: 500px; margin: 0 auto 34px; font-size: 15px; line-height: 1.85; }
+.closing-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); padding: 40px 0; text-align: center;
+  font-family: var(--mono); font-size: 11px; color: var(--muted2); line-height: 2;
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow eyebrow">Junior School Partnerships · Years 1–6 · Ages 5–12</div>
+    <h1 class="hero-headline">Kids who learn to <em>focus, fall down, and get back up.</em></h1>
+    <p class="hero-body">A movement, focus, and confidence programme delivered by a world-ranked combat sports coach and a Registered Nurse — built specifically for younger children, not scaled down from a teen or adult class.</p>
+    <div class="hero-cta cta-group">
+      <a href="mailto:info@eagleds.co.nz?subject=Junior%20School%20Partnership%20Enquiry" class="btn"><span>Talk to us →</span></a>
+      <a href="#programme" class="btn btn-ghost"><span>See the programme</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item"><div class="n">0</div><div class="lbl">Concussions across 900+ matches under Eagle DS's safety record</div></div>
+  <div class="trust-item"><div class="n">24 YRS</div><div class="lbl">Coaching children and young people</div></div>
+  <div class="trust-item"><div class="n">RN</div><div class="lbl">Programme co-designed by a Registered Nurse</div></div>
+  <div class="trust-item"><div class="n">#10</div><div class="lbl">World-ranked competitor leading every session</div></div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The People</div>
+      <h2 class="section-title">Not a stranger with a <em>whistle.</em></h2>
+      <p class="section-body">A primary school hall full of five-to-twelve-year-olds needs a different kind of adult at the front of the room than a high school gym does. Here's who's actually running it.</p>
+    </div>
+    <div class="people-grid">
+      <div class="people-card">
+        <div class="people-role">Founder &amp; Lead Coach</div>
+        <div class="people-name">Dafydd Sanders</div>
+        <p class="people-desc">31 years in martial arts, 24 years coaching — including children as young as five. Reached <strong>World #10 in Taekwondo</strong> across multiple Olympic campaign cycles, and competed at WAKO Worlds and IMMAF Worlds. He runs every junior session personally; this isn't outsourced to junior staff.</p>
+      </div>
+      <div class="people-card">
+        <div class="people-role">Wellness Lead &amp; Safety Design</div>
+        <div class="people-name">Carrie Sanders</div>
+        <p class="people-desc"><strong>Registered Nurse</strong> and Clinical Nutritionist, and a former New Zealand representative in gymnastics and trampolining. Carrie holds Eagle DS's <strong>zero-concussion record across 900+ matches</strong> and five national tournaments — she designs the safety standard every session runs on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="programme">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Programme</div>
+      <h2 class="section-title">Built for <em>shorter attention spans,</em> not shorter standards.</h2>
+      <p class="section-body">Two sessions, each standalone. Where the teen programme is a talk followed by a workshop, the junior programme flips the order and the pace — young kids learn by moving, not by sitting still and listening first.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-eyebrow">Session One · Hall or Field</div>
+        <div class="prog-title">Move, Focus, Reset</div>
+        <p class="prog-desc">A fast-moving, games-based session that teaches the physical basics of focus — stopping on a signal, listening under a bit of excitement, and controlling your body when it wants to run wild. No lecture. Kids are moving within the first two minutes.</p>
+        <ul class="prog-list">
+          <li>Simple stance, balance, and movement games</li>
+          <li>Listen-and-respond drills that build self-control</li>
+          <li>Partner activities that teach turn-taking and respect</li>
+          <li>Every child included, regardless of fitness or coordination</li>
+        </ul>
+      </div>
+      <div class="prog-card">
+        <div class="prog-eyebrow">Session Two · Follow-On (Optional)</div>
+        <div class="prog-title">Try Again Workshop</div>
+        <p class="prog-desc">Built around one idea: falling down and getting back up is a skill, not a feeling. Kids attempt something physically new, don't get it right away, and try again — with a coach who's spent three decades doing exactly that at the highest level.</p>
+        <ul class="prog-list">
+          <li>Foundational striking and movement, adapted for young bodies</li>
+          <li>Structured so no child is singled out or embarrassed</li>
+          <li>A calm-down close so kids leave regulated, not wound up</li>
+          <li>A pathway offered to any child who wants to keep going</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What They Take Away</div>
+      <h2 class="section-title">Six things a <em>belt</em> actually teaches.</h2>
+      <p class="section-body">In martial arts, a belt isn't a prize — it's proof you built something, one piece at a time. That's the model the session runs on, even in a single visit.</p>
+    </div>
+    <div class="belt-strip">
+      <div class="belt-row">
+        <div class="belt-seg" style="background:var(--text)"></div>
+        <div class="belt-seg" style="background:var(--gold-lt)"></div>
+        <div class="belt-seg" style="background:var(--orange)"></div>
+        <div class="belt-seg" style="background:var(--green)"></div>
+        <div class="belt-seg" style="background:var(--blue)"></div>
+        <div class="belt-seg" style="background:var(--purple)"></div>
+      </div>
+      <div class="belt-labels">
+        <div class="belt-label"><div class="word">Focus</div><div class="desc">Holding attention on one thing, even when excited</div></div>
+        <div class="belt-label"><div class="word">Listening</div><div class="desc">Responding to instruction the first time it's given</div></div>
+        <div class="belt-label"><div class="word">Coordination</div><div class="desc">Basic control over a moving body</div></div>
+        <div class="belt-label"><div class="word">Confidence</div><div class="desc">Trying something physical in front of others</div></div>
+        <div class="belt-label"><div class="word">Resilience</div><div class="desc">Getting it wrong, and trying again anyway</div></div>
+        <div class="belt-label"><div class="word">Respect</div><div class="desc">Working safely with a partner, both ways</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Safety &amp; Standards</div>
+      <h2 class="section-title">The question every principal <em>should</em> ask.</h2>
+    </div>
+    <div class="safety-band">
+      <div>
+        <div class="safety-num">Zero</div>
+        <div class="safety-num-lbl">Concussions recorded across 900+ Eagle DS matches and five national tournaments</div>
+      </div>
+      <div class="safety-body">
+        Combat sports and five-year-olds in the same sentence makes some principals nervous — that's a reasonable instinct, and it's exactly why the programme is built the way it is. There is no sparring, no contact drilling, and no full-contact content of any kind in a junior session. The safety standard is designed and held by <strong>Carrie Sanders, a Registered Nurse</strong>, and every activity is scaled to what a five-to-twelve-year-old's body and attention span can actually do — not adapted down from a teen or adult curriculum.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Investment</div>
+      <h2 class="section-title">Simple, transparent <em>pricing.</em></h2>
+      <p class="section-body">The same straightforward structure as our teen programme. Session lengths and formats are flexible — if your budget needs a different shape, Dafydd is open to a conversation.</p>
+    </div>
+    <div class="price-table">
+      <div class="price-row">
+        <div class="price-name">Move, Focus, Reset<span class="sub">Hall or field delivery · Flexible duration · Years 1–6</span></div>
+        <div class="price-val">$125/hr</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Try Again Workshop<span class="sub">Follow-on session · Flexible duration</span></div>
+        <div class="price-val">$125/hr</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Combined Full-Day Programme<span class="sub">Both sessions · Recommended for whole-syndicate visits</span></div>
+        <div class="price-val">POA</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Travel<span class="sub">Outside Auckland central · Flat rate per visit</span></div>
+        <div class="price-val">$50</div>
+      </div>
+    </div>
+    <p class="price-note">Pricing shown here mirrors our secondary school programme (all prices per session, GST not included). Eagle DS is also open to discussing ongoing partnerships — including a termly visit or a referral pathway for children who want to keep training.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2 class="closing-title">Let's put something <em>real</em> in front of your youngest students.</h2>
+    <p class="closing-body">This is a conversation, not a sales process. If it fits what your school is building in your students, let's talk — Dafydd is available to meet in person, answer questions, or tailor the session to your context.</p>
+    <div class="closing-cta">
+      <a href="mailto:info@eagleds.co.nz?subject=Junior%20School%20Partnership%20Enquiry" class="btn"><span>Email Dafydd →</span></a>
+      <a href="tel:+64210902471" class="btn btn-ghost"><span>021 902 471</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Eagle DS Combat &amp; Wellness · Auckland, New Zealand<br>
+  <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a> · 17 Nandina Ave, East Tāmaki, Auckland 2013
+</footer>
+
+</body>
+</html>
