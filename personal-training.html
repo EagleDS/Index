@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dafydd Sanders — Personal Training | Eagle DS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0C;
+    --bone:#F5F3EE;
+    --gold:#C8960C;
+    --crimson:#7A1F1F;
+    --steel:#4A4E54;
+    --line: rgba(245,243,238,0.14);
+    --max: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; letter-spacing:0.01em; margin:0;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,11,12,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:var(--max); margin:0 auto;}
+  .nav-name{font-family:'Big Shoulders Display'; font-weight:700; font-size:20px; letter-spacing:0.04em; text-transform:uppercase;}
+  .nav-name span{color:var(--gold);}
+  .nav-cta{
+    background:var(--gold); color:var(--ink); font-weight:700; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.06em; padding:10px 18px; border-radius:2px;
+    text-decoration:none; white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 0; border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(200,150,12,0.14), transparent 60%),
+      var(--ink);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:end;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero-text{padding-bottom:44px;}
+  .hero-photo{
+    position:relative; height:100%; min-height:420px; align-self:stretch;
+    border-left:1px solid var(--line);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block;
+    filter:grayscale(0.15) contrast(1.05);
+  }
+  .hero-photo::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,11,12,0) 55%, rgba(11,11,12,0.85) 100%),
+               linear-gradient(90deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0) 18%);
+  }
+  .hero-photo-cap{
+    position:absolute; left:20px; bottom:18px; z-index:2;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold);
+  }
+  @media (max-width:860px){ .hero-photo{min-height:340px;} }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{content:''; width:28px; height:1px; background:var(--gold);}
+  h1.hero-title{
+    font-size:clamp(48px, 9vw, 108px); line-height:0.92; font-weight:900;
+  }
+  h1.hero-title .line2{color:var(--gold);}
+  .hero-sub{
+    max-width:620px; font-size:19px; line-height:1.6; color:#d8d5cc; margin:28px 0 40px;
+  }
+  .hero-stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid var(--line); border-left:1px solid var(--line);
+  }
+  .stat{
+    padding:20px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .stat .n{font-family:'IBM Plex Mono'; font-size:clamp(22px,3vw,32px); color:var(--gold); font-weight:600;}
+  .stat .l{font-size:12px; color:#9c9890; margin-top:6px; line-height:1.4;}
+  @media (max-width:720px){
+    .hero-stats{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* ---------- PASSPORT ---------- */
+  .section{padding:80px 0;}
+  .section-head{margin-bottom:44px; max-width:640px;}
+  .kicker{font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+  h2.section-title{font-size:clamp(32px,4.5vw,52px); line-height:1;}
+  .section-desc{color:#b7b3aa; font-size:16px; line-height:1.65; margin-top:16px;}
+
+  .passport-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  @media (max-width:900px){ .passport-grid{grid-template-columns:repeat(2,1fr);} }
+  .stamp{
+    border:1px solid var(--line); padding:22px 18px; position:relative; overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .stamp:hover{border-color:var(--gold); transform:translateY(-3px);}
+  .stamp .fed{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase;}
+  .stamp h3{font-size:26px; margin:10px 0 8px; line-height:1.05;}
+  .stamp p{font-size:13.5px; color:#a9a59c; line-height:1.5; margin:0;}
+  .stamp .rank{
+    position:absolute; top:16px; right:16px; font-family:'IBM Plex Mono'; font-size:10px;
+    border:1px solid var(--crimson); color:#e2a3a3; padding:3px 7px; letter-spacing:0.06em;
+    transform:rotate(6deg);
+  }
+
+  /* ---------- DISCIPLINE TABS ---------- */
+  .tabs{border:1px solid var(--line);}
+  .tab-list{display:flex; flex-wrap:wrap; border-bottom:1px solid var(--line);}
+  .tab-btn{
+    flex:1 1 auto; min-width:120px; background:transparent; border:none; color:#98948b;
+    font-family:'Big Shoulders Display'; font-weight:700; font-size:16px; letter-spacing:0.03em;
+    text-transform:uppercase; padding:16px 14px; cursor:pointer; border-right:1px solid var(--line);
+    border-bottom:3px solid transparent; transition:color .2s, border-color .2s, background .2s;
+  }
+  .tab-btn:last-child{border-right:none;}
+  .tab-btn:hover{color:var(--bone);}
+  .tab-btn[aria-selected="true"]{color:var(--gold); border-bottom-color:var(--gold); background:rgba(200,150,12,0.06);}
+  .tab-panels{padding:36px 30px;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px;}
+  @media (max-width:800px){ .tab-panel.active{grid-template-columns:1fr;} }
+  .tab-panel h3{font-size:30px; margin-bottom:14px;}
+  .tab-panel p{color:#c4c0b7; line-height:1.7; font-size:15.5px; margin:0 0 14px;}
+  .tab-facts{list-style:none; margin:0; padding:0; border-top:1px solid var(--line);}
+  .tab-facts li{
+    display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .tab-facts li span:first-child{color:#949087;}
+  .tab-facts li span:last-child{font-family:'IBM Plex Mono'; color:var(--bone); text-align:right;}
+
+  /* ---------- MINDSET ---------- */
+  .mindset{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:start;
+  }
+  @media (max-width:800px){ .mindset{grid-template-columns:1fr;} }
+  .mindset-card{
+    border:1px solid var(--gold); padding:28px; background:rgba(200,150,12,0.05);
+  }
+  .mindset-card .tag{font-family:'IBM Plex Mono'; font-size:11px; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase;}
+  .mindset-card h3{font-size:26px; margin:10px 0 12px;}
+  .mindset-card p{color:#c4c0b7; font-size:15px; line-height:1.65; margin:0;}
+  .mindset-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:22px;}
+  .mindset-list li{padding-left:20px; border-left:2px solid var(--line); position:relative;}
+  .mindset-list li strong{display:block; font-family:'Big Shoulders Display'; font-size:19px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
+  .mindset-list li p{margin:0; color:#b7b3aa; font-size:14.5px; line-height:1.6;}
+  .mindset-photo{border:1px solid var(--line); margin-top:22px; overflow:hidden;}
+  .mindset-photo img{width:100%; display:block; filter:grayscale(0.1) contrast(1.05);}
+  .mindset-photo-cap{
+    padding:12px 16px; font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:#9c9890; border-top:1px solid var(--line);
+  }
+
+  /* ---------- PRICING ---------- */
+  .pricing-wrap{
+    border:1px solid var(--gold); position:relative; overflow:hidden;
+    background:linear-gradient(135deg, rgba(200,150,12,0.10), transparent 60%);
+  }
+  .pricing-grid{display:grid; grid-template-columns:1fr 1fr;}
+  @media (max-width:800px){ .pricing-grid{grid-template-columns:1fr;} }
+  .price-left{padding:44px 40px; border-right:1px solid var(--line);}
+  @media (max-width:800px){ .price-left{border-right:none; border-bottom:1px solid var(--line);} }
+  .price-tag{display:flex; align-items:baseline; gap:8px; margin-bottom:6px;}
+  .price-tag .amt{font-family:'IBM Plex Mono'; font-size:56px; color:var(--gold); font-weight:600;}
+  .price-tag .unit{font-family:'IBM Plex Mono'; font-size:16px; color:#a9a59c;}
+  .price-left .note{color:#9c9890; font-size:13.5px; margin-top:4px;}
+  .price-right{padding:44px 40px;}
+  .value-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:16px;}
+  .value-list li{display:flex; gap:12px; font-size:14.5px; color:#c4c0b7; line-height:1.55;}
+  .value-list li::before{content:'—'; color:var(--gold); flex-shrink:0;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    border-top:1px solid var(--line); padding:70px 0 90px; text-align:center;
+  }
+  .contact h2{font-size:clamp(34px,5vw,58px); margin-bottom:20px;}
+  .contact p{color:#b7b3aa; font-size:16px; max-width:520px; margin:0 auto 32px;}
+  .contact-cta{
+    display:inline-block; background:var(--gold); color:var(--ink); font-weight:700; font-size:15px;
+    text-transform:uppercase; letter-spacing:0.06em; padding:16px 34px; border-radius:2px; text-decoration:none;
+    margin-bottom:34px;
+  }
+  .contact-meta{
+    display:flex; justify-content:center; gap:36px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono'; font-size:13px; color:#9c9890;
+  }
+  footer{border-top:1px solid var(--line); padding:24px; text-align:center; font-size:12px; color:#6b6860; font-family:'IBM Plex Mono';}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-name">DAFYDD <span>SANDERS</span></div>
+    <a class="nav-cta" href="#contact">Book a session</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-eyebrow">One-to-one · Eagle DS, 17 Nandina Ave, East Tāmaki</div>
+        <h1 class="hero-title">TRAIN WITH<br><span class="line2">THE STANDARD.</span></h1>
+        <p class="hero-sub">Thirty-one years on the mat and in the cage, ring, and dojang. Twenty-four years coaching. One-to-one sessions with a coach who has competed for New Zealand across taekwondo, kickboxing, K1, and MMA — and built the athletes and the systems to prove it.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="images/dafydd-ready-stance.png" alt="Dafydd Sanders in fight stance, gloved up, at the Eagle DS facility">
+        <div class="hero-photo-cap">Eagle DS · East Tāmaki</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">31</div><div class="l">Years training in martial arts</div></div>
+      <div class="stat"><div class="n">24</div><div class="l">Years coaching fighters and athletes</div></div>
+      <div class="stat"><div class="n">#10</div><div class="l">World ranking, taekwondo — multiple Olympic campaigns</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Combat sports competed for NZ at world level</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Competitive Record</div>
+      <h2 class="section-title">The Passport</h2>
+      <p class="section-desc">Most coaches specialise because they only competed in one discipline. Dafydd's record is stamped across four — at world championship level in three of them.</p>
+    </div>
+    <div class="passport-grid">
+      <div class="stamp">
+        <div class="rank">WORLD #10</div>
+        <div class="fed">World Taekwondo / ITF</div>
+        <h3>Taekwondo</h3>
+        <p>Multiple Olympic campaigns. Peak competitive period based at London Shootfighters. Coached fighters through to Olympic-level performance.</p>
+      </div>
+      <div class="stamp">
+        <div class="fed">WAKO Worlds 2017</div>
+        <h3>Kickboxing &amp; K1</h3>
+        <p>Competed for New Zealand at WAKO World Championships across kickboxing and K1 full contact.</p>
+      </div>
+      <div class="stamp">
+        <div class="fed">IMMAF Worlds 2019</div>
+        <h3>MMA</h3>
+        <p>Competed for New Zealand at IMMAF World Championships. Post-2016 training base: London Shootfighters. Has coached professional fighters, including Dan Hooker.</p>
+      </div>
+      <div class="stamp">
+        <div class="fed">All Japan 2010</div>
+        <h3>Karate</h3>
+        <p>Karate All Japan Champion, competing in the international field. Māori Sports Person of the Year, University of Auckland, 2005.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What A Session Actually Trains</div>
+      <h2 class="section-title">Pick a discipline</h2>
+      <p class="section-desc">Every session is built around you — but it draws from a genuinely full toolkit, not one sport wearing four labels.</p>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Training disciplines">
+        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-tkd" id="tab-tkd">Taekwondo</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-kb" id="tab-kb">Kickboxing / K1</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-mma" id="tab-mma">MMA</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-karate" id="tab-karate">Karate</button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel active" id="panel-tkd" role="tabpanel" aria-labelledby="tab-tkd">
+          <div>
+            <h3>Kicking, distance, and Olympic-pathway technical work</h3>
+            <p>Taekwondo is where Dafydd's competitive career reached its highest level — World #10, across multiple Olympic campaigns. Sessions cover kicking mechanics, footwork and distance management, and the technical precision needed for competitive scoring, whether you're chasing a grading or a national team.</p>
+            <p>This is also the discipline where he has taken athletes to Olympic-level performance himself — the coaching, not just the competing, is proven.</p>
+          </div>
+          <ul class="tab-facts">
+            <li><span>Peak level</span><span>World #10</span></li>
+            <li><span>Campaigns</span><span>Multiple Olympic cycles</span></li>
+            <li><span>Coaching output</span><span>Athletes to Olympic level</span></li>
+            <li><span>Base</span><span>London Shootfighters (post-2016)</span></li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="panel-kb" role="tabpanel" aria-labelledby="tab-kb">
+          <div>
+            <h3>Full-contact striking under real pressure</h3>
+            <p>Competed for New Zealand at the WAKO World Championships in both kickboxing and K1 full contact. Sessions focus on the difference between technique that looks right and technique that holds up when someone is genuinely trying to hit you back — power generation, combinations, and the conditioning to sustain full-contact rounds.</p>
+          </div>
+          <ul class="tab-facts">
+            <li><span>Federation</span><span>WAKO</span></li>
+            <li><span>Year</span><span>2017</span></li>
+            <li><span>Disciplines</span><span>Kickboxing + K1 Full Contact</span></li>
+            <li><span>Representing</span><span>New Zealand</span></li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="panel-mma" role="tabpanel" aria-labelledby="tab-mma">
+          <div>
+            <h3>Complete fighter development, striking to grappling</h3>
+            <p>Competed for New Zealand at the IMMAF World Championships in 2019. Trained out of London Shootfighters — one of the world's recognised MMA gyms — and has coached professional fighters, including Dan Hooker. Sessions integrate striking, clinch, and ground exchange into one coherent game plan rather than three disconnected skill sets.</p>
+          </div>
+          <ul class="tab-facts">
+            <li><span>Federation</span><span>IMMAF</span></li>
+            <li><span>Year</span><span>2019</span></li>
+            <li><span>Training base</span><span>London Shootfighters</span></li>
+            <li><span>Professional coaching</span><span>Incl. Dan Hooker</span></li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="panel-karate" role="tabpanel" aria-labelledby="tab-karate">
+          <div>
+            <h3>Where it started, and where the discipline comes from</h3>
+            <p>Karate All Japan Champion in 2010, competing in the international field — one of the hardest competitive fields in the sport to win. This is the foundation discipline underneath everything else: stance, structure, and the precision that carries into every other art Dafydd has competed in since.</p>
+          </div>
+          <ul class="tab-facts">
+            <li><span>Title</span><span>All Japan Champion</span></li>
+            <li><span>Year</span><span>2010</span></li>
+            <li><span>Field</span><span>International</span></li>
+            <li><span>Recognition</span><span>Māori Sports Person of the Year, 2005</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Beyond Technique</div>
+      <h2 class="section-title">Mindset is coached, not mentioned</h2>
+      <p class="section-desc">The technical work is only half the session. Dafydd has coached mindset directly with professional fighters at the top of the sport — including Dan Hooker — and that same approach is what you get one-to-one.</p>
+    </div>
+    <div class="mindset">
+      <div class="mindset-card">
+        <div class="tag">Proven at the top</div>
+        <h3>Coached at professional level</h3>
+        <p>Dafydd has coached professional fighters, including Dan Hooker, through both technical and mindset work. What's delivered in a one-to-one session at Eagle DS is the same standard applied to the person in front of him — not a scaled-down version.</p>
+        <div class="mindset-photo">
+          <img src="images/dafydd-pad-work.jpeg" alt="Dafydd Sanders holding pads for a high kick during a coaching session">
+          <div class="mindset-photo-cap">Pad work, one-to-one</div>
+        </div>
+      </div>
+      <ul class="mindset-list">
+        <li>
+          <strong>Identity before technique</strong>
+          <p>How you see yourself under pressure decides how the technique shows up. That gets addressed directly, not left to sort itself out over time.</p>
+        </li>
+        <li>
+          <strong>Tested, not told</strong>
+          <p>Sessions are built to genuinely test you — physically and mentally — inside a safe, controlled environment. You find out something real about your own ceiling.</p>
+        </li>
+        <li>
+          <strong>Built from four disciplines' worth of pressure</strong>
+          <p>Competing at world level across taekwondo, kickboxing, K1, and MMA means Dafydd has personally faced the exact moments he's now coaching you through.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Investment</div>
+      <h2 class="section-title">$175 per hour, one-to-one</h2>
+      <p class="section-desc">This is not a shared class rate. This is direct, undivided time with a coach who has competed for New Zealand in four combat sports at world level and coached professional fighters — at a purpose-built, full-time facility.</p>
+    </div>
+
+    <div class="pricing-wrap">
+      <div class="pricing-grid">
+        <div class="price-left">
+          <div class="price-tag"><span class="amt">$175</span><span class="unit">/ hour</span></div>
+          <div class="note">One-to-one. Full session, undivided attention.</div>
+          <div class="note" style="margin-top:18px;">17 Nandina Avenue, East Tāmaki, Auckland 2013 — a full-time combat sports facility, not a rented hall or a garage setup.</div>
+        </div>
+        <div class="price-right">
+          <ul class="value-list">
+            <li>A coach with a genuine world-level competitive record in four combat sports, not one sport marketed four ways.</li>
+            <li>Technical coaching proven at Olympic level and mindset coaching proven with professional fighters, including Dan Hooker.</li>
+            <li>A purpose-built, full-time facility at 17 Nandina Ave — not a shared space booked by the hour.</li>
+            <li>The session is built entirely around what you need to progress — no fixed curriculum, no shared attention, no watered-down version of what's coached at the top level.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Book your session.</h2>
+    <p>One-to-one training, direct with Dafydd Sanders. Eagle DS, 17 Nandina Avenue, East Tāmaki, Auckland.</p>
+    <a class="contact-cta" href="mailto:info@eagleds.co.nz?subject=Personal%20Training%20Enquiry">Email info@eagleds.co.nz</a>
+    <div class="contact-meta">
+      <span>021 902 471</span>
+      <span>info@eagleds.co.nz</span>
+      <span>17 Nandina Ave, East Tāmaki, Auckland 2013</span>
+    </div>
+  </div>
+</section>
+
+<footer>EAGLE DS · PERSONAL TRAINING WITH DAFYDD SANDERS</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = {
+    'tab-tkd': 'panel-tkd',
+    'tab-kb': 'panel-kb',
+    'tab-mma': 'panel-mma',
+    'tab-karate': 'panel-karate'
+  };
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.setAttribute('aria-selected','false'));
+      Object.values(panels).forEach(id => document.getElementById(id).classList.remove('active'));
+      btn.setAttribute('aria-selected','true');
+      document.getElementById(panels[btn.id]).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
