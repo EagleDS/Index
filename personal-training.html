@@ -135,23 +135,37 @@
   .product-accordion{border-top:1px solid var(--line);}
   .product-item{border-bottom:1px solid var(--line);}
   .product-item-head{
-    width:100%; background:transparent; border:none; cursor:pointer;
-    padding:38px 0; display:flex; justify-content:space-between; align-items:center; gap:24px;
-    text-align:left; transition:background .2s ease;
+    position:relative; overflow:hidden; width:100%; min-height:190px;
+    padding:0 32px; border:none; cursor:pointer; text-align:left;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+    background-size:cover; background-position:center; transition:min-height .2s ease;
   }
-  .product-item-head:hover{background:rgba(200,150,12,0.035);}
-  .product-item-headline{display:flex; align-items:baseline; gap:18px;}
+  @media (max-width:800px){ .product-item-head{min-height:150px; padding:0 20px;} }
+  .product-item-head::before{
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(90deg, rgba(11,11,12,0.94) 8%, rgba(11,11,12,0.62) 60%, rgba(11,11,12,0.88) 100%);
+    transition:background .3s ease;
+  }
+  .product-item-head:hover::before{
+    background:linear-gradient(90deg, rgba(11,11,12,0.88) 8%, rgba(11,11,12,0.48) 60%, rgba(11,11,12,0.8) 100%);
+  }
+  .product-item.open .product-item-head{box-shadow:inset 5px 0 0 0 var(--gold);}
+  .product-item-headline{position:relative; z-index:2; display:flex; flex-direction:column; gap:8px;}
   .product-item-num{
-    font-family:'IBM Plex Mono'; font-size:15px; color:var(--gold); letter-spacing:0.08em; flex-shrink:0;
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase;
   }
   .product-item-title{
-    font-size:clamp(28px,5.5vw,58px); line-height:0.95; text-transform:uppercase; letter-spacing:0.005em;
+    font-size:clamp(30px,6vw,64px); line-height:0.95; text-transform:uppercase; letter-spacing:0.005em;
+    text-shadow:0 2px 18px rgba(0,0,0,0.5);
   }
   .product-item-plus{
-    font-family:'IBM Plex Mono'; font-size:clamp(22px,3vw,32px); color:var(--gold); flex-shrink:0;
-    transition:transform .3s ease; line-height:1;
+    position:relative; z-index:2; font-family:'IBM Plex Mono'; font-size:clamp(24px,3vw,36px); color:var(--gold);
+    flex-shrink:0; transition:transform .3s ease; line-height:1;
+    width:52px; height:52px; border:1px solid var(--gold); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
   }
-  .product-item.open .product-item-plus{transform:rotate(45deg);}
+  .product-item.open .product-item-plus{transform:rotate(45deg); background:var(--gold); color:var(--ink);}
+  .product-item-head:hover .product-item-plus{background:rgba(200,150,12,0.15);}
   .product-item-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s ease;}
   .product-item.open .product-item-body{grid-template-rows:1fr;}
   .product-item-body-inner{overflow:hidden;}
@@ -251,9 +265,9 @@
     <div class="product-accordion">
 
       <div class="product-item" id="item-mindset">
-        <button class="product-item-head" aria-expanded="false" aria-controls="body-mindset" data-target="item-mindset">
+        <button class="product-item-head" style="background-image:url('dafydd-meditation.jpeg');" aria-expanded="false" aria-controls="body-mindset" data-target="item-mindset">
           <span class="product-item-headline">
-            <span class="product-item-num">01</span>
+            <span class="product-item-num">Focus 01 — Meditation &amp; Mental Strategies</span>
             <span class="product-item-title">Combat Mindset</span>
           </span>
           <span class="product-item-plus">+</span>
@@ -270,6 +284,10 @@
 
                   <div class="product-subhead">Where it comes from</div>
                   <p>Not a generic visualisation script. What's coached here is drawn from what actually happens on a world championship stage, across four disciplines — translated into something repeatable, whatever you're preparing for.</p>
+
+                  <div class="product-photo">
+                    <img src="dafydd-meditation.jpeg" alt="Dafydd Sanders in a seated meditation position, eyes closed, in Eagle DS training whites">
+                  </div>
                 </div>
                 <div>
                   <ul class="product-facts">
@@ -285,9 +303,9 @@
       </div>
 
       <div class="product-item" id="item-performance">
-        <button class="product-item-head" aria-expanded="false" aria-controls="body-performance" data-target="item-performance">
+        <button class="product-item-head" style="background-image:url('dafydd-pad-work.jpeg');" aria-expanded="false" aria-controls="body-performance" data-target="item-performance">
           <span class="product-item-headline">
-            <span class="product-item-num">02</span>
+            <span class="product-item-num">Focus 02 — Technical, Strategic &amp; Periodisation</span>
             <span class="product-item-title">Combat Performance</span>
           </span>
           <span class="product-item-plus">+</span>
@@ -323,9 +341,9 @@
       </div>
 
       <div class="product-item" id="item-conditioning">
-        <button class="product-item-head" aria-expanded="false" aria-controls="body-conditioning" data-target="item-conditioning">
+        <button class="product-item-head" style="background-image:url('dafydd-conditioning.jpeg');" aria-expanded="false" aria-controls="body-conditioning" data-target="item-conditioning">
           <span class="product-item-headline">
-            <span class="product-item-num">03</span>
+            <span class="product-item-num">Focus 03 — Fitness, Strength &amp; Conditioning</span>
             <span class="product-item-title">Combat Conditioning</span>
           </span>
           <span class="product-item-plus">+</span>
@@ -342,6 +360,10 @@
 
                   <div class="product-subhead">Where it's calibrated from</div>
                   <p>Twenty-four years of coaching and a competitive career across four combat sports at world championship level — conditioning here is built from direct experience of what the body needs to hold technique together under fatigue, not theory.</p>
+
+                  <div class="product-photo">
+                    <img src="dafydd-conditioning.jpeg" alt="Dafydd Sanders coaching a client through assault bike conditioning work">
+                  </div>
                 </div>
                 <div>
                   <ul class="product-facts">
