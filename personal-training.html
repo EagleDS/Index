@@ -131,53 +131,46 @@
     transform:rotate(6deg);
   }
 
-  /* ---------- DISCIPLINE TABS ---------- */
-  .tabs{border:1px solid var(--line);}
-  .tab-list{display:flex; flex-wrap:wrap; border-bottom:1px solid var(--line);}
-  .tab-btn{
-    flex:1 1 auto; min-width:120px; background:transparent; border:none; color:#98948b;
-    font-family:'Big Shoulders Display'; font-weight:700; font-size:16px; letter-spacing:0.03em;
-    text-transform:uppercase; padding:16px 14px; cursor:pointer; border-right:1px solid var(--line);
-    border-bottom:3px solid transparent; transition:color .2s, border-color .2s, background .2s;
+  /* ---------- PRODUCTS (INTERACTIVE ACCORDION) ---------- */
+  .product-accordion{border-top:1px solid var(--line);}
+  .product-item{border-bottom:1px solid var(--line);}
+  .product-item-head{
+    width:100%; background:transparent; border:none; cursor:pointer;
+    padding:38px 0; display:flex; justify-content:space-between; align-items:center; gap:24px;
+    text-align:left; transition:background .2s ease;
   }
-  .tab-btn:last-child{border-right:none;}
-  .tab-btn:hover{color:var(--bone);}
-  .tab-btn[aria-selected="true"]{color:var(--gold); border-bottom-color:var(--gold); background:rgba(200,150,12,0.06);}
-  .tab-panels{padding:36px 30px;}
-  .tab-panel{display:none;}
-  .tab-panel.active{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px;}
-  @media (max-width:800px){ .tab-panel.active{grid-template-columns:1fr;} }
-  .tab-panel h3{font-size:30px; margin-bottom:14px;}
-  .tab-panel p{color:#c4c0b7; line-height:1.7; font-size:15.5px; margin:0 0 14px;}
-  .tab-facts{list-style:none; margin:0; padding:0; border-top:1px solid var(--line);}
-  .tab-facts li{
-    display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px solid var(--line);
-    font-size:14px;
+  .product-item-head:hover{background:rgba(200,150,12,0.035);}
+  .product-item-headline{display:flex; align-items:baseline; gap:18px;}
+  .product-item-num{
+    font-family:'IBM Plex Mono'; font-size:15px; color:var(--gold); letter-spacing:0.08em; flex-shrink:0;
   }
-  .tab-facts li span:first-child{color:#949087;}
-  .tab-facts li span:last-child{font-family:'IBM Plex Mono'; color:var(--bone); text-align:right;}
-
-  /* ---------- MINDSET ---------- */
-  .mindset{
-    display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:start;
+  .product-item-title{
+    font-size:clamp(28px,5.5vw,58px); line-height:0.95; text-transform:uppercase; letter-spacing:0.005em;
   }
-  @media (max-width:800px){ .mindset{grid-template-columns:1fr;} }
-  .mindset-card{
-    border:1px solid var(--gold); padding:28px; background:rgba(200,150,12,0.05);
+  .product-item-plus{
+    font-family:'IBM Plex Mono'; font-size:clamp(22px,3vw,32px); color:var(--gold); flex-shrink:0;
+    transition:transform .3s ease; line-height:1;
   }
-  .mindset-card .tag{font-family:'IBM Plex Mono'; font-size:11px; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase;}
-  .mindset-card h3{font-size:26px; margin:10px 0 12px;}
-  .mindset-card p{color:#c4c0b7; font-size:15px; line-height:1.65; margin:0;}
-  .mindset-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:22px;}
-  .mindset-list li{padding-left:20px; border-left:2px solid var(--line); position:relative;}
-  .mindset-list li strong{display:block; font-family:'Big Shoulders Display'; font-size:19px; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:4px;}
-  .mindset-list li p{margin:0; color:#b7b3aa; font-size:14.5px; line-height:1.6;}
-  .mindset-photo{border:1px solid var(--line); margin-top:22px; overflow:hidden;}
-  .mindset-photo img{width:100%; display:block; filter:grayscale(0.1) contrast(1.05);}
-  .mindset-photo-cap{
-    padding:12px 16px; font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.08em;
-    text-transform:uppercase; color:#9c9890; border-top:1px solid var(--line);
+  .product-item.open .product-item-plus{transform:rotate(45deg);}
+  .product-item-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s ease;}
+  .product-item.open .product-item-body{grid-template-rows:1fr;}
+  .product-item-body-inner{overflow:hidden;}
+  .product-detail{padding:0 0 44px; display:grid; grid-template-columns:1fr 0.7fr; gap:44px; align-items:start;}
+  @media (max-width:800px){ .product-detail{grid-template-columns:1fr;} }
+  .product-detail-lede{font-size:17px; line-height:1.7; color:#d8d5cc; margin:0 0 22px; max-width:600px;}
+  .product-subhead{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); margin:24px 0 10px;
   }
+  .product-detail p{color:#c4c0b7; font-size:15px; line-height:1.7; margin:0 0 4px; max-width:600px;}
+  .product-facts{list-style:none; margin:20px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px;}
+  .product-facts li{
+    font-family:'IBM Plex Mono'; font-size:12px; color:#c4c0b7;
+    border:1px solid var(--line); padding:8px 14px; white-space:nowrap;
+  }
+  .product-facts li span{color:var(--gold);}
+  .product-photo{border:1px solid var(--line); overflow:hidden;}
+  .product-photo img{width:100%; display:block; filter:grayscale(0.1) contrast(1.05);}
 
   /* ---------- PRICING ---------- */
   .pricing-wrap{
@@ -230,7 +223,7 @@
       <div class="hero-text">
         <div class="hero-eyebrow">One-to-one · Eagle DS, 17 Nandina Ave, East Tāmaki</div>
         <h1 class="hero-title">TRAIN WITH<br><span class="line2">THE STANDARD.</span></h1>
-        <p class="hero-sub">Thirty-one years on the mat and in the cage, ring, and dojang. Twenty-four years coaching. One-to-one sessions with a coach who has competed for New Zealand across taekwondo, kickboxing, K1, and MMA — and built the athletes and the systems to prove it.</p>
+        <p class="hero-sub">Thirty-one years on the mat and in the cage, ring, and dojang. Twenty-four years coaching. One-to-one — built entirely around what you actually need.</p>
       </div>
       <div class="hero-photo">
         <img src="dafydd-ready-stance.png" alt="Dafydd Sanders in fight stance, gloved up, at the Eagle DS facility">
@@ -244,6 +237,126 @@
       <div class="stat"><div class="n">4</div><div class="l">Combat sports competed for NZ at world level</div></div>
     </div>
   </div>
+</section>
+
+<section class="section" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-bottom:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">One-to-One, Three Ways</div>
+      <h2 class="section-title">Pick your focus</h2>
+      <p class="section-desc">Tap a focus area for the full breakdown of what's covered, how it's structured, and what it's built from.</p>
+    </div>
+  </div>
+
+    <div class="product-accordion">
+
+      <div class="product-item" id="item-mindset">
+        <button class="product-item-head" aria-expanded="false" aria-controls="body-mindset" data-target="item-mindset">
+          <span class="product-item-headline">
+            <span class="product-item-num">01</span>
+            <span class="product-item-title">Combat Mindset</span>
+          </span>
+          <span class="product-item-plus">+</span>
+        </button>
+        <div class="product-item-body" id="body-mindset">
+          <div class="product-item-body-inner">
+            <div class="wrap">
+              <div class="product-detail">
+                <div>
+                  <p class="product-detail-lede">The mental side of competing, coached directly — not assumed, and not left to sort itself out under pressure. Dafydd has worked this side of the game with professional fighters, including Dan Hooker, at the top of the sport.</p>
+
+                  <div class="product-subhead">What gets worked on</div>
+                  <p>Composure when a plan breaks down mid-round. Decision-making live, under fatigue, when there's no time to think it through. Resetting cleanly after a bad exchange instead of carrying it into the next one. Pre-competition nerves, turned into something useful instead of something to fight against.</p>
+
+                  <div class="product-subhead">Where it comes from</div>
+                  <p>Not a generic visualisation script. What's coached here is drawn from what actually happens on a world championship stage, across four disciplines — translated into something repeatable, whatever you're preparing for.</p>
+                </div>
+                <div>
+                  <ul class="product-facts">
+                    <li>Coached with <span>pro fighters, incl. Dan Hooker</span></li>
+                    <li>Built into <span>every session</span></li>
+                    <li>Drawn from <span>world championship competition</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-item" id="item-performance">
+        <button class="product-item-head" aria-expanded="false" aria-controls="body-performance" data-target="item-performance">
+          <span class="product-item-headline">
+            <span class="product-item-num">02</span>
+            <span class="product-item-title">Combat Performance</span>
+          </span>
+          <span class="product-item-plus">+</span>
+        </button>
+        <div class="product-item-body" id="body-performance">
+          <div class="product-item-body-inner">
+            <div class="wrap">
+              <div class="product-detail">
+                <div>
+                  <p class="product-detail-lede">Technical and strategic work, mapped against a real competitive timeline — built backward from where you're actually headed, whether that's a grading, a fight, or a competition date already on the calendar.</p>
+
+                  <div class="product-subhead">How sessions are structured</div>
+                  <p>Fundamentals proven first. Nothing gets pressure-tested until the underlying movement is sound — pads, speed, and live pressure only come in once the technique holds up on its own. From there, training is periodised: structured progression building toward peak performance on the day that matters, not just general improvement with no target.</p>
+
+                  <div class="product-subhead">Where the method comes from</div>
+                  <p>This is the exact approach Dafydd used to plan his own campaigns across taekwondo, kickboxing, K1, and MMA — including multiple Olympic cycles — and it's the same approach that's taken athletes he's coached to Olympic-level performance themselves.</p>
+
+                  <div class="product-photo">
+                    <img src="dafydd-pad-work.jpeg" alt="Dafydd Sanders holding pads for a high kick during a coaching session">
+                  </div>
+                </div>
+                <div>
+                  <ul class="product-facts">
+                    <li>Coaching record <span>athletes to Olympic level</span></li>
+                    <li>Drawn from <span>taekwondo, kickboxing, K1, MMA</span></li>
+                    <li>Approach <span>fundamentals first, pressure earned</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-item" id="item-conditioning">
+        <button class="product-item-head" aria-expanded="false" aria-controls="body-conditioning" data-target="item-conditioning">
+          <span class="product-item-headline">
+            <span class="product-item-num">03</span>
+            <span class="product-item-title">Combat Conditioning</span>
+          </span>
+          <span class="product-item-plus">+</span>
+        </button>
+        <div class="product-item-body" id="body-conditioning">
+          <div class="product-item-body-inner">
+            <div class="wrap">
+              <div class="product-detail">
+                <div>
+                  <p class="product-detail-lede">Conditioning calibrated for combat output, not a generic gym programme with your name on it. Built from thirty-one years of training and competing at world level, and matched to what your body actually needs in order to perform.</p>
+
+                  <div class="product-subhead">Why it's different</div>
+                  <p>Fitness for combat isn't the same as fitness for its own sake. What matters is whether the conditioning holds up in the exact moments a round demands it — round three, not round one. Sessions are built around that standard, not around a generic set count.</p>
+
+                  <div class="product-subhead">Where it's calibrated from</div>
+                  <p>Twenty-four years of coaching and a competitive career across four combat sports at world championship level — conditioning here is built from direct experience of what the body needs to hold technique together under fatigue, not theory.</p>
+                </div>
+                <div>
+                  <ul class="product-facts">
+                    <li>Base <span>31 years training, 24 coaching</span></li>
+                    <li>Standard <span>world championship level, 4 disciplines</span></li>
+                    <li>Built for <span>combat-specific output</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 </section>
 
 <section class="section">
@@ -275,114 +388,6 @@
         <h3>Karate</h3>
         <p>Karate All Japan Champion, competing in the international field. Māori Sports Person of the Year, University of Auckland, 2005.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">What A Session Actually Trains</div>
-      <h2 class="section-title">Pick a discipline</h2>
-      <p class="section-desc">Every session is built around you — but it draws from a genuinely full toolkit, not one sport wearing four labels.</p>
-    </div>
-
-    <div class="tabs">
-      <div class="tab-list" role="tablist" aria-label="Training disciplines">
-        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-tkd" id="tab-tkd">Taekwondo</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-kb" id="tab-kb">Kickboxing / K1</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-mma" id="tab-mma">MMA</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-karate" id="tab-karate">Karate</button>
-      </div>
-
-      <div class="tab-panels">
-        <div class="tab-panel active" id="panel-tkd" role="tabpanel" aria-labelledby="tab-tkd">
-          <div>
-            <h3>Kicking, distance, and Olympic-pathway technical work</h3>
-            <p>Taekwondo is where Dafydd's competitive career reached its highest level — World #10, across multiple Olympic campaigns. Sessions cover kicking mechanics, footwork and distance management, and the technical precision needed for competitive scoring, whether you're chasing a grading or a national team.</p>
-            <p>This is also the discipline where he has taken athletes to Olympic-level performance himself — the coaching, not just the competing, is proven.</p>
-          </div>
-          <ul class="tab-facts">
-            <li><span>Peak level</span><span>World #10</span></li>
-            <li><span>Campaigns</span><span>Multiple Olympic cycles</span></li>
-            <li><span>Coaching output</span><span>Athletes to Olympic level</span></li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="panel-kb" role="tabpanel" aria-labelledby="tab-kb">
-          <div>
-            <h3>Full-contact striking under real pressure</h3>
-            <p>Competed for New Zealand at the WAKO World Championships — light contact in 2006, K1 full contact in 2017. Sessions focus on the difference between technique that looks right and technique that holds up when someone is genuinely trying to hit you back — power generation, combinations, and the conditioning to sustain full-contact rounds.</p>
-          </div>
-          <ul class="tab-facts">
-            <li><span>Federation</span><span>WAKO</span></li>
-            <li><span>Light Contact</span><span>2006</span></li>
-            <li><span>K1 Full Contact</span><span>2017</span></li>
-            <li><span>Representing</span><span>New Zealand</span></li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="panel-mma" role="tabpanel" aria-labelledby="tab-mma">
-          <div>
-            <h3>Complete fighter development, striking to grappling</h3>
-            <p>Competed for New Zealand at the IMMAF World Championships in 2019, fighting out of Auckland MMA, and has coached professional fighters, including Dan Hooker. Sessions integrate striking, clinch, and ground exchange into one coherent game plan rather than three disconnected skill sets.</p>
-          </div>
-          <ul class="tab-facts">
-            <li><span>Federation</span><span>IMMAF</span></li>
-            <li><span>Year</span><span>2019</span></li>
-            <li><span>Fought out of</span><span>Auckland MMA</span></li>
-            <li><span>Professional coaching</span><span>Incl. Dan Hooker</span></li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="panel-karate" role="tabpanel" aria-labelledby="tab-karate">
-          <div>
-            <h3>Where it started, and where the discipline comes from</h3>
-            <p>Karate All Japan Champion in 2010, competing in the international field — one of the hardest competitive fields in the sport to win. This is the foundation discipline underneath everything else: stance, structure, and the precision that carries into every other art Dafydd has competed in since.</p>
-          </div>
-          <ul class="tab-facts">
-            <li><span>Title</span><span>All Japan Champion</span></li>
-            <li><span>Year</span><span>2010</span></li>
-            <li><span>Field</span><span>International</span></li>
-            <li><span>Recognition</span><span>Māori Sports Person of the Year, 2005</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">Beyond Technique</div>
-      <h2 class="section-title">Built properly, not rushed</h2>
-      <p class="section-desc">Dafydd is technical first. Every session works from the fundamentals up — and what you find out along the way tends to surprise people.</p>
-    </div>
-    <div class="mindset">
-      <div class="mindset-card">
-        <div class="tag">Competed at world level, four disciplines</div>
-        <h3>Knows the gap between drilling and doing</h3>
-        <p>Dafydd has stood on world championship stages in taekwondo, WAKO kickboxing and K1, and IMMAF MMA. He knows exactly what separates a technique that looks right in a quiet room from one that holds up when it counts — and that's the standard every session is coached to.</p>
-        <div class="mindset-photo">
-          <img src="dafydd-pad-work.jpeg" alt="Dafydd Sanders holding pads for a high kick during a coaching session">
-          <div class="mindset-photo-cap">Pad work, one-to-one</div>
-        </div>
-      </div>
-      <ul class="mindset-list">
-        <li>
-          <strong>Technical first, pressure earned</strong>
-          <p>Nothing gets tested until it's built properly. Pads, speed, and pressure only come in once the underlying movement is sound — rushing that sequence just means bad habits get repeated harder, not fixed.</p>
-        </li>
-        <li>
-          <strong>Progression, not guesswork</strong>
-          <p>You won't be thrown into fatigue or reactive drilling before you're ready for it. Every step is proven at the pace before it, then carefully pressure-tested — in that order.</p>
-        </li>
-        <li>
-          <strong>What most people find out in the first session</strong>
-          <p>The fundamentals Dafydd starts with aren't a warm-up for the "real" training — they're the same principles that decide fights at elite level. Most people don't expect that until they're shown it directly.</p>
-        </li>
-      </ul>
     </div>
   </div>
 </section>
@@ -431,23 +436,15 @@
 <footer>EAGLE DS · PERSONAL TRAINING WITH DAFYDD SANDERS</footer>
 
 <script>
-  const tabs = document.querySelectorAll('.tab-btn');
-  const panels = {
-    'tab-tkd': 'panel-tkd',
-    'tab-kb': 'panel-kb',
-    'tab-mma': 'panel-mma',
-    'tab-karate': 'panel-karate'
-  };
-  tabs.forEach(btn => {
+  document.querySelectorAll('.product-item-head').forEach(btn => {
     btn.addEventListener('click', () => {
-      tabs.forEach(b => b.setAttribute('aria-selected','false'));
-      Object.values(panels).forEach(id => document.getElementById(id).classList.remove('active'));
-      btn.setAttribute('aria-selected','true');
-      document.getElementById(panels[btn.id]).classList.add('active');
+      const item = document.getElementById(btn.dataset.target);
+      const isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 </script>
 
 </body>
 </html>
-
