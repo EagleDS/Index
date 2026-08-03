@@ -24,6 +24,21 @@
   .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
   .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
   .branches { background: var(--grey); }
+  .pt-feature { position: relative; overflow: hidden; min-height: 62vh; display: flex; align-items: flex-end; text-decoration: none; }
+  .pt-feature img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform 0.6s ease; }
+  .pt-feature:hover img { transform: scale(1.035); }
+  .pt-feature::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(0,0,0,0.92) 8%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%); }
+  .pt-content { position: relative; z-index: 2; padding: 56px 80px; width: 100%; }
+  .pt-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
+  .pt-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.4vw, 60px); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 14px; }
+  .pt-title em { font-style: italic; color: var(--gold-light); }
+  .pt-desc { font-size: 14px; color: #ccc; line-height: 1.8; max-width: 480px; margin-bottom: 22px; }
+  .pt-go { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); display: inline-flex; align-items: center; gap: 8px; transition: gap 0.25s ease; }
+  .pt-feature:hover .pt-go { gap: 14px; }
+  @media (max-width: 768px) {
+    .pt-feature { min-height: 52vh; } .pt-content { padding: 36px 24px; }
+  }
+
   .branch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
   .branch { background: var(--black); padding: 46px 38px; position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; min-height: 320px; transition: background 0.3s ease; }
   .branch:hover { background: #111; }
@@ -111,6 +126,16 @@
   <div class="stat-sep"></div>
   <div class="stat-item"><span class="n">0</span><span class="l">Concussions on Record</span></div>
 </div>
+
+<a href="personal-training.html" class="pt-feature reveal">
+  <img src="dafydd-eagle-flight.jpg" alt="Dafydd Sanders executing a flying knee, composited with the Eagle DS eagle wings">
+  <div class="pt-content">
+    <p class="pt-tag">Start Here · One-to-One with Dafydd Sanders</p>
+    <h2 class="pt-title">Personal Training.<br><em>Coached at the standard he competed to.</em></h2>
+    <p class="pt-desc">World-level competitive record across four combat disciplines. One-to-one sessions in Combat Mindset, Combat Performance, and Combat Conditioning — built entirely around you.</p>
+    <span class="pt-go">Explore Personal Training →</span>
+  </div>
+</a>
 
 <section class="branches reveal" id="ecosystem">
   <p class="section-label">The Ecosystem</p>
