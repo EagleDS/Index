@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teens & Adult Classes — Eagle DS | Class Schedule</title>
+<meta name="description" content="Eagle DS class schedule — Pad Work & Drills, MMA Classes, and Saturday Full Sparring. East Tāmaki, Auckland.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT — Development Academy — Gold (shared bones stay identical) === */
+  :root { --gold: #C8960C; --gold-light: #E0B23A; --accent-rgb: 200,150,12; }
+
+  /* ── HERO ── */
+  .hero { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 150px 40px 80px; position: relative; overflow: hidden; background: var(--black); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 20%, rgba(var(--accent-rgb),0.1), transparent 60%); pointer-events: none; }
+  .hero-inner { max-width: 780px; position: relative; z-index: 2; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 5.6vw, 72px); font-weight: 300; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 18px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; opacity: 0; animation: fadeUp 0.8s 0.55s ease forwards; }
+  .hero-contact { font-size: 13.5px; color: #999; margin-bottom: 38px; line-height: 2; opacity: 0; animation: fadeUp 0.8s 0.7s ease forwards; }
+  .hero-contact a { color: #ccc; text-decoration: none; border-bottom: 1px solid rgba(var(--accent-rgb),0.35); }
+  .hero-contact a:hover { color: var(--gold-light); }
+  .hero-contact .sep { color: #444; margin: 0 10px; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { justify-content: center; opacity: 0; animation: fadeUp 0.8s 0.85s ease forwards; }
+
+  /* ── PHOTO BAND ── */
+  .photo-band { position: relative; height: 46vh; min-height: 280px; max-height: 460px; overflow: hidden; background: var(--grey); }
+  .photo-band img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-band-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #555; }
+
+  /* ── SCHEDULE ── */
+  .schedule { background: var(--grey); }
+  .schedule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .sch-card { background: var(--black); text-align: left; overflow: hidden; }
+  .sch-img { width: 100%; height: 170px; background: var(--mid); position: relative; overflow: hidden; }
+  .sch-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sch-img-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #555; text-align: center; padding: 0 12px; }
+  .sch-body { padding: 30px 30px 36px; }
+  .sch-num { font-family: 'Bebas Neue'; font-size: 30px; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+  .sch-name { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.15; }
+  .sch-days { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; }
+  .sch-time { font-size: 13.5px; color: #999; line-height: 1.9; }
+  .sch-time strong { color: var(--white); font-weight: 500; }
+
+  .cta-band { background: var(--black); text-align: center; }
+  .cta-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero { padding: 120px 30px 60px; }
+    .schedule-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 110px 22px 50px; }
+    .hero-contact { display: flex; flex-direction: column; gap: 6px; }
+    .hero-contact .sep { display: none; }
+    .sch-body { padding: 26px 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Teens & Adults</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="gym.html">Academy</a>
+    <a href="personal-training.html">Personal Training</a>
+    <a href="teen-combat.html">Teen Combat</a>
+    <a href="#schedule">Schedule</a>
+    <a href="capture.html" class="nav-cta">Book a Trial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="gold-line" style="margin:0 auto 20px;"></div>
+    <p class="eyebrow">Teens &amp; Adult Classes</p>
+    <h1 class="hero-headline">Class <em>Schedule.</em></h1>
+    <p class="hero-sub">East Tāmaki, Auckland</p>
+    <p class="hero-contact">
+      <a href="tel:+64210902471">021 902 471</a>
+      <span class="sep">·</span>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span class="sep">·</span>
+      17 Nandina Ave
+    </p>
+    <div class="cta-group">
+      <a href="capture.html" class="btn-primary"><span>Book Your Session</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND -->
+<div class="photo-band">
+  <img src="schedule-hero.jpg" alt="Training session at Eagle DS" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+  <div class="photo-band-fallback">Add schedule-hero.jpg to the Index repo</div>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- SCHEDULE -->
+<section class="schedule reveal" id="schedule">
+  <p class="section-label">Weekly Sessions</p>
+  <h2 class="section-title">Three Classes.<br>One <em>Standard.</em></h2>
+  <div class="schedule-grid">
+    <div class="sch-card">
+      <div class="sch-img">
+        <img src="schedule-pad-work.jpg" alt="Pad Work &amp; Drills class" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="sch-img-fallback">Add schedule-pad-work.jpg</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-num">01</div>
+        <div class="sch-name">Pad Work &amp; Drills</div>
+        <div class="sch-days">Monday · Wednesday</div>
+        <div class="sch-time"><strong>6pm</strong> Pad Classes<br><strong>7pm</strong> Kickboxing Drills</div>
+      </div>
+    </div>
+    <div class="sch-card">
+      <div class="sch-img">
+        <img src="schedule-mma.jpg" alt="MMA class" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="sch-img-fallback">Add schedule-mma.jpg</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-num">02</div>
+        <div class="sch-name">MMA Classes</div>
+        <div class="sch-days">Tuesday · Thursday</div>
+        <div class="sch-time"><strong>7pm</strong> MMA Classes</div>
+      </div>
+    </div>
+    <div class="sch-card">
+      <div class="sch-img">
+        <img src="schedule-sparring.jpg" alt="Saturday Full Sparring class" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="sch-img-fallback">Add schedule-sparring.jpg</div>
+      </div>
+      <div class="sch-body">
+        <div class="sch-num">03</div>
+        <div class="sch-name">Saturday Full Sparring</div>
+        <div class="sch-days">Saturday</div>
+        <div class="sch-time"><strong>9am</strong> Full Sparring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <p class="section-label">Ready to Train</p>
+  <h2 class="section-title">Book Your <em>Session.</em></h2>
+  <p class="section-intro" style="margin:0 auto;">021 902 471 · info@eagleds.co.nz · 17 Nandina Ave, East Tāmaki, Auckland</p>
+  <div class="cta-group">
+    <a href="capture.html" class="btn-primary"><span>Book Your Session</span></a>
+    <a href="index.html" class="btn-secondary">Back to the Ecosystem</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>Teens &amp; Adult Classes — Pad Work &amp; Drills, MMA Classes, and Saturday Full Sparring. One-to-one training available. East Tāmaki, Auckland.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Schedule</h4>
+      <a href="#schedule">Pad Work &amp; Drills</a>
+      <a href="#schedule">MMA Classes</a>
+      <a href="#schedule">Saturday Full Sparring</a>
+      <a href="capture.html">Book a Trial</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Development Academy</a>
+      <a href="teen-combat.html">Teen Combat</a>
+      <a href="personal-training.html">Personal Training</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat &amp; Wellness · Teens &amp; Adult Classes</span>
+    <span class="live"><span class="live-dot"></span> Book Your Session</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
