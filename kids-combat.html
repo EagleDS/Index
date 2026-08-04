@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Combat — Eagle DS | Ages 6–12</title>
+<meta name="description" content="Eagle DS Kids Combat — a structured, multi-discipline programme for ages 6–12. The same integrated standard as every Eagle DS arm: physical development, mental development, and identity work, running together, for every child who's ready to be taken seriously.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="eagle.css">
+<style>
+  /* === ARM ACCENT OVERRIDE — Development Academy — Gold (shared bones stay identical) === */
+  :root { --gold: #C8960C; --gold-light: #E0B23A; --accent-rgb: 200,150,12; }
+
+  /* ── HERO ── */
+  .hero { min-height: 90vh; display: grid; grid-template-columns: 1.1fr 0.9fr; position: relative; overflow: hidden; background: var(--black); }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 140px 60px 90px 80px; position: relative; z-index: 2; }
+  .hero-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 78% 30%, rgba(var(--accent-rgb),0.09), transparent 55%); pointer-events: none; }
+  .hero-right { background: var(--grey); position: relative; overflow: hidden; }
+  .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.5) 100%); pointer-events: none; }
+  .hero-img-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 55%, rgba(var(--accent-rgb),0.1) 100%); font-family: 'Bebas Neue', sans-serif; font-size: 18vw; color: transparent; -webkit-text-stroke: 1px rgba(var(--accent-rgb),0.18); }
+  .hero-inner { max-width: 900px; position: relative; z-index: 2; }
+  .hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 4.6vw, 66px); font-weight: 300; line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 22px; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+  .hero-headline em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 16px; color: #aaa; max-width: 480px; margin-bottom: 38px; line-height: 1.85; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+  .hero-body strong { color: var(--white); font-weight: 500; }
+  .hero .eyebrow { opacity: 0; animation: fadeUp 0.8s 0.25s ease forwards; }
+  .hero .cta-group { opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+  @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; } .hero-right { min-height: 340px; order: -1; } .hero-left { padding: 100px 24px 60px; } }
+
+  /* ── STAT STRIP ── */
+  .stat-strip { display: flex; align-items: stretch; background: var(--grey); border-top: 1px solid rgba(var(--accent-rgb),0.12); border-bottom: 1px solid rgba(var(--accent-rgb),0.12); }
+  .stat-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 16px; text-align: center; }
+  .stat-item .n { font-family: 'Bebas Neue'; font-size: 34px; color: var(--gold); line-height: 1; }
+  .stat-item .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-top: 6px; line-height: 1.5; }
+  .stat-sep { width: 1px; background: rgba(255,255,255,0.06); }
+
+  /* ── PHOTO BAND ── */
+  .photo-band { position: relative; height: 52vh; min-height: 320px; max-height: 520px; overflow: hidden; background: var(--grey); }
+  .photo-band img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-band-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #555; }
+  .photo-band-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 40px; background: linear-gradient(0deg, rgba(0,0,0,0.75), transparent); font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-light); }
+
+  /* ── ETHOS ── */
+  .ethos { background: var(--grey); text-align: center; }
+  .ethos-quote { max-width: 800px; margin: 0 auto; }
+  .ethos-quote p { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,3.2vw,42px); font-weight: 300; font-style: italic; line-height: 1.4; color: var(--white); }
+  .ethos-quote p em { color: var(--gold-light); font-style: italic; }
+  .ethos-quote .src { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: 26px; }
+
+  /* ── WHO THIS IS FOR ── */
+  .who { background: var(--black); }
+  .who-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 56px; }
+  .who-card { background: var(--grey); padding: 40px 36px; }
+  .who-card .wc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .who-card p { font-size: 14px; color: #999; line-height: 1.8; }
+  .who-card p strong { color: var(--white); font-weight: 500; }
+
+  /* ── STANDARD / HOW IT RUNS ── */
+  .standard { background: var(--grey); }
+  .standard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .sd-block { background: var(--black); padding: 44px 34px; }
+  .sd-block .sd-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+  .sd-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 14px; line-height: 1.2; }
+  .sd-block p { font-size: 13px; color: #888; line-height: 1.8; }
+
+  /* ── GRADING ── */
+  .grading { background: var(--black); }
+  .grading-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2px; margin-top: 56px; align-items: stretch; }
+  .grad-body { background: var(--grey); padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .grad-body p { font-size: 14.5px; color: #aaa; line-height: 1.9; margin-bottom: 18px; }
+  .grad-body p:last-child { margin-bottom: 0; }
+  .grad-body p strong { color: var(--white); font-weight: 500; }
+  .grad-img { position: relative; overflow: hidden; background: var(--grey); min-height: 380px; }
+  .grad-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .grad-img-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #555; text-align: center; padding: 0 20px; }
+  @media (max-width: 1024px) { .grading-split { grid-template-columns: 1fr; } .grad-img { min-height: 300px; order: -1; } .grad-body { padding: 40px 32px; } }
+
+  /* ── OUTCOMES ── */
+  .outcomes { background: var(--black); }
+  .outcomes-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+  .out-card { background: var(--grey); padding: 48px 42px; position: relative; overflow: hidden; }
+  .out-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .out-card .oc-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .out-card p { font-size: 14.5px; color: #aaa; line-height: 1.9; }
+  .out-card p strong { color: var(--white); font-weight: 500; }
+
+  /* ── NATIONAL PATHWAYS ── */
+  .national { background: var(--black); }
+  .national-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 2px; margin-top: 56px; align-items: stretch; }
+  .nat-img { position: relative; overflow: hidden; background: var(--grey); min-height: 420px; }
+  .nat-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nat-img-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #555; text-align: center; padding: 0 20px; }
+  .nat-body { background: var(--grey); padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .nat-body p { font-size: 14.5px; color: #aaa; line-height: 1.9; margin-bottom: 18px; }
+  .nat-body p:last-child { margin-bottom: 0; }
+  .nat-body p strong { color: var(--white); font-weight: 500; }
+  .nat-disciplines { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .nat-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(var(--accent-rgb),0.35); padding: 8px 14px; border-radius: 3px; }
+  @media (max-width: 1024px) { .national-split { grid-template-columns: 1fr; } .nat-img { min-height: 320px; } .nat-body { padding: 40px 32px; } }
+
+  /* ── PATHS ── */
+  .paths { background: var(--grey); }
+  .paths-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px; }
+  .path-card { background: var(--black); text-align: left; transition: background 0.3s ease; overflow: hidden; }
+  .path-card:hover { background: #0d0d0d; }
+  .path-img { width: 100%; height: 160px; background: var(--grey); position: relative; overflow: hidden; }
+  .path-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .path-img-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: #555; text-align: center; padding: 0 12px; }
+  .path-card-body { padding: 30px 30px 40px; }
+  .path-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .path-line { font-size: 12.5px; color: #888; line-height: 1.7; margin-bottom: 6px; }
+  .path-note { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; margin-top: 14px; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--black); }
+  .faq-list { max-width: 820px; margin: 56px auto 0; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding: 24px 0; }
+  .faq-item summary { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--white); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-family: var(--mono); font-size: 20px; color: var(--gold); flex-shrink: 0; transition: transform 0.25s ease; }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { font-size: 13.5px; color: #999; line-height: 1.85; margin-top: 14px; max-width: 680px; }
+  .faq-item ul { margin-top: 10px; padding-left: 18px; }
+  .faq-item li { font-size: 13.5px; color: #999; line-height: 1.8; }
+
+  .cta-band { background: var(--grey); text-align: center; }
+  .cta-band .section-title { margin-bottom: 14px; }
+  .cta-band .cta-group { justify-content: center; margin-top: 8px; }
+
+  @media (max-width: 1024px) {
+    .hero-left { padding: 100px 24px 60px; }
+    .who-grid { grid-template-columns: 1fr; }
+    .standard-grid { grid-template-columns: 1fr; }
+    .outcomes-split { grid-template-columns: 1fr; }
+    .paths-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-left { padding: 90px 24px 50px; }
+    .who-card, .sd-block, .out-card, .path-card-body { padding: 32px 26px; }
+    .paths-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.PNG" alt="Eagle DS" class="nav-logo-img" id="navLogo" onerror="this.style.display='none'; document.getElementById('navLogoFallback').classList.add('show');">
+    <span class="nav-logo-fallback" id="navLogoFallback">DS</span>
+    <span class="nav-wordmark">EAGLE DS<small>Kids Combat</small></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Ecosystem</a>
+    <a href="gym.html">Academy</a>
+    <a href="#who">Who It's For</a>
+    <a href="#outcomes">Outcomes</a>
+    <a href="#faq">Questions</a>
+    <a href="cgs.html">Combat Games Series</a>
+    <a href="teen-combat.html">Teen Combat</a>
+    <a href="capture.html" class="nav-cta">Book a Trial</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <div class="hero-inner">
+      <div class="gold-line"></div>
+      <p class="eyebrow">Ages 6–12 · Multi-Discipline</p>
+      <h1 class="hero-headline">Old Enough<br>to Be Taken<br><em>Seriously.</em></h1>
+      <p class="hero-body">Eagle DS Kids Combat is a structured programme for six to twelve year olds, built on the same standard that runs through every arm of Eagle DS — <strong>physical development, mental development and identity work, running together, at the same time, on the same child.</strong> No babysitting. No participation-trophy version of training. Every child who walks in is expected to progress, and every child who stays does.</p>
+      <div class="cta-group">
+        <a href="capture.html" class="btn-primary"><span>Book a Trial</span></a>
+        <a href="#who" class="btn-secondary">Is This for My Child?</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="kids-combat-hero.jpg" alt="Child training at Eagle DS" onerror="this.style.display='none'; document.getElementById('heroImgFallback').style.display='flex';">
+    <div class="hero-img-fallback" id="heroImgFallback" style="display:none;">DS</div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item"><span class="n">6–12</span><span class="l">Entry<br>Age Range</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">0</span><span class="l">Concussions<br>Across 900+ Matches</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">5</span><span class="l">Integrated Arms<br>One Standard</span></div>
+  <div class="stat-sep"></div>
+  <div class="stat-item"><span class="n">24</span><span class="l">Years<br>Coaching</span></div>
+</div>
+
+<!-- PHOTO BAND -->
+<div class="photo-band">
+  <img src="kids-combat-training.jpg" alt="Kids Combat session at Eagle DS" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+  <div class="photo-band-fallback">Add kids-combat-training.jpg to the Index repo</div>
+  <div class="photo-band-caption">A Typical Kids Combat Session</div>
+</div>
+
+<!-- ETHOS -->
+<section class="ethos reveal">
+  <div class="ethos-quote">
+    <p>Talent was never the requirement. <em>Effort, attitude and accountability</em> are the only entry criteria that have ever mattered — at six or at sixteen.</p>
+    <div class="src">The Eagle DS Standard</div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- WHO THIS IS FOR -->
+<section class="who reveal" id="who">
+  <p class="section-label">Two Children. One Standard.</p>
+  <h2 class="section-title">You Already Know<br>Which One <em>Yours Is.</em></h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <p class="wc-label">The Talented One</p>
+      <p><strong>Capable, quick to pick things up, and carefully managed by every adult around them.</strong> Good at whatever they turn their hand to, and never yet asked to actually work for it. They have not been in a room where effort — not natural ability — decides the outcome.</p>
+    </div>
+    <div class="who-card">
+      <p class="wc-label">The Drifting One</p>
+      <p><strong>On a screen more than anywhere else, and struggling to focus on anything that asks something of them.</strong> Not a discipline problem. A structure problem — nothing in their week currently demands their full attention, and they've never had the chance to find out what they're capable of.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD -->
+<section class="standard reveal">
+  <p class="section-label">How Kids Combat Runs</p>
+  <h2 class="section-title">Not a Daycare<br>With Kicks.<br><em>A Standard.</em></h2>
+  <div class="standard-grid">
+    <div class="sd-block">
+      <div class="sd-num">Physical</div>
+      <h3>Real Technique, Built for Developing Bodies</h3>
+      <p>Technique is taught to a standard, at a pace matched to a developing body — coordination, balance and control first. Contact, when it's introduced, is light, closely supervised, and only once a child has shown the control required. Never rushed to fit an age.</p>
+    </div>
+    <div class="sd-block">
+      <div class="sd-num">Mental</div>
+      <h3>Focus and Follow-Through, Not Just Energy Burned</h3>
+      <p>This isn't a place to run energy off. It's a place a child learns to listen, follow an instruction all the way through, and sit with something difficult instead of giving up on it — often for the first time.</p>
+    </div>
+    <div class="sd-block">
+      <div class="sd-num">Identity</div>
+      <h3>Who They're Becoming, Not What They're Learning</h3>
+      <p>The technique is the vehicle. What a child walks out with — how they carry themselves, what they now expect of themselves — is the actual outcome we're building toward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GRADING -->
+<section class="grading reveal">
+  <p class="section-label">Nothing Is Given Away</p>
+  <h2 class="section-title">Every Grade Is<br><em>Earned.</em></h2>
+  <div class="grading-split">
+    <div class="grad-body">
+      <p>Every child who trains at Eagle DS moves through a structured grading syllabus — belt by belt, skill by skill. <strong>Nothing is handed out for showing up, and nothing is handed out for turning seven.</strong> A grade means a child has actually demonstrated the technique, under the standard, in front of a coach who checked.</p>
+      <p>That's the whole point of running it this way. A trophy that wasn't earned tells a child nothing true about themselves. A belt they had to genuinely work for does — and kids know the difference, even at six, even if no one explains it to them.</p>
+      <p>The syllabus is progressive and cumulative: what's learned at white belt still has to hold up at blue, and at green. <strong>The standard doesn't get easier to justify — it gets harder to meet, on purpose.</strong></p>
+    </div>
+    <div class="grad-img">
+      <img src="kids-combat-grading.jpg" alt="Kids training across belt grades at Eagle DS" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="grad-img-fallback">Add kids-combat-grading.jpg to the Index repo</div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes reveal" id="outcomes">
+  <p class="section-label">Two Paths Through Eagle DS</p>
+  <h2 class="section-title">What Happens When<br>a Child <em>Stays.</em></h2>
+  <div class="outcomes-split">
+    <div class="out-card">
+      <p class="oc-tag">The Everyday Path</p>
+      <p>One child came in unable to sit still through an instruction, let alone follow it. Progress was slow at first — it always is with a young child — but the standard didn't move for them, and neither did the expectation that they keep showing up. What changed wasn't just their technique. <strong>It was how they behaved at home and at school</strong> — the ability to focus, to follow through, to be told something once. That's the outcome the Academy is actually built to produce.</p>
+    </div>
+    <div class="out-card">
+      <p class="oc-tag">The Combat Games Series Path</p>
+      <p>Another child, still under twelve, stepped onto the mat at a Combat Games Series event — a real bout, under a real standard, against a real opponent their own age and grade. <strong>They went in nervous and came out having done it anyway.</strong> The result wasn't the point. What it proved was already true before the first round: they'd been tested honestly, in a safe environment, and they'd met it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PATHS -->
+<section class="paths reveal">
+  <p class="section-label">Training Paths</p>
+  <h2 class="section-title">Find the Path<br>That Matches <em>Where<br>They're At.</em></h2>
+  <div class="paths-grid">
+    <div class="path-card">
+      <div class="path-img">
+        <img src="kids-combat-path-start.jpg" alt="Starting Out path" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="path-img-fallback">Add kids-combat-path-start.jpg</div>
+      </div>
+      <div class="path-card-body">
+        <div class="path-name">Starting Out</div>
+        <div class="path-line">For children new to combat sport, or trying it for the first time.</div>
+        <div class="path-line">Fundamentals, structure, and a first real look at what the training involves.</div>
+        <div class="path-note">Begin With a Trial</div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-img">
+        <img src="kids-combat-path-build.jpg" alt="Building path" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="path-img-fallback">Add kids-combat-path-build.jpg</div>
+      </div>
+      <div class="path-card-body">
+        <div class="path-name">Building</div>
+        <div class="path-line">For children ready to train consistently and progress through the syllabus.</div>
+        <div class="path-line">Regular sessions, graded progression, and steadily increasing technical demand.</div>
+        <div class="path-note">Most Children's Path</div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-img">
+        <img src="kids-combat-path-compete.jpg" alt="Competing path" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="path-img-fallback">Add kids-combat-path-compete.jpg</div>
+      </div>
+      <div class="path-card-body">
+        <div class="path-name">Competing</div>
+        <div class="path-line">For children preparing to test themselves at a Combat Games Series event.</div>
+        <div class="path-line">Age- and grade-matched bouts, light contact, and a genuine opponent on the other side of the mat.</div>
+        <div class="path-note">Optional, Never Required</div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-img">
+        <img src="kids-combat-path-coach.jpg" alt="Teen Combat pathway" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="path-img-fallback">Add kids-combat-path-coach.jpg</div>
+      </div>
+      <div class="path-card-body">
+        <div class="path-name">Growing Into Teen Combat</div>
+        <div class="path-line">For children approaching thirteen, ready for the next stage of the pathway.</div>
+        <div class="path-line">The same standard, the same coaches, a natural step up — not a change of programme.</div>
+        <div class="path-note">Stage Two of the Pathway</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:40px; font-size:13px; color:#777; max-width:640px;">Exact pricing and session frequency for each path are confirmed when you book a trial — every child starts with an assessment, not a sales conversation.</p>
+</section>
+
+<!-- NATIONAL PATHWAYS -->
+<section class="national reveal">
+  <p class="section-label">Where the Competing Path Leads</p>
+  <h2 class="section-title">The Same Pathway<br>Their Coach <em>Walked.</em></h2>
+  <div class="national-split">
+    <div class="nat-img">
+      <img src="kids-combat-pathways.jpg" alt="Coach speaking with a young competitor before a bout" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="nat-img-fallback">Add kids-combat-pathways.jpg to the Index repo</div>
+    </div>
+    <div class="nat-body">
+      <p>Competing through the Combat Games Series isn't a single track toward one outcome. It's an on-ramp — and where it leads depends on the discipline a child commits to over time.</p>
+      <p><strong>Dafydd Sanders built this pathway from having walked it himself</strong> — across more than one discipline, at representative level, not just one. World #10 in taekwondo through multiple Olympic campaigns. WAKO Worlds in kickboxing. WAKO Worlds K1 full contact. IMMAF Worlds in MMA. Karate All Japan Champion against an international field.</p>
+      <p>That range is the model. A child training at Eagle DS isn't funnelled toward a single sport because it's the only one on offer — the pathway is built to open, over years, toward New Zealand representative selection across whichever discipline they eventually commit to.</p>
+      <div class="nat-disciplines">
+        <span class="nat-tag">Olympic Taekwondo</span>
+        <span class="nat-tag">K1 Light</span>
+        <span class="nat-tag">Boxing Light</span>
+        <span class="nat-tag">MMA Light</span>
+        <span class="nat-tag">Hybrid Light</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq reveal" id="faq">
+  <p class="section-label">Before You Book</p>
+  <h2 class="section-title">Questions Every Parent<br>Actually <em>Asks.</em></h2>
+  <div class="faq-list">
+    <details class="faq-item" open>
+      <summary>Does my child need any experience?</summary>
+      <p>No. Most children start with none. The syllabus is structured so a complete beginner and a child who's trained before are both working at the right level for them from day one.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Is it safe? Will my child get hit?</summary>
+      <p>Technique comes before contact, every time. Sparring is introduced only progressively, only once a child has shown the control and technical ability required, and it's closely supervised throughout. Eagle DS holds a zero-concussion record across 900+ matches. The goal is skill development, not hurting a training partner.</p>
+    </details>
+    <details class="faq-item">
+      <summary>My child isn't very confident. Will they fit in?</summary>
+      <p>This is exactly who the programme is built for. A lot of children arrive shy, unsure of themselves, or unable to sit still through an instruction. The standard stays the same for everyone — that consistency is what builds the confidence, not a softer version of the training.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Does my child have to compete?</summary>
+      <p>No. Competing through the Combat Games Series is one path, not a requirement. Plenty of children train for fitness, focus and skill and never step into a competitive bout — both paths are treated with the same seriousness.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What do you actually expect from a child who joins?</summary>
+      <p>Not perfection. What's expected every session:</p>
+      <ul>
+        <li>Effort</li>
+        <li>Respect</li>
+        <li>Accountability</li>
+        <li>Coachability</li>
+      </ul>
+    </details>
+    <details class="faq-item">
+      <summary>What should my child bring to their first session?</summary>
+      <p>Comfortable sports clothing and a drink bottle. Equipment for the first session is provided — if they continue, you'll be advised exactly what's needed as they progress.</p>
+    </details>
+    <details class="faq-item">
+      <summary>My child already plays another sport. Will this help or get in the way?</summary>
+      <p>It almost always helps. Coordination, balance, focus and resilience built here transfer directly into whatever else they play.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What happens when my child turns thirteen?</summary>
+      <p>They move naturally into Teen Combat — same coaches, same standard, same trunk. Nothing resets. It's a step up in demand, not a change of programme.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band reveal">
+  <p class="section-label">Ready When They Are</p>
+  <h2 class="section-title">Book a Trial.<br>Find Out What<br><em>They're Made Of.</em></h2>
+  <div class="cta-group">
+    <a href="capture.html" class="btn-primary"><span>Book a Trial</span></a>
+    <a href="index.html" class="btn-secondary">See the Full Ecosystem</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-word">EAGLE DS</div>
+      <p>Kids Combat — six to twelve year olds, trained under the same integrated standard as every Eagle DS arm. Not a daycare with kicks. Not a watered-down adult class.</p>
+      <div class="fb-iwi">Ngāi Tahu · Te Whare Tapa Whā</div>
+    </div>
+    <div class="footer-col">
+      <h4>Kids Combat</h4>
+      <a href="#who">Who It's For</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#faq">Questions</a>
+      <a href="capture.html">Book a Trial</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="gym.html">Development Academy</a>
+      <a href="teen-combat.html">Teen Combat</a>
+      <a href="cgs.html">Combat Games Series</a>
+      <a href="coach.html">Coaching Course</a>
+      <a href="index.html">Full Ecosystem</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+64210902471">021 902 471</a>
+      <a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a>
+      <span>17 Nandina Ave, East Tāmaki</span>
+      <span>Auckland 2013, NZ</span>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© Eagle DS Combat & Wellness · Kids Combat</span>
+    <span class="live"><span class="live-dot"></span> Same Standard, Every Age</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  const navToggle = document.getElementById('navToggle'), navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
