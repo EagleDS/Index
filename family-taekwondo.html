@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Taekwondo — Eagle DS | Train Together, Under Champions</title>
+<meta name="description" content="Eagle DS Family Taekwondo — parents and kids on the same mat, coached by a World #10 taekwondo competitor and a 2013 World Cup Champion. One standard, every age, in the same room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f4f1e9;
+    --void:#0c0c0d;
+    --void-2:#141415;
+    --line: rgba(244,241,233,0.12);
+    --crimson:#c8272c;
+    --gold:#c9a24a;
+    --grey:#9a978f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:18px; display:block;
+  }
+  h1,h2,h3{font-family:'Archivo Black', sans-serif; text-transform:none; letter-spacing:-0.01em;}
+  .display{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.02;
+    font-weight:400;
+  }
+  .display em, .accent-em{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    color:var(--crimson);
+  }
+  .btn{
+    display:inline-block; padding:15px 30px; font-weight:700; font-size:0.85rem;
+    letter-spacing:0.06em; text-transform:uppercase; border-radius:2px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--crimson); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px); background:#e02f35;}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(12,12,13,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .brand{font-family:'Archivo Black'; font-size:1rem; letter-spacing:0.02em; white-space:nowrap;}
+  .brand span{color:var(--crimson);}
+  .nav-links{display:flex; gap:26px; flex-wrap:wrap; font-size:0.82rem; font-weight:600; color:var(--grey);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{white-space:nowrap;}
+  @media (max-width:900px){ .nav-links{display:none;} }
+
+  /* HERO */
+  header.hero{
+    padding:88px 0 64px; border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(200,39,44,0.14), transparent 60%);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:end;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero-sub{
+    margin-top:26px; max-width:46ch; color:var(--grey); font-size:1.05rem;
+  }
+  .hero-actions{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-panel{
+    border:1px solid var(--line); padding:26px; border-radius:2px;
+    background:var(--void-2);
+  }
+  .hero-panel-label{font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--grey);}
+  .hero-panel-title{font-family:'Fraunces'; font-style:italic; font-size:1.5rem; margin-top:6px; color:var(--ink);}
+  .hero-panel p{margin-top:10px; color:var(--grey); font-size:0.92rem;}
+
+  /* STAT BAR */
+  .statbar{border-bottom:1px solid var(--line); background:var(--void-2);}
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(5,1fr);
+    text-align:center;
+  }
+  @media (max-width:760px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
+  .stat{padding:30px 12px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat-num{font-family:'Archivo Black'; font-size:2rem; color:var(--gold);}
+  .stat-label{font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--grey); margin-top:4px;}
+
+  section{padding:88px 0; border-bottom:1px solid var(--line);}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem); line-height:1.08;}
+  .section-head .kicker{font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--grey); display:block; margin-bottom:14px;}
+
+  /* TALE OF THE TAPE - signature element */
+  .tape{
+    border:1px solid var(--line); background:var(--void-2); position:relative;
+  }
+  .tape-header{
+    text-align:center; padding:34px 20px 22px; border-bottom:1px solid var(--line);
+  }
+  .tape-header .kicker{font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);}
+  .tape-header h3{font-size:clamp(1.6rem,3.4vw,2.2rem); margin-top:10px;}
+  .tape-grid{display:grid; grid-template-columns:1fr auto 1fr;}
+  @media (max-width:760px){ .tape-grid{grid-template-columns:1fr;} }
+  .tape-col{padding:36px 32px;}
+  .tape-col:first-child{border-right:1px solid var(--line);}
+  @media (max-width:760px){ .tape-col:first-child{border-right:none; border-bottom:1px solid var(--line);} }
+  .tape-vs{
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Archivo Black'; color:var(--crimson); font-size:1.1rem;
+    padding:0 18px; letter-spacing:0.05em;
+  }
+  @media (max-width:760px){ .tape-vs{padding:14px 0;} }
+  .tape-name{font-family:'Archivo Black'; font-size:1.35rem; margin-bottom:4px;}
+  .tape-role{font-size:0.8rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px;}
+  .tape-list{list-style:none;}
+  .tape-list li{
+    padding:11px 0; border-top:1px solid var(--line); font-size:0.92rem; color:var(--ink);
+    display:flex; justify-content:space-between; gap:16px;
+  }
+  .tape-list li:first-child{border-top:none;}
+  .tape-list li span:last-child{color:var(--grey); text-align:right;}
+
+  /* TWO FAMILIES */
+  .two-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:760px){ .two-grid{grid-template-columns:1fr;} }
+  .two-card{background:var(--void); padding:38px 34px;}
+  .two-card .eyebrow-sm{font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--grey); margin-bottom:14px; display:block;}
+  .two-card h3{font-family:'Fraunces'; font-style:italic; font-weight:500; font-size:1.5rem; margin-bottom:14px;}
+  .two-card p{color:var(--grey); font-size:0.96rem;}
+
+  /* HOW IT RUNS - 3 pillars */
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  @media (max-width:760px){ .pillars{grid-template-columns:1fr;} }
+  .pillar-tag{font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--crimson); margin-bottom:10px; display:block;}
+  .pillar h3{font-size:1.2rem; margin-bottom:10px; font-family:'Archivo Black';}
+  .pillar p{color:var(--grey); font-size:0.94rem;}
+
+  /* PATHS */
+  .paths{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:900px){ .paths{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .paths{grid-template-columns:1fr;} }
+  .path-card{background:var(--void); padding:28px 24px; display:flex; flex-direction:column; gap:8px;}
+  .path-card .path-tag{font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);}
+  .path-card h4{font-size:1.05rem; font-family:'Archivo Black';}
+  .path-card p{color:var(--grey); font-size:0.88rem; flex-grow:1;}
+
+  /* FAQ */
+  .faq-item{border-top:1px solid var(--line); padding:26px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h4{font-size:1.05rem; margin-bottom:10px; font-weight:700;}
+  .faq-item p{color:var(--grey); font-size:0.95rem;}
+  .faq-item ul{margin-top:10px; padding-left:18px; color:var(--grey); font-size:0.95rem;}
+
+  /* CTA */
+  .cta{
+    text-align:center; padding:96px 0;
+    background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(200,39,44,0.16), transparent 65%);
+  }
+  .cta h2{font-size:clamp(2rem,5vw,3.2rem); margin-bottom:20px;}
+  .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px;}
+
+  footer{padding:56px 0 40px; font-size:0.86rem; color:var(--grey);}
+  .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:36px;}
+  @media (max-width:700px){ .foot-grid{grid-template-columns:1fr;} }
+  footer h5{color:var(--ink); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;}
+  footer li a:hover{color:var(--ink);}
+  .foot-bottom{margin-top:44px; padding-top:22px; border-top:1px solid var(--line); font-size:0.78rem; color:#6a6863;}
+
+  /* PHOTOS */
+  .banner-photo{ width:100%; height:440px; object-fit:cover; object-position:center 30%; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .banner-cap{ padding:14px 0; font-size:0.82rem; color:var(--grey); text-align:center; background:var(--void-2); }
+  .tape-photo{ width:100%; height:210px; object-fit:cover; object-position:center 20%; margin-bottom:22px; border:1px solid var(--line); }
+  .missing-photo{
+    width:100%; height:210px; margin-bottom:22px; border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    color:var(--grey); font-size:0.78rem; padding:14px; letter-spacing:0.02em;
+  }
+  .family-photo{ width:100%; border:1px solid var(--line); margin-bottom:28px; }
+  .path-photo{ width:100%; height:150px; object-fit:cover; margin-bottom:6px; }
+
+  .hero-photo{ width:100%; height:260px; object-fit:cover; object-position:center 30%; margin-bottom:20px; border:1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">DS <span>EAGLE DS</span> Family Taekwondo</div>
+    <div class="nav-links">
+      <a href="https://eagleds.co.nz/index.html">Ecosystem</a>
+      <a href="https://eagleds.co.nz/gym.html">Academy</a>
+      <a href="#coaches">The Coaches</a>
+      <a href="#faq">Questions</a>
+      <a href="https://eagleds.co.nz/cgs.html">Combat Games Series</a>
+    </div>
+    <a class="btn btn-primary nav-cta" href="https://eagleds.co.nz/capture.html">Book a Trial</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">All Ages · Family Taekwondo</span>
+      <h1 class="display">You Don't Just <em>Enrol Them.</em> You Get on the Mat <em>Too.</em></h1>
+      <p class="hero-sub">Eagle DS Family Taekwondo puts parents and kids on the same floor, under the same standard, coached by two of the most credentialled taekwondo competitors your family will ever train under. Not drop-off. Not a spectator seat. A mat you share.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://eagleds.co.nz/capture.html">Book a Family Trial</a>
+        <a class="btn btn-ghost" href="#coaches">Meet the Coaches</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <img class="hero-photo" src="family-taekwondo-hero.jpg" alt="Dafydd Sanders competing for New Zealand in taekwondo sparring">
+      <span class="hero-panel-label">Who's Coaching Your Family</span>
+      <div class="hero-panel-title">Two World-Level Résumés. One Class.</div>
+      <p>Dafydd Sanders — World #10 in taekwondo across multiple Olympic campaigns. Kyle Anderson — 2013 World Cup Champion, Argentina, taekwondo sparring. Between them, decades on the mat your family trains on.</p>
+      <p style="margin-top:16px; padding-top:16px; border-top:1px solid var(--line); color:var(--ink); font-weight:600;">Tuesdays &amp; Thursdays · 6:00pm</p>
+    </div>
+  </div>
+</header>
+
+<div class="statbar">
+  <div class="wrap stat-grid">
+    <div class="stat"><div class="stat-num">#10</div><div class="stat-label">World Ranking, Taekwondo</div></div>
+    <div class="stat"><div class="stat-num">2013</div><div class="stat-label">World Cup Champion</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">2nd Dan Blackbelts, ITF &amp; WT</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Concussions Across 900+ Matches</div></div>
+    <div class="stat"><div class="stat-num">All</div><div class="stat-label">Ages, One Standard</div></div>
+  </div>
+</div>
+
+
+<img class="banner-photo" src="family-taekwondo-banner.jpg" alt="Sparring match at a Taekwondo tournament">
+<div class="banner-cap">A Typical Combat Games Series Bout &mdash; the Same Standard Family Taekwondo Trains Toward</div>
+
+<section id="coaches">
+  <div class="wrap">
+    <div class="tape">
+      <div class="tape-header">
+        <span class="kicker">The Standard You're Training Under</span>
+        <h3>Two Blackbelts. <span class="accent-em" style="color:var(--gold);">One Mat.</span></h3>
+      </div>
+      <div class="tape-grid">
+        <div class="tape-col">
+          <img class="tape-photo" src="family-taekwondo-coach-dafydd.jpg" alt="Dafydd Sanders at a taekwondo tournament">
+          <div class="tape-name">Dafydd Sanders</div>
+          <div class="tape-role">Head Coach &amp; Founder</div>
+          <ul class="tape-list">
+            <li><span>World Ranking</span><span>#10, Taekwondo</span></li>
+            <li><span>Olympic Campaigns</span><span>Multiple</span></li>
+            <li><span>WAKO Worlds</span><span>Kickboxing</span></li>
+            <li><span>WAKO Worlds K1</span><span>Full Contact</span></li>
+            <li><span>IMMAF Worlds</span><span>MMA</span></li>
+            <li><span>Karate All Japan</span><span>Champion, International Field</span></li>
+          </ul>
+        </div>
+        <div class="tape-vs">VS</div>
+        <div class="tape-col">
+          <img class="tape-photo" src="family-taekwondo-coach-kyle.jpg" alt="Kyle Anderson coaching a competitor at the Cadet World Taekwondo Championships">
+          <div class="tape-name">Kyle Anderson</div>
+          <div class="tape-role">Taekwondo Coach</div>
+          <ul class="tape-list">
+            <li><span>World Cup</span><span>Champion, Argentina 2013</span></li>
+            <li><span>Discipline</span><span>Sparring</span></li>
+            <li><span>Specialisation</span><span>Patterns Specialist</span></li>
+            <li><span>ITF Grade</span><span>2nd Degree Blackbelt</span></li>
+            <li><span>WT Grade</span><span>2nd Degree Blackbelt</span></li>
+            <li><span>Cross-Federation</span><span>Certified in Both Codes</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Two Families</span>
+      <h2>You Already Know <span class="accent-em">Which One Yours Is.</span></h2>
+    </div>
+    <img class="family-photo" src="family-taekwondo-family-class.jpg" alt="Kids and adults training together in the same class">
+    <div class="two-grid">
+      <div class="two-card">
+        <span class="eyebrow-sm">The Separate Family</span>
+        <h3>Everyone's Trained. Nobody's Trained Together.</h3>
+        <p>The kids have a sport. The parents have a gym membership they use alone, if they use it at all. Nobody in the house has ever been on the same mat, working toward the same grading, under the same coach — and nobody's noticed that's missing until they're offered it.</p>
+      </div>
+      <div class="two-card">
+        <span class="eyebrow-sm">The Training Family</span>
+        <h3>Same Mat. Same Standard. Same Sunday Habit.</h3>
+        <p>Parent and child, working the same pattern, graded by the same syllabus, coached by a World #10 competitor and a World Cup champion in the same session. Whatever gets built at home doesn't stop at the front door — it gets built on the mat, together, first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">How Family Taekwondo Runs</span>
+      <h2>Not Two Classes Under One Roof. <span class="accent-em">One Class.</span></h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-tag">Physical</span>
+        <h3>Technique Taught to One Standard</h3>
+        <p>Kyle Anderson's patterns expertise and Dafydd Sanders' competitive record set the technical bar — for every belt in the room, adult or child. Pace is matched to the person. The standard isn't.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-tag">Mental</span>
+        <h3>Tested Side by Side, Not Separately</h3>
+        <p>A parent working the same pattern their child is working, under the same correction from the same coach, changes what the correction means to both of them. Nobody's just watching from the sideline.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-tag">Identity</span>
+        <h3>What the Family Becomes Together</h3>
+        <p>The pattern is the vehicle. What a family walks out with — a shared standard, a shared Tuesday and Thursday, a shared thing they're both working toward — is the actual outcome Family Taekwondo is built to produce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Nothing Is Given Away</span>
+      <h2>Every Grade Is <span class="accent-em">Earned — By Every Belt in the House.</span></h2>
+    </div>
+    <p style="max-width:70ch; color:var(--grey); font-size:1rem;">Family Taekwondo runs on the same graded syllabus as every Eagle DS programme — belt by belt, skill by skill, checked in front of a coach who actually checked. A parent's blue belt and a child's blue belt were earned against the identical standard. Kyle Anderson's patterns background means the syllabus is taught by someone who has been tested on it at World Cup level himself — not someone teaching a form he's only ever demonstrated.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Training Paths</span>
+      <h2>Find the Path <span class="accent-em">Your Family Starts On.</span></h2>
+    </div>
+    <div class="paths">
+      <div class="path-card">
+        <span class="path-tag">Starting Out</span>
+        <h4>First Family Session</h4>
+        <p>For families new to taekwondo, training in the same room for the first time. Fundamentals, structure, and a real look at what training together involves.</p>
+      </div>
+      <div class="path-card">
+        <img class="path-photo" src="family-taekwondo-path-building.jpg" alt="Kyle Anderson teaching a young student one-on-one">
+        <span class="path-tag">Building</span>
+        <h4>Graded Together</h4>
+        <p>Two sessions a week, Tuesday and Thursday at 6pm, with parallel grading tracks and technical demand that increases for every belt in the family — at the pace each person has earned.</p>
+      </div>
+      <div class="path-card">
+        <img class="path-photo" src="family-taekwondo-path-competing.jpg" alt="A taekwondo competitor celebrating a win">
+        <span class="path-tag">Competing</span>
+        <h4>Combat Games Series</h4>
+        <p>For families ready to test themselves under Kyle Anderson's sparring coaching or Dafydd Sanders' competitive pathway, at a real Combat Games Series event.</p>
+      </div>
+      <div class="path-card">
+        <img class="path-photo" src="family-taekwondo-path-youth-academy.jpg" alt="Kyle Anderson briefing a junior class">
+        <span class="path-tag">Optional, Never Required</span>
+        <h4>Youth &amp; Family Academy</h4>
+        <p>For families ready to take on certified responsibility — assisting, coaching younger students, going deeper into patterns under Kyle Anderson directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Before You Book</span>
+      <h2>Questions Every Family <span class="accent-em">Actually Asks.</span></h2>
+    </div>
+
+    <div class="faq-item">
+      <h4>Do we need any experience — any of us?</h4>
+      <p>No. Most families start with none. The syllabus is structured so a complete beginner and a family member who's trained before are both working at the right level from day one.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Who's actually coaching the class?</h4>
+      <p>Dafydd Sanders and Kyle Anderson lead Family Taekwondo. Dafydd brings a World #10 taekwondo ranking across multiple Olympic campaigns, plus WAKO Worlds kickboxing and K1, IMMAF Worlds MMA, and an All Japan karate title. Kyle is the 2013 World Cup Champion (Argentina) in taekwondo sparring, a patterns specialist, and a 2nd degree blackbelt in both ITF and WT taekwondo — certified across both federations.</p>
+    </div>
+    <div class="faq-item">
+      <h4>When does Family Taekwondo train?</h4>
+      <p>Tuesdays and Thursdays, 6:00pm. Two sessions a week — enough to build a real habit without overcommitting a whole family's week.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do parents and kids train in the same session?</h4>
+      <p>Yes — that's the point of Family Taekwondo. Everyone works the same pattern and the same standard, at a pace matched to what each person has demonstrated, not their age.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is it safe for younger kids and older parents in the same room?</h4>
+      <p>Technique comes before contact, every time. Sparring is introduced progressively and only once control has been shown — closely supervised throughout. Eagle DS holds a zero-concussion record across 900+ matches.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Does our family have to compete?</h4>
+      <p>No. Competing through the Combat Games Series is one path, not a requirement. Plenty of families train for fitness, shared time and skill and never step into a competitive bout.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What's expected from us every session?</h4>
+      <p>Not perfection. What's expected, every time, from every belt in the family:</p>
+      <ul>
+        <li>Effort</li>
+        <li>Respect</li>
+        <li>Accountability</li>
+        <li>Coachability</li>
+      </ul>
+    </div>
+    <div class="faq-item">
+      <h4>What should we bring to our first session?</h4>
+      <p>Comfortable sports clothing and a drink bottle — for everyone training. Equipment for the first session is provided. If you continue, you'll be advised exactly what's needed as each family member progresses.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <h2>Book a Family Trial. <span class="accent-em">Find Out What You're Made Of — Together.</span></h2>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="https://eagleds.co.nz/capture.html">Book a Trial</a>
+      <a class="btn btn-ghost" href="https://eagleds.co.nz/index.html">See the Full Ecosystem</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px;">DS <span>EAGLE DS</span></div>
+      <p>Family Taekwondo — coached by Dafydd Sanders (World #10, taekwondo) and Kyle Anderson (2013 World Cup Champion, Argentina). One mat. One standard. Every age.</p>
+    </div>
+    <div>
+      <h5>Family Taekwondo</h5>
+      <ul>
+        <li><a href="#coaches">The Coaches</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="https://eagleds.co.nz/capture.html">Book a Trial</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+64210902471">021 902 471</a></li>
+        <li><a href="mailto:info@eagleds.co.nz">info@eagleds.co.nz</a></li>
+        <li>17 Nandina Ave, East Tāmaki, Auckland 2013, NZ</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">© Eagle DS Combat &amp; Wellness · Family Taekwondo — Same Standard, Every Age</div>
+</footer>
+
+</body>
+</html>
