@@ -339,7 +339,7 @@ let currentEventMeta = null;
 
 // Passed events explicitly excluded from the public registration form,
 // independent of their Firebase status field.
-const EXCLUDED_EVENTS = ['cgs-july-11-2026', 'test event'];
+const EXCLUDED_EVENTS = ['cgs-july-11-2026', 'cgs-september-5-2026', 'test event'];
 function isExcluded(id){
   const norm = String(id||'').trim().toLowerCase();
   return EXCLUDED_EVENTS.some(x => x.trim().toLowerCase() === norm);
@@ -751,4 +751,3 @@ resolveEvent();
 </script>
 </body>
 </html>
-
